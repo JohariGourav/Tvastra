@@ -86,3 +86,11 @@ nav li{
     font-size: 15px;
     margin: 30px;
 }
+
+/* How it Works section */
+.how-it-works {
+    display: flex;
+}
+.how-it-works p{
+    border: 1px solid gray;
+}
