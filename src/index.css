@@ -55,6 +55,7 @@ nav li{
     
     height: 50px;
     margin: 10px 0px;
+    border-color: 1px lightblue;
 }
 
 
@@ -95,4 +96,5 @@ nav li{
 #how-it-works p{
     border: 2px solid gray;
     border-radius: 5px;
+    padding: 5px;
 }
