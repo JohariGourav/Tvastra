@@ -1,27 +1,3 @@
-nav ul{
-    padding: 0px;
-    margin: 0%;
-    width: 100%;
-    background-color: white;
-    list-style: none;
-    height: 70px;
-}
-nav li{
-    float: left;
-    text-align: center;
-    padding: 10px, 0px;
-    line-height: 50px;
-}
-
-#logo {
-    height: 50px;
-    width: 15rem;
-}
-#navbarIcon {
-    margin-right: 10px;
-    color: #525659;
-    float: right;
-}
 @font-face{
     font-family: nexa-light;
     src: url(Fonts/Nexa-Light.otf);
@@ -31,70 +7,293 @@ nav li{
     src: url(Fonts/Nexa-Bold.otf);
 }
 
+.container {
+    text-align: center;
+    padding: 0.5rem 0rem;
+    
+}
+.logo {
+    width: 8rem;
+    height: 2rem;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.hide-mobile {
+    display: none;
+}
+nav {
+    align-content: center;
+}
+.menu {
+ margin-top: 50%;  
+ margin-right: 10px; 
+}
+/* nav ul{
+    padding: 0px;
+    margin: 0%;
+    width: 100%;
+    background-color: white;
+    list-style: none;
+    height: 70px;
+}
+nav li{
+    
+    float: left;
+    text-align: center;
+    padding: 10px, 0px;
+    line-height: 50px;
+}
+
+
+#navbarIcon {
+    margin-right: 10px;
+    color: #525659;
+    float: right;
+} */
+
+/* Search location section starts */
 .search-location-section {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     font-size: 20px;
-    padding: 0px 35px;
-    background-color: lightblue;
+    padding: 1rem 1rem; 
+    background-color: #96c6e7;
     color: #010133;
     text-align: center;
     
     
 }
+
+.search-location-section h1  {
+    margin: 1rem;
+}
+.search-location-section p  {
+    margin: 1rem 0rem;
+}
 .search-location-section .gps-bar {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     
     width: 100%;
     background-color: white;
     
-    height: 50px;
-    margin: 10px 0px;
-    border-color: 1px lightblue;
-}
-
-
-.search-location-section input {
-    font-size: 15px;
-    height: 50px;
-    width: 100%;
-    border-color:1px  lightblue;
-}
-
-
-/* search and location section Image */
-.search-location-section img{
-    height: 25px;
-    width: 50px;
-    object-fit: scale-down;
-    border:1px lightblue;
+    height: 3rem;
+    margin: 0.5rem 0px;
     
 }
 
+.search-location-section .gps-bar button {
+    border-style: none;
+    background-color: white;
+    padding: 1rem;
+    color: black;
+}
+.gps-bar input {
+    border-style: none ;
+    width: 100%;
+    
+}
+.search-location-section .search-box {
+    font-size: .8rem;
+    height: 3rem;
+    width: 100%;
+    border-style: none;
+    padding-left: .5rem;
+}
 
-
-.search-location-section button {
+.search-location-section .search-button {
     background-color: #010133;
-    height: 45px;
+    height: 3rem;
     width: 50%;
     color: white;
     font-family: nexa-bold;
-    font-size: 15px;
-    margin: 30px;
+    font-size: 1rem;
+    margin-top: 30px;
+    margin-bottom: 15px;
 }
 
+/* Search Location container ends */
+
 /* How it Works section */
-#how-it-works {
+.how-it-works {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    
+    font-size: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
 }
-#how-it-works p{
-    border: 2px solid gray;
+
+.how-it-works button{
+    background-color: white;
+    color: rgb(194, 189, 189);
+    border: 2px solid rgb(194, 189, 189);;
     border-radius: 5px;
-    padding: 5px;
+    width: 100%;
+    height: 80px;
+    margin: 5px;
+    font-size: 1.5rem;
+    padding: 5px 10px 5px;
+}
+
+/* .how-it-works .step-box:hover {
+    box-shadow: 0 0 1rem lightgrey;
+} */
+
+.how-it-works .step-photo {
+    margin: auto 0 auto 0.5rem;
+    /* display: none; */
+}
+
+.how-it-works .step-photo p {
+    margin: 0.8rem auto;
+}
+
+.how-it-works .step-photo {
+    max-width: 450px;
+    margin: 0 auto;
+}
+.how-it-works img {
+    width: 100%;
+    height: 400px;
+    
+}
+
+/* Doctors List */
+.card .doc-img {
+    max-width: 450px;
+    margin: 0 auto;
+}
+.card img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+}
+
+.doctor-list {
+    background-color: #081038;
+    color: white;
+    padding: 1rem;
+    margin: 0;
+    text-align: center;
+    padding-bottom: 2.5rem;
+}
+
+.doctor-list h1 {
+    margin: 1rem auto;
+}
+.doctor-list>p {
+    margin: 1rem auto;
+    font-weight: 600;
+} 
+
+.doctor-list .doc-cards {
+    display: inline-grid;
+    grid-template-columns: auto;
+    margin: auto;
+}
+
+.doc-cards .card {
+    max-width: 350px;
+    color: #021433;
+    background-color: white;
+    margin: .3rem;
+
+    display: inline-block;
+    text-align: left;
+    border-bottom: .25rem solid lightskyblue;
+}
+
+.card .doc-name {
+    color: #358dc7;
+    font-size: larger;
+    padding: 0rem;
+    font-family: nexa-bold;
+}
+
+.card p {
+    padding: 0.5rem 1rem 0 2rem;
+    font-size: larger;
+    
+}
+
+.dots {
+    display: none;
+}
+
+/* Doctors list ENDS */
+
+/* Featured medical treatments */
+
+.featured-treatments {
+    color: #070f38;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 0.8rem;
+}
+
+.featured-treatments p {
+    font-size: large;
+    color: #070f38;
+    padding: 1rem 0;
+    font-weight: 500;
+}
+
+.featured-treatments .features .feature {
+    color: white;
+    text-align: center;
+    max-width: 350px;
+
+    position: relative;
+    display: inline-block;
+    margin: .5rem auto;
+}
+
+.featured-treatments>.features>.feature:before{
+    content:'';
+    position:absolute;
+    left:0; top:0;
+    width: 100%;
+    height: 100%;
+    display:inline-block;
+    background-image: linear-gradient(to bottom,transparent 40%, #000);
+}
+
+.feature> img {
+    height: 450px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.feature > .above-img {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 1.5rem;
+}
+.above-img p {
+    text-align: left;
+    line-height: 1.8rem;
+    color: white;
+}
+
+.above-img > .headline {
+    font-family: nexa-bold;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: auto;
+    margin: 0.5rem;
+    width: auto;
+
 }
