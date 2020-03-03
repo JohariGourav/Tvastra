@@ -8,21 +8,22 @@
     <link rel="stylesheet" type="text/css" href="index.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-
+    
 </head>
 
 <body>
 
+    <!-- Header starts -->
     <div class="container">
         <header>
             <img class="logo" id="logo"
-                src="https://s3.ap-south-1.amazonaws.com/appdev.konfinity.com/css/tasks/Logo.jpg" alt="Tvastra Logo">
+                src="https://s3.ap-south-1.amazonaws.com/appdev.konfinity.com/css/tasks/Logo.jpg" alt="Logo">
             <nav>
                 <a href="#" class="hide-desktop">
-                    <i id="barIcon" class="fas fa-bars menu"></i>
+                    <i id="barIcon" class="fas fa-bars menu-bar"></i>
                 </a>
-                <ul class="show-desktop hide-mobile" id=nav_ul>
-                    <li id="exit-menu" class="exit-menu hide-mobile"><i class="fa fa-times"></i></li>
+                <ul id=nav-ul class="show-desktop hide-mobile">
+                    <li id="exit-menu" class="exit-menu hide-desktop"><i class="fa fa-times"></i></li>
                     <li><a href="#">Doctors</a></li>
                     <li><a href="#">Hospitals</a></li>
                     <li><a href="#">Treatments</a></li>
@@ -34,8 +35,11 @@
             </nav>
         </header>
     </div>
+    <!-- Header Ends -->
+
+    <!-- Search location starts -->
     <div class="search-location-section">
-        <div class="container">
+        
             <h1>Find Affordable Healthcare</h1>
             <p>Join the thousands of others who have exercised their right
                 to equality healthcare at a price you can afford.
@@ -53,7 +57,7 @@
             <input class="search-box" id="search-box" type="text" name="search-text"
                 placeholder="Search for doctors,hospitals and treatment">
             <button class="search-button" id="search-button" type="submit">Search</button>
-        </div>
+        
     </div>
     <!-- How It Works -->
     <section class="how-it-works">
@@ -64,34 +68,96 @@
                 so that you may get the service at its best.
             </p>
             <div class="steps">
-                <div class="step-box" id="step1">
-                    <button>01 Fix Consulation</button>
+                <div class="step-box click-box" id="step1">
+                    <p class="number">01</p>
+                    <p class="step-text">Fix Consulation</p>
                 </div>
-                <div class="step-photo">
-
-                    <img id="img01" src="https://s3.ap-south-1.amazonaws.com/appdev.konfinity.com/css/tasks/img1.png">
-
-                    <h1>Fix Consultation</h1>
+                <div class="step-content active-content" id="step1-content">
+                    <div class="step-photo" id="step1-img">
+                        <img id="img01"
+                            src="https://s3.ap-south-1.amazonaws.com/appdev.konfinity.com/css/tasks/img1.png" alt="">
+                    </div>
+                    <h2>Fix Consultation</h2>
                     <p>This depicts that user will have to fix appointment first
                         when it selects a particular doctor.</p>
                 </div>
                 <div class="step-box" id="step2">
-                    <button>02 Upload Medical Reports</button>
+                    <p class="number">02</p>
+                    <p class="step-text">Upload Medical Reports</p>
+                </div>
+                <div class="step-content" id="step2-content">
+                    <div class="step-photo" id="step2-img">
+                        <img id="img02"
+                            src="https://s3.ap-south-1.amazonaws.com/appdev.konfinity.com/css/tasks/img2.png" alt="">
+                    </div>
+                    <h2>Upload Medical Reports</h2>
+                    <p>This depicts that user will have to fix appointment first when it selects a particular doctor.
+                    </p>
                 </div>
                 <div class="step-box" id="step3">
-                    <button>03 Consult with doctor</button>
+                    <p class="number">03</p>
+                    <p class="step-text">Consult with doctor</p>
+                </div>
+                <div class="step-content" id="step3-content">
+                    <div class="step-photo" id="step3-img">
+                        <img id="img03"
+                            src="https://s3.ap-south-1.amazonaws.com/appdev.konfinity.com/css/tasks/img3.jpeg" alt="">
+                    </div>
+                    <h2>Consult with doctor</h2>
+                    <p>This depicts that user will have to fix appointment first when it selects a particular doctor.
+                    </p>
                 </div>
                 <div class="step-box" id="step4">
-                    <button>04 Fix Surgery</button>
+                    <p class="number">04</p>
+                    <p class="step-text">Fix Surgery</p>
+                </div>
+                <div class="step-content" id="step4-content">
+                    <div class="step-photo" id="step4-img">
+                        <img id="img04"
+                            src="https://s3.ap-south-1.amazonaws.com/appdev.konfinity.com/css/tasks/img4.jpeg" alt="">
+                    </div>
+                    <h2>Fix Surgery</h2>
+                    <p>This depicts that user will have to fix appointment first when it selects a particular doctor.
+                    </p>
                 </div>
                 <div class="step-box" id="step5">
-                    <button>05 Hospital sent estimates</button>
+                    <p class="number">05</p>
+                    <p class="step-text">Hospital sent estimates</p>
+                </div>
+                <div class="step-content" id="step5-content">
+                    <div class="step-photo" id="step5-img">
+                        <img id="img05"
+                            src="https://s3.ap-south-1.amazonaws.com/appdev.konfinity.com/css/tasks/img5.jpg" alt="">
+                    </div>
+                    <h2>Hospital sent estimates</h2>
+                    <p>This depicts that user will have to fix appointment first when it selects a particular doctor.
+                    </p>
                 </div>
                 <div class="step-box" id="step6">
-                    <button>06 Payment</button>
+                    <p class="number">06</p>
+                    <p class="step-text">Payment</p>
+                </div>
+                <div class="step-content" id="step6-content">
+                    <div class="step-photo" id="step6-img">
+                        <img id="img06"
+                            src="https://s3.ap-south-1.amazonaws.com/appdev.konfinity.com/css/tasks/img6.jpg" alt="">
+                    </div>
+                    <h2>Payment</h2>
+                    <p>This depicts that user will have to fix appointment first when it selects a particular doctor.
+                    </p>
                 </div>
                 <div class="step-box" id="step7">
-                    <button>07 Surgery Completed</button>
+                    <p class="number">07</p>
+                    <p class="step-text">Surgery Completed</p>
+                </div>
+                <div class="step-content" id="step7-content">
+                    <div class="step-photo" id="step7-img">
+                        <img id="img07"
+                            src="https://s3.ap-south-1.amazonaws.com/appdev.konfinity.com/css/tasks/img7.jpeg" alt="">
+                    </div>
+                    <h2>Surgery Completed</h2>
+                    <p>This depicts that user will have to fix appointment first when it selects a particular doctor.
+                    </p>
                 </div>
             </div>
         </div>
@@ -108,7 +174,7 @@
             <div class="card">
                 <div class="doc-img" id=doc1>
                     <img src="https://s3.ap-south-1.amazonaws.com/appdev.konfinity.com/css/tasks/image--002.jpg"
-                        alt="doctor1">
+                        alt="profile.jpg">
                 </div>
                 <p class="doc-name">____Duke Sanson</p>
                 <p>Neuro Surgeon</p>
@@ -263,9 +329,9 @@
 
     <!-- Footer  -->
     <footer class="footer">
-        <img src="https://s3.ap-south-1.amazonaws.com/appdev.konfinity.com/css/tasks/footer.png" alt="logo">
+        <img class="footer-logo" src="https://s3.ap-south-1.amazonaws.com/appdev.konfinity.com/css/tasks/footer.png" alt="logo">
         <h2>TVASTRA</h2>
-        <ul class="footer1">
+        <ul class="tvastra-footer">
             <li><a href="#">Doctor</a></li>
             <li><a href="#">Hospital</a></li>
             <li><a href="#">Treatment</a></li>
@@ -273,25 +339,27 @@
             <li><a href="#">FAQs</a></li>
         </ul>
         <h2>FOLLOW US</h2>
-        <ul class="footer2">
+        <ul class="followUs-footer">
             <li><a href="#">Facebook</a></li>
             <li><a href="#">Pinterest</a></li>
             <li><a href="#">Twitter</a></li>
             <li><a href="#">Google</a></li>
             <li><a href="#">Instagram</a></li>
         </ul>
-        <p>All rights reserved. &copy; tvastra 2018</p>
-        <div id="social-icons">
+        <p class="copyright">All rights reserved. &copy; tvastra 2018</p>
+        <div class="social-icons" id="social-icons">
             <i class="fab fa-facebook-f"></i>
             <i class="fab fa-pinterest-p"></i>
             <i class="fab fa-twitter"></i>
             <i class="fab fa-google-plus-g"></i>
             <i class="fab fa-instagram"></i>
-        </div>   
+        </div>
     </footer>
 
-    <div class="extra"></div>
+    <!-- <div class="extra"></div> -->
 
+
+    <script src="script.js"></script>
 </body>
 
 </html>

@@ -1,11 +1,4 @@
-@font-face{
-    font-family: nexa-light;
-    src: url(Fonts/Nexa-Light.otf);
-}
-@font-face{
-    font-family: nexa-bold;
-    src: url(Fonts/Nexa-Bold.otf);
-}
+
 
 .container {
     text-align: center;
@@ -14,7 +7,8 @@
 }
 .logo {
     width: 8rem;
-    height: 2rem;
+    height: 2.5rem;
+    padding-left: 0.5rem;
 }
 
 header {
@@ -25,35 +19,55 @@ header {
 .hide-mobile {
     display: none;
 }
+
 nav {
     align-content: center;
 }
-.menu {
- margin-top: 50%;  
- margin-right: 10px; 
+
+nav .menu-bar {
+    margin-top: 40%;  
+    margin-right: 0.8rem;
+    font-size: 1.2rem; 
 }
-/* nav ul{
-    padding: 0px;
-    margin: 0%;
+
+nav ul {
+    position: fixed;
+    top: 0;
+    right: 0;
+    text-align: left;
+    width: 50%;
+    background: rgba(36, 41, 44);
+    padding-top: 1rem;
+    height: 100%;
+}
+nav ul li i{
+    color: white;
+}
+
+nav ul li a{
+    display: block;
+    padding: 1rem 1.5rem;
+    text-decoration: none;
+    color: white;
+    background: rgb(49, 55, 59);
     width: 100%;
-    background-color: white;
-    list-style: none;
-    height: 70px;
-}
-nav li{
-    
-    float: left;
-    text-align: center;
-    padding: 10px, 0px;
-    line-height: 50px;
 }
 
+nav ul li a:hover {
+    background-color:  rgb(69, 76, 80);
+}
 
-#navbarIcon {
-    margin-right: 10px;
-    color: #525659;
-    float: right;
-} */
+nav .exit-menu {
+    margin-bottom: 1rem;
+    /* margin-top: -1.3rem; */
+    text-align: right;
+    padding-right: 1.4rem;
+}
+
+nav .exit-menu i {
+    cursor: pointer;
+    font-size: 1.3rem;
+}
 
 /* Search location section starts */
 .search-location-section {
@@ -76,24 +90,22 @@ nav li{
 .search-location-section p  {
     margin: 1rem 0rem;
 }
-.search-location-section .gps-bar {
+.search-location-section> .gps-bar {
     display: flex;
-    flex-direction: row;
+    /* flex-direction: row; */
     justify-content: center;
-    align-items: center;
-    
-    width: 100%;
-    background-color: white;
+   
+    /* width: 100%; */
+    /* background-color: white; */
     
     height: 3rem;
-    margin: 0.5rem 0px;
-    
+    margin-bottom: 0.5rem;
 }
 
 .search-location-section .gps-bar button {
     border-style: none;
     background-color: white;
-    padding: 1rem;
+    padding: 0 1rem;
     color: black;
 }
 .gps-bar input {
@@ -106,19 +118,23 @@ nav li{
     height: 3rem;
     width: 100%;
     border-style: none;
+    display: block;
+    margin: auto;
     /* padding-left: .5rem; */
     
 }
 
 .search-location-section .search-button {
+    
     background-color: #010133;
+    border-style: none;
     height: 3rem;
     width: 50%;
     color: white;
     font-family: nexa-bold;
     font-size: 1rem;
-    margin-top: 30px;
-    margin-bottom: 15px;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 /* Search Location container ends */
@@ -127,7 +143,6 @@ nav li{
 .how-it-works {
     
     align-items: center;
-    
     font-size: 25px;
     padding-left: 20px;
     padding-right: 20px;
@@ -139,37 +154,67 @@ nav li{
     margin: 1rem auto;
 }
 
-.how-it-works .step-box button{
+.how-it-works .step-box {
     background-color: white;
     color: rgb(194, 189, 189);
     border: 2px solid rgb(194, 189, 189);;
     border-radius: 5px;
     width: 100%;
-    height: 80px;
-    margin: 5px 0;
+    height: 5rem;
+    max-height: auto;
+    margin: 0.3rem 0;
+    
     font-size: 1.5rem;
-    padding: 5px 10px 5px;
+    font-weight: 600;
+    
+    display: grid;
+    grid-template-columns: 20% auto;
+    justify-items: center;
+    align-items: center;
+    
 }
 
-/* .how-it-works .step-box:hover {
-    box-shadow: 0 0 1rem lightgrey;
-} */
+.how-it-works .step-box .step-text {
+    justify-self: left;
+    line-height: 2rem;
+    text-align: left;
+}
 
-.how-it-works .step-photo {
+.how-it-works .click-box {
+    border: 2px solid #8fcaf1;
+    color: var(--main-text-color);
+}
+
+.step-box p {
+    font-size: inherit;
+}
+.how-it-works .click-box .number {
+    color: #8fcaf1;
+}
+
+.how-it-works .step-content {
     max-width: 450px;
     margin: 0 auto;
-    /* display: none; */
-}
-
-.how-it-works .step-photo p {
-    margin: 0.8rem auto;
-}
-
-
-.how-it-works .step-photo img {
-    width: 100%;
-    height: auto;
+    display: none;
     
+}
+
+.how-it-works .active-content {
+    display: block;
+}
+
+
+.how-it-works .step-content p {
+    padding: 0 0 0.8rem;
+}
+
+
+.how-it-works .step-content img {
+    width: 100%;
+    height: auto;  
+    max-height: 470px;
+    margin: 0.5rem auto;
+    object-fit: cover;
 }
 
 /* Doctors List */
@@ -180,7 +225,7 @@ nav li{
 .card img {
     width: 100%;
     height: 450px;
-    object-fit: cover;
+    object-fit: fill;
 }
 
 .doctor-list {
@@ -204,10 +249,11 @@ nav li{
     display: inline-grid;
     grid-template-columns: auto;
     margin: auto;
+    
 }
 
 .doc-cards .card {
-    max-width: 350px;
+    max-width: 500px;
     color: #021433;
     background-color: white;
     margin: .3rem;
@@ -241,21 +287,20 @@ nav li{
 .featured-treatments {
     color: #070f38;
     text-align: center;
-    padding: 1rem 0 0;
-    margin-top: 0.8rem;
+    padding: 1rem;
+    margin: 0.5rem 0;
 }
 
 .featured-treatments>p {
-    font-size: large;
-    color: #070f38;
-    padding: 1rem 0;
+    color: var(--main-text-color);
+    padding: 0.5rem 0;
     font-weight: 500;
 }
 
 .featured-treatments .features .feature {
     color: white;
     text-align: center;
-    max-width: 350px;
+    max-width: 420px;
 
     position: relative;
     display: inline-block;
@@ -307,29 +352,30 @@ nav li{
 
 /* Exclusive Services */
 .services {
+    background-color: rgb(233, 232, 232);
     color: #021433;
-    padding: 0rem 1.5rem 1.5rem;
+    padding: 0.5rem 1rem 1.5rem;
 }
 .services .container h1 {
-    margin: 1rem 0;
+    /* margin: 0.5rem 0; */
 }
 
 .services .container> p {
-    padding: 0 0 1.5rem;
-    font-size: large;
+    padding: 0.5rem 0;
     margin-bottom: 0.5rem;
 }
 
 .services-grid-container {
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 10rem 10rem;
     column-gap: 1rem;
     row-gap: 1rem;
     justify-content: center;
+    align-content: center   ;
 }
 
 .services-grid-container .service-item {
-    background-color: lightgray;
+    background-color: white;
     border-radius: 5%;
     color: gray;
     font-weight: bold;
@@ -381,7 +427,7 @@ nav li{
 
 footer img {
     width: 50%;
-    margin: 1rem;
+    
 }
 footer h2 {
     color:  white;
@@ -389,31 +435,168 @@ footer h2 {
     margin: 1rem;
 }
 
-.footer1 , .footer2 {
+.tvastra-footer , .followUs-footer {
     list-style: none;
 }
 
 footer ul a {
     text-decoration: none;
-    color: #cccccc;
+    color: inherit;
 }
 
 footer ul li {
-    padding: 0.5rem;
+    margin: 0.5rem;
 }
 
-footer> p {
-    color: #636668;
+footer .copyright {
+    color: var(--footer-copyright-color);
     font-size: 0.75rem;
     margin: 0.5rem;
 }
 
 
 
-#social-icons {
+.social-icons {
     display: none;
 }
 
 .extra {
     height: 500px;
+}
+
+
+@media only screen and (min-width:700px) {
+    
+    .search-location-section .gps-bar {
+        max-width: 60%;
+        margin: 0 auto 0.5rem;
+    }
+
+    .search-location-section .search-box {
+        max-width: 60%;
+    }
+
+    .search-location-section .search-button {
+        width: 30%; 
+    }
+
+    /* How it Works */
+
+    .how-it-works .steps {
+        display: grid;
+        grid-template-columns: 45% 55%;
+        justify-items: center;
+        align-items: center;
+        justify-content: center;
+        align-content: center;
+        padding: 0 1rem;
+    }
+
+    .how-it-works .step-box {
+        padding-right: 0.2rem;
+    }
+
+    .how-it-works .steps .step-content {
+        grid-column: 2/3;
+        grid-row: 1/8;
+        padding: 0.5rem 0 1rem 1.5rem;
+        
+        max-width: 90%;
+        max-height: 100%;
+    }
+
+    .how-it-works .step-content img {
+        max-height: 100%;
+        max-width: 100%;
+    }
+
+    /* Doctors -list */
+    .doctor-list .doc-cards {
+        display: inline-grid;
+        grid-template-columns: 45% 45%;
+
+        justify-content: space-evenly;
+        justify-items: center;
+        
+        width: 100%;
+    }
+
+    .doctor-list .doc-cards .card {
+        margin-bottom: 1rem;
+    }
+    
+    /* Featured Treatments */
+    .featured-treatments .features {
+        display: grid;
+        grid-template-columns: auto auto;
+        column-gap: 1rem;
+    }
+
+    /* Exclusive Services */
+    .services-grid-container {
+        display: grid;
+        grid-template-columns: 10rem 10rem 10rem;
+        column-gap: 1rem;
+    }
+    .services-grid-container .service-item {
+        height: 10rem;
+    }
+    .service-item img {
+        width: 5rem;
+        height: 5rem;
+    }
+    .service-item p {
+        padding-top: 1rem;
+    }
+
+    /* Footer */
+    .footer {
+        background-color: initial;
+        color: var(--main-text-color);
+        padding: 1rem ;
+        height: 8rem;
+    }
+
+    .footer-logo {
+        float: right;
+        max-width: 10rem;
+        padding: 0.5rem 0;
+    }
+
+    .tvastra-footer {
+        text-align: left;
+        padding: 1rem 0;
+    }
+
+    .tvastra-footer li {
+        display: inline;
+        margin: 0 0.5rem 0 0;
+        /* float: left; */
+        
+    }
+
+    .footer > h2 {
+        display: none;
+    }
+
+    .followUs-footer {
+        display: none;
+    }
+
+    .footer .copyright {
+        color: inherit;
+        font-size: unset;
+        float: left;
+        margin: 1rem 0;
+    }
+
+    .social-icons {
+        display: block;
+        float: right;
+        font-size: x-large;
+        margin: 1rem 0.5rem;
+    }
+    .social-icons i {
+        margin-right: 0.5rem;
+    }
 }

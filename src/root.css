@@ -9,29 +9,68 @@
 
 html {
     box-sizing: border-box;
+    font-size: 16px;
+}
+
+ html * {
+    box-sizing: border-box;
+}
+
+@media only screen and (min-width:320px) {
+    html {
+        font-size: calc(16px + 6 * ((100vw - 320px) / 680));
+    }
+} 
+
+@media only screen and (min-width: 1024px) {
+    html {
+        font-size: 24px;
+    }
+}
+
+:root {
+    --main-bg-color: #081038;
+    --main-text-color: #081038;
+
 }
 
 body {
     padding: 0px;
     margin: 0;
+    
+    line-height: 1.4rem;
+
+    --main-bg-color: #081038;
+    --main-text-color: #081038;
+
+    --footer-copyright-color: #636668;
+    --footer-textItems-color: #cccccc;
+    --footer-bg-color: #021433;
 }
 
 h1 {
-    font-size: 2rem;
-    
+    font-size: 2.2rem; 
     font-family: nexa-bold;
+    line-height: 2.5rem;
 }
 h2 {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-family: nexa-bold;
+    line-height: 2rem;
+    
 }
 h3 {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     font-family: nexa-bold;
+    line-height: 1.8rem;
 }
 
 p {
     display: block;
     font-family: nexa-light;
-    font-size: 1rem;;
+    font-size: 1rem;
+}
+
+button {
+    /* padding: 1rem 0.5rem; */
 }
