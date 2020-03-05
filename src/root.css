@@ -37,8 +37,16 @@ html {
 body {
     padding: 0px;
     margin: 0;
-    
     line-height: 1.4rem;
+
+    --main-sectionHeadlines-font-size: 1.8rem;
+    --main-sectionHeadlines-line-height: 2rem;
+    --main-sectionHeadlines-color: #081038;
+    
+    --main-sectionPara-font-size: 1.1rem;
+    --main-sectionPara-color: #081038;
+
+    
 
     --main-bg-color: #081038;
     --main-text-color: #081038;
@@ -62,7 +70,19 @@ h2 {
 h3 {
     font-size: 1.5rem;
     font-family: nexa-bold;
-    line-height: 1.8rem;
+    line-height: 1.7rem;
+}
+
+h4 {
+    font-size: 1.3rem;
+    font-family: nexa-bold;
+    line-height: 1.5rem;
+}
+
+h5 {
+    font-size: 1.2rem;
+    font-family: nexa-bold;
+    line-height: 1.4rem;
 }
 
 p {
