@@ -171,9 +171,6 @@ nav .exit-menu i {
     /* max-height: auto; */
     margin: 1rem 0;
     
-    font-size: 1.5rem;
-    font-weight: 600;
-    
     display: grid;
     grid-template-columns: 15% auto;
     justify-items: center;
@@ -191,13 +188,11 @@ nav .exit-menu i {
 }
 
 .how-it-works .click-box {
-    border: 2px solid #8fcaf1;
+    border: 2px solid var(--main-bg-color);
     color: var(--main-text-color);
 }
 
-.step-box p {
-    font-size: inherit;
-}
+
 .how-it-works .click-box .number {
     color: #8fcaf1;
 }
@@ -223,7 +218,7 @@ nav .exit-menu i {
     width: 100%;
     height: auto;  
     max-height: 470px;
-    margin: 0.5rem auto;
+    margin: 0.5rem auto 1rem;
     object-fit: cover;
 }
 
@@ -255,21 +250,19 @@ nav .exit-menu i {
     margin: auto;
     width: 100%;
     max-width: 28rem;
+    row-gap: 1.2rem;
+    column-gap: 1.2rem;
 }
 
 .doc-cards .card {
     /* max-width: 25rem; */
     color: #021433;
     background-color: white;
-    margin-bottom: 1.2rem;
+    
 
     display: inline-block;
     text-align: left;
     border-bottom: .25rem solid lightskyblue;
-}
-
-.doc-cards .card:last-child {
-    margin-bottom: 0;
 }
 
 .card .doc-img {
@@ -277,7 +270,7 @@ nav .exit-menu i {
     height: 22rem;
     max-height: 420px;
 
-    max-width: 400px;
+    max-width: 470px;
     width: 100%;
     margin: 0 auto;
 }
@@ -343,7 +336,7 @@ nav .exit-menu i {
 
 .features {
     display: grid;
-    grid-template-columns: auto;
+    grid-template-columns: 1fr;
     margin: auto;
     width: 100%;
     align-content: center;
@@ -351,6 +344,8 @@ nav .exit-menu i {
     justify-items: center;
     align-items: center;
     max-width: 28rem;
+
+    row-gap: 1rem;
 }
 
 .featured-treatments .features .feature {
@@ -360,12 +355,10 @@ nav .exit-menu i {
 
     position: relative;
     display: inline-block;
-    margin-bottom:  1.2rem;
+    
 }
 
-.features .feature:last-child {
-    margin-bottom: 0;
-} 
+ 
 
 .featured-treatments>.features>.feature:before{
     content:'';
@@ -387,19 +380,18 @@ nav .exit-menu i {
     position: absolute;
     bottom: 1rem;
     left: 1rem;
-    /* margin-bottom: 1rem; */
-}
-.above-img p {
+
     text-align: left;
     line-height: 1.5rem;
     color: white;
     font-size: 1.1rem;
     opacity: 0.9;
+    /* margin-bottom: 1rem; */
+}
+.above-img  p {
+    font-size: 0.9rem;
 }
 
-.above-img > .headline {
-    font-family: nexa-bold;
-}
 
 
 /* Featured Treatments Ends */
@@ -426,8 +418,8 @@ nav .exit-menu i {
 
 .services-grid-container {
     display: grid;
-    grid-template-columns: 47% 47%;
-    column-gap: 6%;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1rem;
     row-gap: 1rem;
     justify-content: center;
     align-content: center   ;
@@ -436,13 +428,12 @@ nav .exit-menu i {
 .services-grid-container .service-item {
     background-color: white;
     border-radius: 5%;
-    color: gray;
-    
 
     justify-self: stretch;
     align-self: center;
     /* /* padding: 1rem; */
     padding-bottom: 1rem; 
+    padding-top: 0.75rem;
 
     
 }
@@ -452,10 +443,11 @@ nav .exit-menu i {
     height: 80px;
 }
 
-.service-item p {
+.service-item h6 {
     /* text-transform: uppercase; */
-    font-size: 0.8rem;
-    font-weight: bold;
+    font-size: 0.9rem;
+    color: #081038c4;
+    /* font-weight: bold; */
 }
 
 /* Exclusive Services Ends */
@@ -468,29 +460,33 @@ nav .exit-menu i {
     text-align: center;
 }
 
-.help-query h2 {
+.help-query .left-content h2 {
     color: white;
-    padding: 0.5rem;
+}
+
+.help-query .left-content p {
+    padding: 1rem 0;
 }
 
 .help-query .right-content {
-    padding: 1rem 0 0;
+    /* padding: 1rem 0 0; */
 }
 
 .help-query .right-content button {
     background-color: #0282d8;
-    width: 15rem;
-    height: 4rem;
+    /* width: 15rem; */
+    /* height: 4rem; */
     color: white;
     border-style: none;
     font-size: 1.2rem;
-    border-radius: 5%;  
+    border-radius: 5px;  
+    padding: 1rem
 }
 /* Need Help Ends */
 
 /* Footer Starts */
 .footer {
-    padding: 1.5rem 1.2rem 1rem;
+    padding: 1.5rem 1.2rem ;
     background-color: #021433;
     text-align: center;
     color: #cccccc;
@@ -527,12 +523,13 @@ footer .copyright {
 
 .social-icons {
     /* display: none; */
-    font-size: x-large;
+    font-size: inherit;
     padding: 0.5rem 0;
 }
 
 .social-icons i {
     margin: 0.5rem ;
+    margin-right: 1rem;
 }
 
 .extra {
@@ -564,12 +561,18 @@ footer .copyright {
         align-items: center;
         justify-content: center;
         align-content: center;
-        padding: 0.5rem 1rem;
+        row-gap: 1rem;
+        padding: 0.5rem 1rem 0;
     }
 
     .how-it-works .step-box {
         padding-right: 0.2rem;
-        font-size: x-large;
+        
+        margin: 0;
+    }
+
+    .how-it-works .step-box h4 {
+        font-size: 1.1rem;
     }
 
     .how-it-works .steps .step-content {
@@ -589,22 +592,24 @@ footer .copyright {
     /* Doctors -list */
     .doctor-list .doc-cards {
         display: inline-grid;
-        grid-template-columns: 45% 45%;
+        grid-template-columns: 1fr 1fr;
 
         justify-content: space-evenly;
         justify-items: center;
-        
         width: 100%;
+        max-width: 100%;
     }
 
     .doctor-list .doc-cards .card {
-        margin-bottom: 1rem;
+        /* margin-bottom: 1rem; */
+        width: 100%;
     }
     
     /* Featured Treatments */
     .featured-treatments .features {
         display: grid;
-        grid-template-columns: auto auto;
+        grid-template-columns: 1fr 1fr;
+        max-width: 100%;
         column-gap: 1rem;
     }
 
