@@ -18,21 +18,32 @@ html {
 
 @media only screen and (min-width:320px) {
     html {
-        font-size: calc(16px + 6 * ((100vw - 320px) / 680));
+        font-size: calc(16px + 1 * ((100vw - 320px) / 680));
         /* font-size: 18px; */
     }
 } 
 
 @media only screen and (min-width: 1024px) {
     html {
-        font-size: 24px;
+        font-size: 17px;
     }
+    
+}
+
+@media only screen and (min-width: 1200px) {
+    html {
+        font-size: 22px;
+    }
+
+    h1 {
+        line-height: 2.35rem;
+    }
+    
 }
 
 :root {
     --main-bg-color: #081038;
     --main-text-color: #081038;
-
 }
 
 body {
@@ -66,8 +77,8 @@ h2 {
     font-size: 1.8rem;
     font-family: nexa-bold;
     line-height: 2rem;
-    
 }
+
 h3 {
     font-size: 1.5rem;
     font-family: nexa-bold;
@@ -92,13 +103,59 @@ h6 {
     line-height: 1.2rem;
 }
 
-
 p {
     display: block;
     font-family: nexa-light;
     font-size: 1rem;
 }
 
-button {
-    /* padding: 1rem 0.5rem; */
+header {
+    padding: 1rem 1.2rem;
+}
+section {
+    padding: 2rem 1.2rem;
+}
+
+footer {
+    padding: 2rem 1.2rem;
+}
+
+@media only screen and (min-width: 700px) {
+    header {
+        padding: 1rem 2rem;
+    }
+    section {
+        padding: 2rem 2rem;
+    }
+
+    footer {
+        padding: 2rem 2rem;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+
+    body {
+
+        --main-sectionHeadlines-font-size: 2.2rem;
+        --main-sectionHeadlines-line-height: 2.4rem;
+        --main-sectionPara-font-size: 0.9rem;
+    }
+    header {
+        padding: 1rem 3rem 1rem 4.5rem;
+    }
+
+    section {
+        padding: 4.5rem 4.5rem;
+    }
+
+    footer {
+        padding: 2rem 4.5rem;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    body {
+    --main-sectionPara-font-size: 1rem;
+    }
 }
