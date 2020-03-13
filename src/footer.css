@@ -1,0 +1,120 @@
+.footer {
+    /* padding: 1.5rem 1.2rem ; */
+    background-color: #021433;
+    text-align: center;
+    color: #cccccc;
+    border-bottom: 0.35rem solid #7fb9e0;
+    font-size: 1rem;
+}
+
+footer img {
+    width: 10rem;
+    
+}
+
+
+.tvastra-footer {
+    list-style: none;
+    font-size: 1.1rem;
+}
+
+footer .tvastra-footer a {
+    text-decoration: none;
+    color: inherit;
+    font-size: inherit;
+}
+
+footer ul li {
+    margin-top: 0.5rem;
+}
+
+footer .copyright {
+    color: var(--footer-textItems-color);
+    font-size: inherit;
+    /* margin: 0.5rem; */
+}
+
+
+
+.social-icons {
+    /* display: none; */
+    font-size: inherit;
+    padding: 0.5rem 0;
+}
+
+.social-icons i {
+    margin: 0.5rem ;
+    margin-right: 1rem;
+}
+
+.extra {
+    height: 500px;
+}
+
+@media only screen and (min-width:700px) { 
+
+    .footer {
+        display: grid;
+        grid-template-columns: 3fr 1.5fr;
+        justify-content: center;
+        align-content: center;
+        justify-items: center;
+        align-items: center;
+        row-gap: 1rem;
+
+        background-color: initial;
+        color: var(--main-text-color);
+        font-size: 1rem;
+    }
+
+    .footer-logo {
+        grid-column: 2/3;
+        grid-row: 1/2;
+        max-width: 10rem;
+        padding: 0.5rem 0;
+        justify-self: right;
+    }
+
+    .tvastra-footer {
+        grid-column: 1/2;
+        grid-row: 1/2;
+        text-align: left;
+        
+        justify-self: left;
+        font-size: inherit;
+    }
+
+    .tvastra-footer li {
+        display: inline;
+        margin: 0 0.5rem 0 0;
+        /* float: left; */
+        color: inherit;
+    }
+
+    .footer .copyright {
+        color: inherit;
+        font-size: inherit;
+        /* float: left; */
+        
+        grid-row: 2/3;
+        grid-column: 1/2;
+        justify-self: left;
+    }
+
+    .social-icons {
+        display: block;
+        /* float: right; */
+        font-size: inherit;
+        
+        grid-column: 2/3;
+        grid-row: 2/3;
+        justify-self: right;
+    }
+    .social-icons i {
+        margin: 0 0 0 1rem ;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    
+}
