@@ -20,8 +20,10 @@
 <body>
     <!-- Header starts -->
     <header>
-        <img class="logo" id="logo" src="https://s3.ap-south-1.amazonaws.com/appdev.konfinity.com/css/tasks/Logo.jpg"
-            alt="Logo">
+        <a href="index.html">
+            <img class="logo" id="logo"
+                src="https://s3.ap-south-1.amazonaws.com/appdev.konfinity.com/css/tasks/Logo.jpg" alt="Logo">
+        </a>
         <nav>
             <a href="#" class="hide-desktop">
                 <i id="barIcon" class="fas fa-bars menu-bar"></i>
@@ -29,7 +31,7 @@
             <ul id=nav-ul class="show-desktop hide-mobile">
                 <li id="exit-menu" class="exit-menu hide-desktop"><i class="fa fa-times"></i></li>
                 <li><a href="doctor.html">Doctors</a></li>
-                <li><a href="#">Hospitals</a></li>
+                <li><a href="hospital.html">Hospitals</a></li>
                 <li><a href="#">Treatments</a></li>
                 <li><a href="#">Other Services</a></li>
                 <li><a href="#">About</a></li>
@@ -59,6 +61,9 @@
     <section class="doc-functionality">
         <div class="filter-container">
 
+            <div class="filter-container-heading">
+                <h4>Filter By</h4>
+            </div>
             <!-- Location -->
             <div class="location-filter filters">
                 <div class="location-heading filter-heading">
@@ -166,7 +171,7 @@
 
             <!-- Years of Exp -->
             <div class="yearsOfExp-filter filters">
-                <div class="hospital-heading filter-heading">
+                <div class="yearsOfExp-heading filter-heading">
                     <h4>Years of Experience</h4>
                     <i class="fas fa-search"></i>
                 </div>
