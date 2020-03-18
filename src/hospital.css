@@ -357,7 +357,7 @@
     .hospital-cards-container .hospital-card {
         grid-template-columns: 5fr 2fr;
         column-gap: 1rem;
-        grid-template-rows: 3rem 11rem 5rem;
+        grid-template-rows: 3rem auto auto;
     }
 
     .hospital-card .hospital-info {
@@ -374,7 +374,7 @@
     }
 
     .hospital-card .hospital-info .specialities {
-        padding-left: 2.5rem;
+        padding-left: 4rem;
     }
 
     .hospital-card .hospital-info .specialities li {

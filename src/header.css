@@ -140,8 +140,15 @@ nav .exit-menu i {
         background-color: white ;
         border-radius: 0.2rem;
         color: var(--main-text-color);
+        
         /* word-spacing: 1rem; */
         /* font-size: initial; */
+    }
+
+    nav .login-btn a {
+        text-decoration: none;
+        color: inherit;
+        padding: 0;
     }
 
     nav .getQuote-btn {
@@ -151,6 +158,12 @@ nav .exit-menu i {
         padding: 0.5rem 1.5rem;
         border-radius: 0.2rem;
         /* font-size: initial;   */
+        text-decoration: none;
+    }
+    nav .getQuote-btn a {
+        text-decoration: none;
+        color: inherit;
+        padding: 0;
     }
     /* Header ends */ 
 }

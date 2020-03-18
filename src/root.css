@@ -61,7 +61,9 @@ body {
     
 
     --main-bg-color: #081038;
+    --secondary-bg-color: #82b5d8;
     --main-text-color: #081038;
+    --secondary-text-color: #4285b3;
 
     --footer-copyright-color: #636668;
     --footer-textItems-color: #cccccc;
