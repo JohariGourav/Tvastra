@@ -13,6 +13,10 @@ header {
     
 }
 
+header > a {
+    line-height: 0;
+}
+
 .hide-mobile {
     display: none;
 }
@@ -180,7 +184,7 @@ nav .exit-menu i {
 
     nav .show-desktop {
         display: inline-flex;
-        justify-content: space-between;
+        justify-content: space-evenly;
         justify-items: flex-end;
         width: 58%;
         margin: 0;

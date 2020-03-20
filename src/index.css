@@ -3,7 +3,7 @@
 
 .search-location-section {
     
-    background-color: #96c6e7;
+    background-color: var(--secondary-bg-color);
     color: #010133;
     text-align: center;
 }

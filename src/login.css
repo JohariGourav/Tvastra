@@ -8,7 +8,7 @@ a {
 }
 
 input::placeholder {
-    color: #b3b3b3;
+    /* color: var(--placeholder-color); */
     font-family: nexa-bold;
     opacity: 1;
 }
@@ -52,11 +52,13 @@ input::placeholder {
 
     align-content: center;
     justify-content: space-between;
+    align-items: center;
 }
 
 .login-form .mob-num-wrapper input {
     
     border-style: none;
+    padding: 0;
 }
 
 .login-form .mob-num-wrapper i {
@@ -68,6 +70,7 @@ input::placeholder {
     /* border-style: none; */
     border: 1.5px solid lightgrey;
     padding: 0 1rem;
+    width: 100%;
 }
 
 .login-form input {

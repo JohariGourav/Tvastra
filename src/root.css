@@ -61,9 +61,15 @@ body {
     
 
     --main-bg-color: #081038;
-    --secondary-bg-color: #82b5d8;
+    --secondary-bg-color: #82b5d8; 
+    /* 96c6e7 #7fb9e0  4293c5    */
+    /* button 0282d8 */
     --main-text-color: #081038;
     --secondary-text-color: #4285b3;
+    --placeholder-color: #b3b3b3;
+
+    --main-button-bg-color: #010133;
+    --secondary-button-bg-color: #035b96;
 
     --footer-copyright-color: #636668;
     --footer-textItems-color: #cccccc;
@@ -112,11 +118,32 @@ p {
 }
 
 button {
-    background-color: #010133;
+    background-color: var(--main-button-bg-color);
     border-style: none;
     color: white;
     padding: 0.5rem 1rem;
+    font-family: nexa-bold;
     /* font-size: 1rem; */
+}
+
+textarea {
+    resize: none;
+    padding: 0.5rem 0.5rem;
+    border-style: none;
+}
+
+input {
+    padding: 0.5rem 0.5rem;
+    border-style: none;
+}
+
+input:focus , button:focus, select:focus, textarea:focus{
+    outline: none;
+}
+
+::placeholder {
+    color: var(--placeholder-color);
+    font-family: nexa-bold;
 }
 
 header {
