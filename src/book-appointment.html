@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Book an Appointment</title>
+
+    <link rel="stylesheet" type="text/css" href="reset.css">
+    <link rel="stylesheet" type="text/css" href="root.css">
+    <link rel="stylesheet" type="text/css" href="header.css">
+    <link rel="stylesheet" type="text/css" href="book-appointment.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" type="text/css" href="help-query.css"> -->
+    <!-- <link rel="stylesheet" type="text/css" href="footer.css"> -->
+
+</head>
+
+<body>
+
+    <!-- Header starts -->
+    <header>
+        <a href="index.html">
+            <img class="logo" id="logo"
+                src="https://s3.ap-south-1.amazonaws.com/appdev.konfinity.com/css/tasks/Logo.jpg" alt="Logo">
+        </a>
+        <nav>
+            <a href="#" class="hide-desktop">
+                <i id="barIcon" class="fas fa-bars menu-bar"></i>
+            </a>
+            <ul id=nav-ul class="show-desktop hide-mobile">
+                <li id="exit-menu" class="exit-menu hide-desktop"><i class="fa fa-times"></i></li>
+                <li><a href="doctor.html">Doctors</a></li>
+                <li><a href="hospital.html">Hospitals</a></li>
+                <li><a href="#">Treatments</a></li>
+                <li><a href="#">Other Services</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+            <div class="nav-cta hide-mobile">
+                <button class="login-btn">
+                    <a href="login.html">Login / Signup</a>
+                </button>
+                <button class="getQuote-btn">
+                    <a href="get.html">Get a Quote </a>
+                </button>
+            </div>
+
+        </nav>
+    </header>
+
+    <!-- Header Ends -->
+
+    <!-- Sign Up Section -->
+    <section class="book-appoint-section">
+        <div class="book-appoint-wrapper">
+            <h1>Book an Appointment</h1>
+            <form action="#" method="post" class="book-appoint-form">
+
+                <div class="appointDate-box form-item item1">
+                    <h5>Select Appointment Date*</h5>
+                    <label for="appoint-date"></label>
+                    <input type="date" id="appoint-date" placeholder="dd/mm/yyyy" required>
+                </div>
+                <div class="timeInterval-box form-item item2">
+                    <h5>Time Interval*</h5>
+                    <div class="radioMenu-box timeIntervalRadioMenuBox">
+                        <input type="radio" name="time-interval" id="timeIntervalMorning" value="Morning" required>
+                        <label for="timeIntervalMorning">Morning</label>
+
+                        <input type="radio" name="time-interval" id="timeIntervalAfternoon" value="Afternoon">
+                        <label for="timeIntervalAfternoon">Afternoon</label>
+
+                        <input type="radio" name="time-interval" id="timeIntervalEvening" value="Evening">
+                        <label for="timeIntervalEvening">Evening</label>
+                    </div>
+                </div>
+                <div class="appointStatus-box form-item item3">
+                    <h5>Appointment Status / Urgency*</h5>
+                    <div class="radioMenu-box appointStatusRadioMenuBox">
+                        <input type="radio" name="appoint-status" id="appointStatusCh1" value="Routine Check-up" required>
+                        <label for="appointStatusCh1">Routine Check-up</label>
+
+                        <input type="radio" name="appoint-status" id="appointStatusCh2" value="Non Urgetn Check-up">
+                        <label for="appointStatusCh2">Non Urgent Check-up</label>
+
+                        <input type="radio" name="appoint-status" id="appointStatusCh3" value="Urgent Check-up">
+                        <label for="appointStatusCh3">Urgent Check-up</label>
+
+                        <input type="radio" name="appoint-status" id="appointStatusCh4" value="Surgical Appointment">
+                        <label for="appointStatusCh4">Surgical Appointment</label>
+                    </div>
+                </div>
+                <div class="previousHealthRecord-box form-item item4">
+                    <h5>Upload Previous Health Record</h5>
+                    <label for="previousHealthRecord"></label>
+                    <input type="file" id="previousHealthRecord">
+                </div>
+                <div class="appointDetails-box form-item item5">
+                    <h5>Appointment Details</h5>
+                    <label for="appointmentDetails"></label>
+                    <textarea name="appointmentDetails" id="appointmentDetails"></textarea>
+                </div>
+
+                <button type="submit" class="form-item item6">BOOK APPOINTMENT
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+
+        </div>
+    </section>
+
+    <!-- Footer  -->
+    <footer class="footer">
+        <p class="copyright">All Rights Reserved. &copy; tvastra 2020</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
