@@ -109,7 +109,7 @@
 }
 
 .book-btn {
-    
+    cursor: pointer;
     padding: 0.5rem 1.5rem;
     /* font-weight: 600; */
     font-size: 1rem;
@@ -194,7 +194,7 @@
     }
 
     .doc-cards-container {
-        row-gap: 0;
+        /* row-gap: 0; */
     }
 
     .doc-cards-container .doc-card {

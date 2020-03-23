@@ -88,6 +88,7 @@ input::placeholder {
 .book-appoint-form .previousHealthRecord-box input {
     padding-top: 0;
     padding-bottom: 0;
+    width: 100%
 }
 
 .book-appoint-form .appointDetails-box textarea {
