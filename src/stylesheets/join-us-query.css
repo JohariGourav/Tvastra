@@ -1,0 +1,54 @@
+.join-us-query {
+    background-color: var(--secondary-bg-color);
+    /* padding: 2rem 1.2rem; */
+    color: var(--main-text-color);
+    text-align: center;
+}
+
+.join-us-query .left-content h2 {
+    color: white;
+}
+
+.join-us-query .left-content p {
+    padding: 1rem 0;
+    font-size: 1.4rem;
+}
+
+.join-us-query .right-content {
+    /* padding: 1rem 0 0; */
+}
+
+.join-us-query .right-content button {
+    background-color: var(--secondary-button-bg-color);
+    /* width: 15rem; */
+    /* height: 4rem; */
+    color: white;
+    border-style: none;
+    font-size: 1.2rem;
+    border-radius: 5px;  
+    padding: 1rem 1.5rem;
+}
+
+@media only screen and (min-width: 1024px) { 
+
+    .join-us-query {
+        display: grid;
+        grid-template-columns: auto auto;
+        column-gap: 1rem;
+        justify-content: space-between;
+        align-content: center;
+        align-items: center;
+        padding-top: 3rem ;
+        padding-bottom: 3rem;
+    }
+    .left-content {
+        justify-self: left;
+        text-align: left;
+    }
+    .right-content {
+        justify-self: right;
+    }
+    .join-us-query .right-content button {
+        padding: 1rem 2.5rem;
+    }
+}

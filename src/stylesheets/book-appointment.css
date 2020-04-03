@@ -103,6 +103,7 @@ input::placeholder {
     letter-spacing: 0.2rem;
     font-family: nexa-bold;
     height: 55px;
+    text-transform: uppercase;
 }
 
 .book-appoint-form button i{

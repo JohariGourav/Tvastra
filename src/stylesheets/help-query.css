@@ -13,10 +13,6 @@
     padding: 1rem 0;
 }
 
-.help-query .right-content {
-    /* padding: 1rem 0 0; */
-}
-
 .help-query .right-content button {
     background-color: var(--secondary-button-bg-color);
     /* width: 15rem; */

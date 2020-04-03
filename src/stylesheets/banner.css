@@ -1,0 +1,65 @@
+.banner {
+  width: 100%;
+  height: 300px;
+  position: relative;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto;
+      grid-template-columns: auto;
+  /* align-content: center; */
+}
+
+.banner img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.banner .banner-text {
+  position: absolute;
+  z-index: 3;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  text-align: center;
+  color: white;
+  padding: 0 1rem;
+}
+
+.banner .banner-text h1 {
+  padding-bottom: 0.5rem;
+  font-size: 2.1rem;
+  line-height: 2.2rem;
+}
+
+.banner .banner-text span {
+  font-size: 1.3rem;
+  line-height: 1.5rem;
+  /* word-spacing: 0.5rem; */
+}
+
+.banner::before {
+  content: '';
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-image: -webkit-gradient(linear, left top, right top, to(#076dad));
+  background-image: linear-gradient(to right, #076dad 100%);
+  position: absolute;
+  opacity: 0.4;
+  z-index: 2;
+}
+
+@media only screen and (min-width: 1024px) {
+  .banner .banner-text {
+    -ms-grid-column-align: left;
+        justify-self: left;
+    padding-left: 4.5rem;
+    text-align: left;
+  }
+}
+/*# sourceMappingURL=banner.css.map */
