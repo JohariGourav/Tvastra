@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Contact Us</title>
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/reset.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/root.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/header.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/contact-us.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="stylesheets/help-query.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/footer.css">
+
+</head>
+
+<body>
+
+    <!-- Header starts -->
+    <header>
+        <a href="index.html">
+            <img class="logo" id="logo"
+                src="https://s3.ap-south-1.amazonaws.com/appdev.konfinity.com/css/tasks/Logo.jpg" alt="Logo">
+        </a>
+        <nav>
+            <a href="#" class="hide-desktop">
+                <i id="barIcon" class="fas fa-bars menu-bar"></i>
+            </a>
+            <ul id=nav-ul class="show-desktop hide-mobile">
+                <li id="exit-menu" class="exit-menu hide-desktop"><i class="fa fa-times"></i></li>
+                <li><a href="doctor.html">Doctors</a></li>
+                <li><a href="hospital.html">Hospitals</a></li>
+                <li><a href="treatment.html">Treatments</a></li>
+                <li><a href="#">Other Services</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+            <div class="nav-cta hide-mobile">
+                <a href="login.html">
+                    <button class="login-btn">Login / Signup</button>
+                </a>
+                <a href="get.html">
+                    <button class="getQuote-btn">Get a Quote</button>
+                </a>
+            </div>
+
+        </nav>
+    </header>
+
+    <!-- Header Ends -->
+
+    <!-- Banner -->
+    <div class="banner">
+        <img src="https://s3.ap-south-1.amazonaws.com/appdev.konfinity.com/css/tasks/contactUs.png" alt="banner-bg">
+        <div class="banner-text">
+            <h1>Contact Us</h1>
+            <span>Home / Contact Us</span>
+        </div>
+    </div>
+
+    <!-- gps map -->
+    <section class="gps-location-map">
+        <div class="gps-map" id="gps-map">
+        </div>
+    </section>
+
+    <!-- contact us -->
+    <div class="contact-us-functionality">
+        <section class="contact-info">
+            <ul>
+                <li>
+                    <i class="fas fa-home"></i>
+                    <h5>Noida, India</h5>
+                    <span>Sector 45</span>
+                </li>
+                <li>
+                    <!-- <i class="fas fa-phone-alt"></i> -->
+                    <i class="fas fa-phone"></i>
+                    <h5>00(440)9865562</h5>
+                    <span>Mon to Fri 9am to 6pm</span>
+                </li>
+                <li>
+                    <i class="fas fa-headset"></i>
+                    <h5>support@tvastra.com</h5>
+                    <span>Send us your query anytime</span>
+                </li>
+            </ul>
+        </section>
+        <section class="contact-query">
+            <form action="#" method="post" class="contact-query-form">
+
+                <input type="text" placeholder="Enter your name">
+                <input type="email" placeholder="Enter email address">
+                <input type="text" placeholder="Enter subject">
+                <textarea  placeholder="Enter Message"></textarea>
+
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+
+    </div>
+
+    <!-- Footer  -->
+    <footer class="footer">
+        <img class="footer-logo" src="https://s3.ap-south-1.amazonaws.com/appdev.konfinity.com/css/tasks/footer.png"
+            alt="logo">
+
+        <ul class="tvastra-footer">
+            <li><a href="doctor.html">Doctor</a></li>
+            <li><a href="hospital.html">Hospital</a></li>
+            <li><a href="treatment.html">Treatment</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+            <li><a href="FAQ.html">FAQs</a></li>
+        </ul>
+
+        <div class="social-icons" id="social-icons">
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-pinterest-p"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-google-plus-g"></i>
+            <i class="fab fa-instagram"></i>
+        </div>
+        <p class="copyright">All Rights Reserved. &copy; tvastra 2020</p>
+    </footer>
+
+
+    <script src="scripts/script.js"></script>
+    <script src="scripts/gps-map.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,113 @@
+.signup-section {
+    text-align: center;
+    background-color: var(--secondary-bg-color);
+}
+
+a {
+    text-decoration: none;
+}
+
+input::placeholder {
+    /* color: var(--placeholder-color); */
+    font-family: nexa-bold;
+    opacity: 1;
+}
+
+ input:focus , button:focus, select:focus{
+    outline: none;
+}
+
+.signup-section .signup-wrapper {
+    background-color: white;
+    padding: 1rem 0;
+    margin: 2rem auto;
+    max-width: 500px;
+}
+
+.signup-section .signup-wrapper h1 {
+    font-size: 1.4rem;
+    line-height: 1.8;
+    padding-bottom: 1rem;
+    color: var(--secondary-text-color);
+}
+
+.signup-section .signup-wrapper .signup-form {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: repeat(9, 55px);
+    row-gap: 0.5rem;
+    max-width: 100%;
+    padding: 1.2rem;
+    border-top: 2px solid lightgrey;
+}
+
+
+.signup-form .city-state-input  {
+    display: grid;
+    grid-template-columns: auto auto;
+    width: 100%;
+    max-width: 100%;
+    column-gap: 0.25rem;
+    align-content: stretch;
+    justify-content: stretch;
+}
+
+.signup-form .city-state-input input {
+    width: inherit;
+}
+
+.signup-form  input {
+    border: 1.5px solid lightgrey;
+    padding: 0 1rem;
+    font-size: 0.85rem;
+    background-color: white;
+    width: 100%;
+    /* color: #b3b3b3; */
+}
+
+.signup-form select {
+    color: #b3b3b3;
+    font-family: nexa-bold;
+    background-color: white;
+    border: 1.5px solid lightgrey;
+    padding: 0 1rem;
+    font-size: 0.85rem;
+}
+
+.signup-form button {
+    font-size: 1rem;
+    letter-spacing: 0.2rem;
+    font-family: nexa-bold;
+    text-transform: uppercase;
+}
+
+.signup-form button i{
+    /* padding-left: 3rem; */
+    float: right;
+}
+
+.signup-section .signup-wrapper h5 {
+    font-size: 0.9rem;
+    color: #828282;
+    padding-top: 0.5rem;
+}
+
+.signup-section .signup-wrapper h5 a{
+    color: var(--secondary-text-color);
+}
+
+footer {
+    background-color: var(--secondary-bg-color);
+    text-align: center;
+    /* color: var(--main-text-color); */
+    font-family: nexa-bold;
+    padding: 1rem 1.2rem;
+    /* height: 5.5rem; */
+}
+
+footer p {
+    color: var(--main-text-color);
+    font-family: nexa-bold;
+    font-size: 0.85rem;
+    padding-bottom: 1rem;
+}

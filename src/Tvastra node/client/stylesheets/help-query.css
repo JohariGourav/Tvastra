@@ -1,0 +1,48 @@
+.help-query {
+    background-color: var(--secondary-bg-color);
+    /* padding: 2rem 1.2rem; */
+    color: var(--main-text-color);
+    text-align: center;
+}
+
+.help-query .left-content h2 {
+    color: white;
+}
+
+.help-query .left-content p {
+    padding: 1rem 0;
+}
+
+.help-query .right-content button {
+    background-color: var(--secondary-button-bg-color);
+    /* width: 15rem; */
+    /* height: 4rem; */
+    color: white;
+    border-style: none;
+    font-size: 1.2rem;
+    border-radius: 5px;  
+    padding: 1rem
+}
+
+@media only screen and (min-width: 1024px) { 
+
+    .help-query {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        padding-top: 3rem ;
+        padding-bottom: 3rem;
+    }
+    .left-content {
+        justify-self: left;
+        text-align: left;
+    }
+    .right-content {
+        justify-self: right;
+    }
+    .help-query .right-content button {
+        padding: 1rem 2.5rem;
+    }
+}

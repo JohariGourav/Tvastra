@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up</title>
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/reset.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/root.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/header.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/signup.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" type="text/css" href="stylesheets/help-query.css"> -->
+    <!-- <link rel="stylesheet" type="text/css" href="stylesheets/footer.css"> -->
+
+</head>
+
+<body>
+
+    <!-- Header starts -->
+    <header>
+        <a href="index.html">
+            <img class="logo" id="logo"
+                src="https://s3.ap-south-1.amazonaws.com/appdev.konfinity.com/css/tasks/Logo.jpg" alt="Logo">
+        </a>
+        <nav>
+            <a href="#" class="hide-desktop">
+                <i id="barIcon" class="fas fa-bars menu-bar"></i>
+            </a>
+            <ul id=nav-ul class="show-desktop hide-mobile">
+                <li id="exit-menu" class="exit-menu hide-desktop"><i class="fa fa-times"></i></li>
+                <li><a href="doctor.html">Doctors</a></li>
+                <li><a href="hospital.html">Hospitals</a></li>
+                <li><a href="treatment.html">Treatments</a></li>
+                <li><a href="#">Other Services</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+            <div class="nav-cta hide-mobile">
+                <button class="login-btn">
+                    <a href="login.html">Login / Signup</a>
+                </button>
+                <button class="getQuote-btn">
+                    <a href="get.html">Get a Quote </a>
+                </button>
+            </div>
+
+        </nav>
+    </header>
+
+    <!-- Header Ends -->
+
+    <!-- Sign Up Section -->
+    <section class="signup-section">
+        <div class="signup-wrapper">
+            <h1>Sign Up</h1>
+            <form action="/signup" method="post" class="signup-form">
+
+                <input type="text" name="user[username]" required placeholder="Enter Name">
+                <input type="email" name="user[email]" required placeholder="Enter Email">
+
+                <input type="password" name="user[password]" required placeholder="Enter Password">
+                <select name="user[gender]" id="gender" required>
+                    <option value="">Select your gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Others">Others</option>
+                </select>
+                <input type="date" name="user[dob]"  placeholder="dd/mm/yyyy" value="dd/mm/yyyy">
+                <input type="number" name="user[mobile]" id="mobile" required placeholder="Enter Phone Number">
+                <div class="city-state-input">
+                    <input type="text" name="user[city]" placeholder="Enter City">
+                    <input type="text" name="user[state]" placeholder="Enter State">
+                </div>
+                <select name="user[country]" id="country" required>
+                    <option value="">Select your Country</option>
+                    <option value="India">India</option>
+                    <option value="USA">USA</option>
+                    <option value="Russia">Russia</option>
+                </select>
+
+                <button type="submit">Sign Up
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+            <h5>Already Registered?
+                <a href="login">Login</a>
+            </h5>
+        </div>
+    </section>
+
+    <!-- Footer  -->
+    <footer class="footer">
+        <p class="copyright">All Rights Reserved. &copy; tvastra 2020</p>
+    </footer>
+
+    <script src="scripts/script.js"></script>
+</body>
+
+</html>

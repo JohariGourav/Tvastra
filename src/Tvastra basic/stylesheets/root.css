@@ -1,0 +1,208 @@
+@font-face{
+    font-family: nexa-light;
+    src: url(../fonts/Nexa-Light.otf);
+}
+@font-face{
+    font-family: nexa-bold;
+    src: url(../fonts/Nexa-Bold.otf);
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+ html * {
+    box-sizing: border-box;
+}
+
+@media only screen and (min-width:320px) {
+    html {
+        font-size: calc(16px + 1 * ((100vw - 320px) / 680));
+        /* font-size: 18px; */
+    }
+} 
+
+@media only screen and (min-width: 1024px) {
+    html {
+        font-size: 17px;
+    }
+    
+}
+
+@media only screen and (min-width: 1200px) {
+    html {
+        font-size: 20px;
+    }
+
+    h1 {
+        line-height: 2.35rem;
+    }
+    
+}
+
+:root {
+    --main-bg-color: #081038;
+    --main-text-color: #081038;
+}
+
+body {
+    padding: 0px;
+    margin: 0;
+    line-height: 1.4rem;
+
+    --main-sectionHeadlines-font-size: 1.8rem;
+    --main-sectionHeadlines-line-height: 2rem;
+    --main-sectionHeadlines-color: #081038;
+    
+    --main-sectionPara-font-size: 1.1rem;
+    --main-sectionPara-color: #081038;
+
+    
+
+    --main-bg-color: #081038;
+    --secondary-bg-color: #82b5d8; 
+    /* 96c6e7 #7fb9e0  4293c5    */
+    /* button 0282d8 */
+    --main-text-color: #081038;
+    --secondary-text-color: #0671bb;
+    --placeholder-color: #b3b3b3;
+
+    --main-border-color: #b3b3b3;
+
+    --main-button-bg-color: #010133;
+    --secondary-button-bg-color: #0671bb;
+
+
+    --footer-copyright-color: #636668;
+    --footer-textItems-color: #cccccc;
+    --footer-bg-color: #021433;
+}
+
+h1 {
+    font-size: 2.2rem; 
+    font-family: nexa-bold;
+    line-height: 2.5rem;
+}
+h2 {
+    font-size: 1.8rem;
+    font-family: nexa-bold;
+    line-height: 2rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-family: nexa-bold;
+    line-height: 1.7rem;
+}
+
+h4 {
+    font-size: 1.3rem;
+    font-family: nexa-bold;
+    line-height: 1.5rem;
+}
+
+h5 {
+    font-size: 1.1rem;
+    font-family: nexa-bold;
+    line-height: 1.3rem;
+}
+
+h6 {
+    font-size: 1rem;
+    font-family: nexa-bold;
+    line-height: 1.2rem;
+}
+
+p {
+    display: block;
+    font-family: nexa-light;
+    font-size: 1rem;
+    color: var(--main-text-color);
+}
+
+button {
+    background-color: var(--main-button-bg-color);
+    border-style: none;
+    color: white;
+    padding: 0.5rem 1rem;
+    font-family: nexa-bold;
+    /* font-size: 1rem; */
+}
+
+textarea {
+    resize: none;
+    padding: 0.5rem 0.5rem;
+    /* border-style: none; */
+}
+
+input {
+    padding: 0.5rem 0.5rem;
+    border-style: none;
+}
+
+input:focus , button:focus, select:focus, textarea:focus{
+    outline: none;
+}
+
+::placeholder {
+    color: var(--placeholder-color);
+    font-family: nexa-bold;
+}
+
+header {
+    padding: 1rem 1.2rem;
+}
+section {
+    padding: 2rem 1.2rem;
+}
+
+footer {
+    padding: 2rem 1.2rem;
+}
+
+
+
+
+@media only screen and (min-width: 700px) {
+    header {
+        padding: 1rem 2rem;
+    }
+    section {
+        padding: 2rem 2rem;
+    }
+
+    footer {
+        padding: 2rem 2rem;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+
+    body {
+
+        --main-sectionHeadlines-font-size: 2.2rem;
+        --main-sectionHeadlines-line-height: 2.4rem;
+        --main-sectionPara-font-size: 0.9rem;
+    }
+    header {
+        padding: 1rem 3rem 1rem 4.5rem;
+    }
+
+    section {
+        padding: 4.5rem 4.5rem;
+    }
+
+    footer {
+        padding: 2rem 4.5rem;
+    }
+
+    
+}
+
+@media only screen and (min-width: 1200px) {
+    body {
+    --main-sectionPara-font-size: 1rem;
+    }
+
+}

@@ -1,0 +1,25 @@
+const express       = require("express"),
+      router        = express.Router();
+
+let mainController = require("../controllers/mainController");
+let signupController = require("../controllers/signupController");
+let loginController = require("../controllers/loginController");
+
+// router.route("/abc").get((req, res) => {
+//     console.log("book route");
+//     res.send("Hi ABC");
+// });
+
+router.get("/index.html", mainController.landing);
+router.get("/", mainController.landing);
+router.get("/tvastra-plus", mainController.tvastraPlus);
+
+router.get("/submit-your-query", mainController.submitYourQuery);
+router.get("/book-appointment", mainController.bookAppointment);
+router.get("/faq", mainController.faq);
+router.get("/signup", mainController.signup);
+router.post("/signup", signupController.signup);
+router.get("/login", mainController.login);
+router.post("/login", loginController.login);
+
+module.exports = router;

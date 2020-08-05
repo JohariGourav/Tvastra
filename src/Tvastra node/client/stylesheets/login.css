@@ -1,0 +1,117 @@
+.login-section {
+    text-align: center;
+    background-color: var(--secondary-bg-color);
+}
+
+a {
+    text-decoration: none;
+}
+
+input::placeholder {
+    /* color: var(--placeholder-color); */
+    font-family: nexa-bold;
+    opacity: 1;
+}
+
+ input:focus , button:focus{
+    outline: none;
+}
+
+.login-section .login-wrapper {
+    background-color: white;
+    padding: 1rem 0;
+    margin: 2rem auto;
+    max-width: 500px;
+}
+
+.login-section .login-wrapper h1 {
+    font-size: 1.4rem;
+    line-height: 1.8;
+    padding-bottom: 1rem;
+    color: var(--secondary-text-color);
+}
+
+.login-section .login-wrapper .login-form {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 55px 55px 55px;
+    row-gap: 0.5rem;
+    
+    padding: 1.2rem;
+    border-top: 2px solid lightgrey;
+}
+
+
+.login-form .mob-num-wrapper  {
+    color: lightgrey;
+    border: 1.5px solid lightgrey;
+    padding: 0 1rem;
+    
+    display: grid;
+    grid-template-columns: auto auto;
+
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.login-form .mob-num-wrapper input {
+    
+    border-style: none;
+    padding: 0;
+}
+
+.login-form .mob-num-wrapper i {
+    color: #b3b3b3;
+    font-size: 1.25rem;
+}
+
+.login-form > input {
+    /* border-style: none; */
+    border: 1.5px solid lightgrey;
+    padding: 0 1rem;
+    width: 100%;
+}
+
+.login-form input {
+    font-size: 0.85rem;
+    background-color: white;
+}
+
+.login-form button {
+    font-size: 1rem;
+    letter-spacing: 0.2rem;
+    font-family: nexa-bold;
+    text-transform: uppercase;
+}
+
+.login-form button i{
+    /* padding-left: 3rem; */
+    float: right;
+}
+
+.login-section .login-wrapper h5 {
+    font-size: 0.9rem;
+    color: #828282;
+    padding-top: 0.5rem;
+}
+
+.login-section .login-wrapper h5 a{
+    color: var(--secondary-text-color);
+}
+
+footer {
+    background-color: var(--secondary-bg-color);
+    text-align: center;
+    /* color: var(--main-text-color); */
+    font-family: nexa-bold;
+    padding: 1rem 1.2rem;
+    /* height: 5.5rem; */
+}
+
+footer p {
+    color: var(--main-text-color);
+    font-family: nexa-bold;
+    font-size: 0.85rem;
+    padding-bottom: 1rem;
+}
