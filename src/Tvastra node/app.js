@@ -19,7 +19,7 @@ const User = require("./backend/models/user-model");
 // const mainRoutes    = require("./backend/routes/MainRoutes");
 
 //-------DB CONNECT -------
-let dbURL = process.env.DATABASEURL || "mongodb+srv://tvastra-user:741852963@cluster0.38yrv.mongodb.net/tvastra?retryWrites=true&w=majority";
+let dbURL = process.env.DATABASEURL || "mongodb+srv://dbname:pass@cluster0.38yrv.mongodb.net/tvastra?retryWrites=true&w=majority";
 
 mongoose.connect(dbURL, {
   useNewUrlParser: true,

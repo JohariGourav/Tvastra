@@ -27,14 +27,21 @@
     <!-- Login Section -->
     <section class="login-section">
         <div class="login-wrapper">
-            <h1>Login</h1>
+            <h1>Email Login</h1>
             <form action="/login" method="POST" class="login-form">
-                <div class="mob-num-wrapper">
-                    <input type="text" name="email" placeholder="Enter Email/Mobile Number">
+                <div class="mob-num-wrapper input-div">
+                    <input type="email" name="email" required placeholder="Enter Email Address">
                    <a href="#"><i class="fas fa-question-circle"></i></a> 
                 </div>
-                <input type="text" name="password" placeholder="Enter Password">
-
+                <div class="password-wrapper input-div">
+                    <input type="text" name="password" id="password" minlength="8" maxlength="16" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}" placeholder="Enter Password">
+                    <i class="fas fa-eye-slash" id="password-hide"></i>
+                    <i class="fas fa-eye" id="password-show" style="display: none;"></i>
+                </div>
+                <div class="login-options">
+                    <a href="/login-otp">Login with OTP</a>   
+                    <a href="/login-otp">Forgot Password</a>
+                </div>
                 <button type="submit">Login
                     <i class="fas fa-arrow-right"></i>
                 </button>
@@ -50,6 +57,7 @@
         <p class="copyright">All Rights Reserved. &copy; tvastra 2020</p>
     </footer>
 
+    <script src="scripts/password-visibility.js"></script>
     <script src="scripts/script.js"></script>
 </body>
 

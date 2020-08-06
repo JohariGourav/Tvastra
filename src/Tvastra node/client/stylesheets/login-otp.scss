@@ -1,0 +1,117 @@
+a {
+    text-decoration: none;
+}
+
+input::placeholder {
+    /* color: var(--placeholder-color); */
+    font-family: nexa-bold;
+    opacity: 1;
+}
+
+ input:focus , button:focus{
+    outline: none;
+}
+
+.section {
+    text-align: center;
+    background-color: var(--secondary-bg-color);
+
+    .wrapper {
+        background-color: white;
+        padding: 1rem 0;
+        margin: 2rem auto;
+        max-width: 500px;
+
+        h5 {
+            font-size: 0.9rem;
+            color: #828282;
+            padding-top: 0.5rem;
+
+            a{
+                color: var(--secondary-text-color);
+            }
+        }
+    }
+
+    h1 {
+        font-size: 1.4rem;
+        line-height: 1.8;
+        padding-bottom: 1rem;
+        color: var(--secondary-text-color);
+    }
+
+    form {
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: 55px 55px auto;
+        row-gap: 0.5rem;
+        
+        padding: 1.2rem;
+        border-top: 2px solid lightgrey;
+
+        input {
+            font-size: 0.85rem;
+            background-color: white;
+        }
+    }
+    .input-div  {
+        color: lightgrey;
+        border: 1.5px solid lightgrey;
+        padding: 0 1rem;
+        
+        // display: grid;
+        // grid-template-columns: 85% auto;
+    
+        // align-content: center;
+        // justify-content: space-between;
+        // align-items: center;
+
+        input {
+    
+            border-style: none;
+            padding: 0;
+            margin: 19px 0;
+            width: 100%;
+            height: auto;
+        }
+    }
+    .login-options {
+        display: flex;
+        align-items: center;
+
+        a {
+            color: var(--secondary-text-color);
+            font-family: nexa-bold;
+            font-size: 0.9rem;
+        }
+    }
+    button {
+        font-size: 1rem;
+        letter-spacing: 0.2rem;
+        font-family: nexa-bold;
+        text-transform: uppercase;
+    }
+    button i{
+        /* padding-left: 3rem; */
+        float: right;
+    }
+}
+
+
+
+
+footer {
+    background-color: var(--secondary-bg-color);
+    text-align: center;
+    /* color: var(--main-text-color); */
+    font-family: nexa-bold;
+    padding: 1rem 1.2rem;
+    /* height: 5.5rem; */
+}
+
+footer p {
+    color: var(--main-text-color);
+    font-family: nexa-bold;
+    font-size: 0.85rem;
+    padding-bottom: 1rem;
+}

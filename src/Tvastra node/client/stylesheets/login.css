@@ -34,7 +34,7 @@ input::placeholder {
 .login-section .login-wrapper .login-form {
     display: grid;
     grid-template-columns: auto;
-    grid-template-rows: 55px 55px 55px;
+    grid-template-rows: 55px 55px 55px 55px;
     row-gap: 0.5rem;
     
     padding: 1.2rem;
@@ -42,20 +42,20 @@ input::placeholder {
 }
 
 
-.login-form .mob-num-wrapper  {
+.login-form .input-div  {
     color: lightgrey;
     border: 1.5px solid lightgrey;
     padding: 0 1rem;
     
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 85% auto;
 
     align-content: center;
     justify-content: space-between;
     align-items: center;
 }
 
-.login-form .mob-num-wrapper input {
+.login-form .input-div input {
     
     border-style: none;
     padding: 0;
@@ -63,6 +63,10 @@ input::placeholder {
 
 .login-form .mob-num-wrapper i {
     color: #b3b3b3;
+    font-size: 1.25rem;
+}
+.login-form .password-wrapper i {
+    color: var(--secondary-text-color);
     font-size: 1.25rem;
 }
 
@@ -76,6 +80,19 @@ input::placeholder {
 .login-form input {
     font-size: 0.85rem;
     background-color: white;
+}
+
+.login-options {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    padding: 0 0.5rem;
+}
+.login-options a {
+    color: var(--secondary-text-color);
+    font-family: nexa-bold;
+    font-size: 0.9rem;
 }
 
 .login-form button {

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/reset.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/root.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/header.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/login-otp.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" type="text/css" href="stylesheets/help-query.css"> -->
+    <!-- <link rel="stylesheet" type="text/css" href="stylesheets/footer.css"> -->
+
+</head>
+
+<body>
+
+    <!-- Header starts -->
+    <%- include("partials/header") %>
+    <!-- Header Ends -->
+
+    <section class="login-section section">
+        <div class="login-wrapper wrapper">
+            <h1>Phone Login</h1>
+            <form action="/request-otp" method="POST" class="phone-login-form">
+                <!-- <div class="form-grp">
+                    <p>
+                        We have sent One Time Password (OTP) to your 
+                        registered Phone Number
+                    </p>
+                </div> -->
+                <div class="form-grp input-div">
+                    <input type="tel" name="number" id="number" required placeholder="Enter Mobile Number">  
+                </div>
+                <button type="submit">SUBMIT
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+                <div class="form-grp login-options">
+                    <a href="/login">Login with Email</a> 
+                </div>
+            </form>
+            <h5>Not Registered?
+                <a href="signup">Sign Up</a>
+            </h5>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p class="copyright">All Rights Reserved. &copy; tvastra 2020</p>
+    </footer>
+
+    <!-- <script src="scripts/password-visibility.js"></script> -->
+    <script src="scripts/script.js"></script>
+</body>
+
+</html>

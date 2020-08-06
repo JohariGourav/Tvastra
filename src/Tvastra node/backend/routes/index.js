@@ -4,6 +4,7 @@ const express       = require("express"),
 let mainController = require("../controllers/mainController");
 let signupController = require("../controllers/signupController");
 let loginController = require("../controllers/loginController");
+let otpController = require("../controllers/otpController");
 
 // router.route("/abc").get((req, res) => {
 //     console.log("book route");
@@ -20,6 +21,10 @@ router.get("/faq", mainController.faq);
 router.get("/signup", mainController.signup);
 router.post("/signup", signupController.signup);
 router.get("/login", mainController.login);
+
 router.post("/login", loginController.login);
+router.get("/login-otp", mainController.login_otp);
+router.post("/request-otp", otpController.request_otp, mainController.otp_submit);
+router.post("/otp-validate", otpController.validate_otp);
 
 module.exports = router;
