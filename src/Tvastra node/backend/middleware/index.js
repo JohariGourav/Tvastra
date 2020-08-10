@@ -1,7 +1,9 @@
 let middlewareObj = {};
 
 middlewareObj.isLoggedIn = (req, res ,next) => {
-    if(req.isAuthenticated()) {
+    console.log("inside islog check");
+    console.log(req.session.currentUser);
+    if(req.session.currentUser && req.session.currentUser._id && req.session.currentUser._id.length > 0) {
         return next();
     }
     req.flash("error", "Login Required");

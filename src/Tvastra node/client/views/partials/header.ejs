@@ -17,7 +17,7 @@
         </ul>
         <div class="nav-cta hide-mobile">
             <% if(!(currentUser && currentUser.username)) { %>
-                <a href="login">
+                <a href="/login">
                     <button class="login-btn">Login / Signup</button>
                 </a>
             <% } else {%>
@@ -32,3 +32,26 @@
 
     </nav>
 </header>
+
+<div class="flash-container">
+    <% if(success && success.length>0) { %>
+        <div id="flash-msg" class="flash-msg success-msg">
+            <i class="fas fa-check-circle msg-icon"></i>
+            <div class="msg-content success-content">
+                <h4>Success</h4>
+                <p><%= success %></p>
+            </div>
+            <i id="hide-flash" class="fa fa-times hide-msg-icon"></i>
+        </div>
+    <% } %>
+    <% if(error && error.length>0) { %>
+        <div id="flash-msg" class="flash-msg failure-msg">
+            <i class="fa fa-times-circle msg-icon" aria-hidden="true"></i>
+            <div class="msg-content failure-content">
+                <h5>Failure</h5>
+                <p><%= error %></p>
+            </div>
+            <i id="hide-flash" class="fa fa-times hide-msg-icon"></i>
+        </div>
+    <% } %>
+</div>

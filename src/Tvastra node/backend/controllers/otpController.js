@@ -1,9 +1,19 @@
 const Nexmo = require('nexmo');
 const User = require("../models/user-model");
 
+let apiKey = process.env.APIKEY || "c1dc8544";
+let apiSecret = process.env.APISECRET || "mCZf54eQFK5cBOJu";
+
+
+// console.log("otp env: ",process.env.APIKEY);
+// console.log(process.env.APISECRET);
+
+console.log("otp var env: ",apiKey);
+console.log(apiSecret);
+
 const nexmo = new Nexmo({
-    apiKey: '',
-    apiSecret: '',
+    apiKey: apiKey,
+    apiSecret: apiSecret,
 });
 
 let tempUser = {};
@@ -55,10 +65,12 @@ function request_otp (req, res, next) {
                 nexmo.verify.request({
                     number: "91" + foundUser.mobile,
                     brand: 'Vonage',
-                    code_length: '4'
+                    code_length: '4',
+                    pin_expiry: 180
                 }, (err, result) => {
-                    console.log(err ? "nexmo req error: " + err : "nexmo req result: " + result);
-                    if(err) {
+                    console.log(err ? "nexmo req error: " + err : "nexmo req result: " + JSON.stringify(result));
+                    if(err || result.status != 0) {
+                        console.log("nexmo otp gen error occured");
                         req.flash("error", "Error generating OTP, Try Again!");
                         return res.redirect("/login-otp");
                     } else {
@@ -66,6 +78,7 @@ function request_otp (req, res, next) {
                             request_id: result.request_id,
                             mobile: foundUser.mobile
                         };
+                        console.log("session.otpverify set: ", req.session.otp_verify);
                         next();
                     }
                 });
@@ -80,13 +93,14 @@ function request_otp (req, res, next) {
 }
 
 function validate_otp (req, res, next) {
-    let otp = req.body.otp;
+    let otp = req.body.otp1 + req.body.otp2 + req.body.otp3 + req.body.otp4;
     console.log("res otp: ", otp);
+    console.log("res session.otpverify check: ", req.session.otp_verify);
     nexmo.verify.check({
         request_id: req.session.otp_verify.request_id,
         code: otp
     }, (err, result) => {
-        console.log(err ? "nexmo validate req error: " + err : "nexmo validate req result: " + result);
+        console.log(err ? "nexmo validate req error: " + err : "nexmo validate req result: " + JSON.stringify(result));
         if(err) {
             req.session.destroy();
             req.flash("error", "Error verifying OTP");
@@ -94,10 +108,10 @@ function validate_otp (req, res, next) {
         } else {
             if(result.status == 0) {
                 console.log("res pass status: ", result.status);
-                // req.session.destroy();
-                console.log("assign tempUser: ", tempUser);
+                
+                // console.log("assign tempUser: ", tempUser);
                 req.session.currentUser = tempUser;
-                console.log("session: ", req.session);
+                // console.log("session: ", req.session);
                 req.flash("success", "OTP verification success");
                 return res.redirect("/");
             } else {

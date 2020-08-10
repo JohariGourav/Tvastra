@@ -1,192 +1,257 @@
-
 .logo {
-    width: 8rem;
-    /* height: 2.5rem; */
-    /* padding-left: 0.5rem; */
+  width: 8rem;
+  /* height: 2.5rem; */
+  /* padding-left: 0.5rem; */
 }
 
 header {
-    display: flex;
-    justify-content: space-between;
-    align-content: center;
-    align-items: center;
-    
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 header > a {
-    line-height: 0;
+  line-height: 0;
 }
 
 .hide-mobile {
-    display: none;
+  display: none;
 }
 
 nav {
-    align-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
 }
 
 nav .menu-bar {
-    /* margin-top: 40%;   */
-    /* margin-right: 0.8rem; */
-    font-size: 1.2rem; 
+  /* margin-top: 40%;   */
+  /* margin-right: 0.8rem; */
+  font-size: 1.2rem;
 }
 
 nav ul {
-    position: fixed;
-    top: 0;
-    right: 0;
-    text-align: left;
-    width: 50%;
-    background: rgba(36, 41, 44);
-    padding-top: 1rem;
-    height: 100%;
-    z-index: 5;
-}
-nav ul li i{
-    color: white;
+  position: fixed;
+  top: 0;
+  right: 0;
+  text-align: left;
+  width: 50%;
+  background: #24292c;
+  padding-top: 1rem;
+  height: 100%;
+  z-index: 5;
+  font-family: nexa-light;
+  /* font-weight: 500; */
+  font-size: 0.85rem;
 }
 
-nav ul li a{
-    display: block;
-    padding: 1rem 1.5rem;
-    text-decoration: none;
-    color: white;
-    background: rgb(49, 55, 59);
-    width: 100%;
+nav ul li i {
+  color: white;
+}
+
+nav ul li a {
+  display: block;
+  padding: 1rem 1.5rem;
+  text-decoration: none;
+  color: white;
+  background: #31373b;
+  width: 100%;
 }
 
 nav ul li a:hover {
-    background-color:  rgb(69, 76, 80);
+  background-color: #454c50;
 }
 
 nav .exit-menu {
-    margin-bottom: 1rem;
-    /* margin-top: -1.3rem; */
-    text-align: right;
-    padding-right: 1.4rem;
+  margin-bottom: 1rem;
+  /* margin-top: -1.3rem; */
+  text-align: right;
+  padding-right: 1.4rem;
 }
 
 nav .exit-menu i {
-    cursor: pointer;
-    font-size: 1.3rem;
+  cursor: pointer;
+  font-size: 1.3rem;
 }
 
+.flash-container {
+  position: fixed;
+  right: 0;
+  background-color: white;
+  margin-top: 0.7rem;
+  margin-right: 0.7rem;
+}
 
+.flash-container .flash-msg {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto auto auto;
+      grid-template-columns: auto auto auto;
+  -webkit-column-gap: 12px;
+          column-gap: 12px;
+  padding: 10px 1rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  justify-items: center;
+  border-left: 5px solid black;
+  min-width: 250px;
+}
 
-@media only screen and (min-width: 1024px) { 
-    
-    .logo {
-        /* height: 2rem; */
-        width: 12rem;
-    }
-    .hide-desktop {
-        display: none;
-    }
+.flash-container .msg-icon {
+  font-size: 1.8rem;
+}
 
-    .show-desktop {
-        display: inline-block;
-    }
+.flash-container .msg-content p {
+  font-size: 0.85rem;
+  padding-top: 2px;
+  font-weight: 600;
+  max-width: 250px;
+}
 
-    nav {
-        
-        text-align: initial;
-        display: flex;
-        /* grid-template-columns: auto auto; */
-        justify-content: space-between;
+.flash-container .hide-msg-icon {
+  font-size: 1.3rem;
+  margin-left: 0.5rem;
+  color: black;
+  cursor: pointer;
+}
+
+.failure-msg {
+  color: red;
+  border-color: red !important;
+}
+
+.failure-msg p {
+  color: red;
+}
+
+.success-msg {
+  color: green;
+  border-color: green !important;
+}
+
+.success-msg p {
+  color: green;
+}
+
+@media only screen and (min-width: 1024px) {
+  .logo {
+    /* height: 2rem; */
+    width: 12rem;
+  }
+  .hide-desktop {
+    display: none;
+  }
+  .show-desktop {
+    display: inline-block;
+  }
+  nav {
+    text-align: initial;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    /* grid-template-columns: auto auto; */
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -ms-flex-line-pack: center;
         align-content: center;
-        align-items: center;
-        justify-items: center;
-        
-        width: 75%;
-
-        padding-left: 1rem;
-
-    }
-    nav ul {
-        position: inherit;
-        display: flex;
-        color: black;
-        width: auto;
-        background-color: initial;
-        padding: 0;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    justify-items: center;
+    width: 75%;
+    padding-left: 1rem;
+  }
+  nav ul {
+    position: inherit;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    color: black;
+    width: auto;
+    background-color: initial;
+    padding: 0;
+    -ms-flex-item-align: center;
         align-self: center;
-        margin-right: 1rem;
-    }
-
-    nav ul li {
-        float: left;
-        padding-right: 0.5rem;
-        vertical-align: middle;
-        
-    }
-
-    nav ul li a {
-        color: black;
-        background-color: initial;
-        padding: 0;
-        /* font-size: large; */
-    }
-
-    nav ul li a:hover {
-        background-color: white;
-    }
-
-    nav .nav-cta {
-        display: inline-block;
-        width: auto;
-        /* font-size: large; */
-        justify-self: flex-end;
-    }
-    nav .nav-cta a {
-        text-decoration: none;
-        color: inherit;
-        padding: 0;
-    }
-    nav .login-btn {
-        border: 0.1rem solid var(--main-bg-color);
-        padding: 0.5rem 1rem;
-        background-color: white ;
-        border-radius: 0.2rem;
-        color: var(--main-text-color);
-        
-        /* word-spacing: 1rem; */
-        /* font-size: initial; */
-    }    
-
-    nav .getQuote-btn {
-        border:  0.1rem solid var(--main-bg-color);
-        background-color: var(--main-bg-color);
-        color: white;
-        padding: 0.5rem 1.5rem;
-        border-radius: 0.2rem;
-        /* font-size: initial;   */
-        text-decoration: none;
-    }
-    
-    /* Header ends */ 
+    margin-right: 1rem;
+  }
+  nav ul li {
+    float: left;
+    padding-right: 0.5rem;
+    vertical-align: middle;
+  }
+  nav ul li a {
+    color: black;
+    background-color: initial;
+    padding: 0;
+    /* font-size: large; */
+  }
+  nav ul li a:hover {
+    background-color: white;
+  }
+  nav .nav-cta {
+    display: inline-block;
+    width: auto;
+    /* font-size: large; */
+    justify-self: flex-end;
+  }
+  nav .nav-cta a {
+    text-decoration: none;
+    color: inherit;
+    padding: 0;
+  }
+  nav .login-btn {
+    border: 0.1rem solid var(--main-bg-color);
+    padding: 0.5rem 1rem;
+    background-color: white;
+    border-radius: 0.2rem;
+    color: var(--main-text-color);
+    /* word-spacing: 1rem; */
+    /* font-size: initial; */
+  }
+  nav .getQuote-btn {
+    border: 0.1rem solid var(--main-bg-color);
+    background-color: var(--main-bg-color);
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.2rem;
+    /* font-size: initial;   */
+    text-decoration: none;
+  }
+  /* Header ends */
 }
 
 @media only screen and (min-width: 1200px) {
-
-    header .logo {
-        width: 10rem;
-    }
-
-    nav {
-        padding: 0;
-    }
-
-    nav .show-desktop {
-        display: inline-flex;
-        justify-content: space-evenly;
-        justify-items: flex-end;
-        width: 58%;
-        margin: 0;
-    }
-    nav ul li a {
-        font-size: 0.9rem;
-    }
-    nav .nav-cta button {
-        font-size: 0.65rem;
-    }
+  header .logo {
+    width: 10rem;
+  }
+  nav {
+    padding: 0;
+  }
+  nav .show-desktop {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    justify-items: flex-end;
+    width: 58%;
+    margin: 0;
+  }
+  nav ul li a {
+    font-size: 0.9rem;
+  }
+  nav .nav-cta button {
+    font-size: 0.65rem;
+  }
 }
+/*# sourceMappingURL=header.css.map */

@@ -1,5 +1,11 @@
-const User = require("../models/user-model");
 const passport = require("passport");
+const bcrypt = require("bcrypt");
+const User = require("../models/user-model");
+
+// create password HASH
+function generateHash(password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+}
 
 function signup(req, res) {
     console.log("inside signup control");
@@ -13,6 +19,8 @@ function signup(req, res) {
         return res.redirect("/signup");
     }
 
+    newUser.password = generateHash(newUser.password);
+
     User.create(newUser, (err, user) => {
         console.log("inside user register");
         if(err) {
@@ -20,16 +28,16 @@ function signup(req, res) {
             req.flash("error", err.message);
             return res.redirect("/signup");
         } else {
-            console.log("record success", "user"); 
-            req.session.currentUser = {
-                username: user.username,
-                _id: user._id,
-                email: user.email,
-                mobile: user.mobile
-            };
-            console.log("req session", req.session.currentUser);
-            req.flash("success", "Hi " + user.username);
-            return res.redirect("/");   
+            console.log("record success", user); 
+            // req.session.currentUser = {
+            //     username: user.username,
+            //     _id: user._id,
+            //     email: user.email,
+            //     mobile: user.mobile
+            // };
+            // console.log("req session", req.session.currentUser);
+            req.flash("success", "Signup successfull, Please Login!");
+            return res.redirect("/login");   
         }
         // console.log("before pasport auth", user);
         // passport.authenticate("local")(req, res, _ => {

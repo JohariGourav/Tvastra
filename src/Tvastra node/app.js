@@ -4,7 +4,7 @@ const express       = require("express"),
       app           = express(),
       bodyParser    = require("body-parser"),
       mongoose      = require("mongoose"),
-      flash         = require("flash"),
+      flash         = require("connect-flash"),
       passport      = require("passport"),
       LocalStrategy = require("passport-local"),
       logger        = require("morgan"),
@@ -19,7 +19,8 @@ const User = require("./backend/models/user-model");
 // const mainRoutes    = require("./backend/routes/MainRoutes");
 
 //-------DB CONNECT -------
-let dbURL = process.env.DATABASEURL || "mongodb+srv://dbname:pass@cluster0.38yrv.mongodb.net/tvastra?retryWrites=true&w=majority";
+console.log(process.env.DATABASEURL);
+let dbURL = process.env.DATABASEURL || "mongodb+srv://tvastra-client:147258369client@cluster0.38yrv.mongodb.net/tvastra?retryWrites=true&w=majority";
 
 mongoose.connect(dbURL, {
   useNewUrlParser: true,
@@ -65,8 +66,8 @@ app.use( (req, res, next) => {
   res.locals.error = req.flash("error");
   res.locals.success = req.flash("success");
   res.locals.currentUser = req.session.currentUser;
-  // console.log("local err",res.locals.error);
-  // console.log("local success",res.locals.success);
+  console.log("local err",res.locals.error);
+  console.log("local success",res.locals.success);
   console.log("local currentuser",res.locals.currentUser);
   next();
 })
