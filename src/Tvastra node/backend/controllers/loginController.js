@@ -5,10 +5,14 @@ const User = require("../models/user-model");
 const validPassword = function(user, password) {
     return bcrypt.compareSync(password, user.password);
 }
+// create password HASH
+function generateHash(password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+}
 
 function login(req, res) {
     const {email, password} = req.body;
-    console.log("body", req.body);
+    // console.log("body", req.body);
     console.log("email pass", email, password);
     if(!(email && password)) {
         console.log("login user check if occured");
@@ -25,14 +29,14 @@ function login(req, res) {
         } else {
             console.log("login success", "user"); 
             console.log("found user", foundUser); 
-            if(foundUser == null || !validPassword(foundUser, password)) {
+            if(foundUser == null) {
                 req.flash("error","User doesn't exist or incorrect credentials");
                 return res.redirect("/login");
             } 
-            // else if(foundUser.password == null || foundUser.password == undefined) {
-            //     req.flash('message', 'You must reset your password')
-            //     return res.redirect("/login");
-            // }
+            else if(!validPassword(foundUser, password)) {
+                req.flash('error', 'Incorrect Credentials')
+                return res.redirect("/login");
+            }
             else  {
                 req.session.currentUser = {
                     username: foundUser.username,
@@ -54,6 +58,42 @@ function login(req, res) {
     // User.findOne({},)
 }
 
+function resetPassword(req, res, next) {
+    const {newPassword, confirmPassword} = req.body;
+    console.log("passwords: ", newPassword, confirmPassword);
+    if(newPassword == null || confirmPassword == null) {
+        req.flash("error", "Password cannot be empty");
+        res.redirect("/reset-password");        
+    } else if(newPassword != confirmPassword) {
+        req.flash("error", "Both Passwords should match");
+        res.redirect("/reset-password");        
+    } else {
+        User.findOneAndUpdate({
+            mobile: req.session.reset.mobile
+        },{
+            password: generateHash(newPassword)
+        },{
+            new: true
+        }, (err, result) => {
+            if(err) {
+                req.session.reset = undefined;
+                req.flash("error", "Password Reset Failed");
+                return res.redirect("/forgot");
+            }
+            else if(result){
+                req.session.reset = undefined;
+                req.flash("success", "Password Reset Successfull");
+                return res.redirect("/login");
+            } else {
+                req.session.reset = undefined;
+                req.flash("error", "Password Reset Failed");
+                return res.redirect("/forgot");
+            }
+        });
+    }
+}
+
 module.exports = {
-    login: login
+    login: login,
+    resetPassword: resetPassword
 }

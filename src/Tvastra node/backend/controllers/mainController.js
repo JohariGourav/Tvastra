@@ -30,6 +30,15 @@ function login_otp (req, res) {
 function otp_submit (req, res) {
     res.render("otp-submit");
 }
+function forgot (req, res) {
+    res.render("forgot");
+}
+function recovery_otp_submit (req, res) {
+    res.render("recovery-otp-submit");
+}
+function resetPassword (req, res) {
+    res.render("reset-password");
+}
 
 module.exports = {
     landing: landing,
@@ -40,5 +49,8 @@ module.exports = {
     signup: signup,
     login: login,
     login_otp: login_otp,
-    otp_submit: otp_submit
+    otp_submit: otp_submit,
+    forgot: forgot,
+    resetPassword: resetPassword,
+    recovery_otp_submit: recovery_otp_submit
 };

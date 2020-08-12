@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login</title>
+    <title>Account Recovery</title>
 
     <link rel="stylesheet" type="text/css" href="stylesheets/reset.css">
     <link rel="stylesheet" type="text/css" href="stylesheets/root.css">
     <link rel="stylesheet" type="text/css" href="stylesheets/header.css">
-    <link rel="stylesheet" type="text/css" href="stylesheets/login-otp.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/forgot.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <!-- <link rel="stylesheet" type="text/css" href="stylesheets/help-query.css"> -->
@@ -24,16 +24,10 @@
     <%- include("partials/header") %>
     <!-- Header Ends -->
 
-    <section class="login-section section">
-        <div class="login-wrapper wrapper">
-            <h1>Phone Login</h1>
-            <form action="/request-otp" method="POST" class="phone-login-form">
-                <!-- <div class="form-grp">
-                    <p>
-                        We have sent One Time Password (OTP) to your 
-                        registered Phone Number
-                    </p>
-                </div> -->
+    <section class="recovery-section section">
+        <div class="recovery-wrapper wrapper">
+            <h1>Account Recovery</h1>
+            <form action="/forgot" method="POST" class="recovery-form">
                 <div class="form-grp input-div">
                     <input type="tel" name="number" id="number" required placeholder="Enter Mobile Number">  
                 </div>
@@ -42,7 +36,6 @@
                 </button>
                 <div class="form-grp login-options">
                     <a href="/login">Login with Email</a> 
-                    <a href="/forgot">Forgot Password</a>
                 </div>
             </form>
             <h5>Not Registered?
@@ -55,7 +48,6 @@
         <p class="copyright">All Rights Reserved. &copy; tvastra 2020</p>
     </footer>
 
-    <!-- <script src="scripts/password-visibility.js"></script> -->
     <script src="scripts/flash.js"></script>
     <script src="scripts/script.js"></script>
 </body>

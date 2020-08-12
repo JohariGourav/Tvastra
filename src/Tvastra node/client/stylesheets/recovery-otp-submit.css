@@ -42,13 +42,7 @@ input:focus, button:focus {
   max-width: 500px;
 }
 
-.section .wrapper h5 {
-  font-size: 0.9rem;
-  color: #828282;
-  padding-top: 0.5rem;
-}
-
-.section .wrapper h5 a {
+.section .wrapper a {
   color: var(--secondary-text-color);
 }
 
@@ -64,8 +58,8 @@ input:focus, button:focus {
   display: grid;
   -ms-grid-columns: auto;
       grid-template-columns: auto;
-  -ms-grid-rows: 55px 55px auto;
-      grid-template-rows: 55px 55px auto;
+  -ms-grid-rows: auto auto auto auto;
+      grid-template-rows: auto auto auto auto;
   row-gap: 0.5rem;
   padding: 1.2rem;
   border-top: 2px solid lightgrey;
@@ -76,46 +70,37 @@ input:focus, button:focus {
   background-color: white;
 }
 
-.section .input-div {
-  color: lightgrey;
-  border: 1.5px solid lightgrey;
-  padding: 0 1rem;
-}
-
-.section .input-div input {
-  border-style: none;
+.section form .input-div input {
+  display: inline-block;
+  width: 40px;
+  margin: 0 0.5rem;
+  border-bottom: 3px solid var(--secondary-bg-color);
+  color: var(--secondary-text-color);
   padding: 0;
-  margin: 19px 0;
-  width: 100%;
-  height: auto;
+  height: 40px;
+  font-size: 1.5rem;
+  text-align: center;
 }
 
-.section .login-options {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+.section form .resend-div {
+  margin: 0.5rem 0;
 }
 
-.section .login-options a {
+.section form .resend-div a {
   color: var(--secondary-text-color);
   font-family: nexa-bold;
   font-size: 0.9rem;
 }
 
-.section button {
+.section form button {
+  height: 55px;
   font-size: 1rem;
   letter-spacing: 0.2rem;
   font-family: nexa-bold;
   text-transform: uppercase;
 }
 
-.section button i {
+.section form button i {
   /* padding-left: 3rem; */
   float: right;
 }
@@ -135,4 +120,4 @@ footer p {
   font-size: 0.85rem;
   padding-bottom: 1rem;
 }
-/*# sourceMappingURL=login-otp.css.map */
+/*# sourceMappingURL=recovery-otp-submit.css.map */
