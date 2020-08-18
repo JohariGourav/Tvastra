@@ -34,7 +34,8 @@ input::placeholder {
 .signup-section .signup-wrapper .signup-form {
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: repeat(9, 55px);
+    /* grid-template-rows: repeat(9, 55px); */
+    grid-auto-rows: 55px;
     row-gap: 0.5rem;
     max-width: 100%;
     padding: 1.2rem;

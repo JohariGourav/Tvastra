@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Doctor Profile Form</title>
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/reset.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/root.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/header.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/doctor-profile-form.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/tagify.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" type="text/css" href="stylesheets/help-query.css"> -->
+    <!-- <link rel="stylesheet" type="text/css" href="stylesheets/footer.css"> -->
+
+</head>
+
+<body>
+
+    <!-- Header starts -->
+    <%- include("partials/header") %>
+    <!-- Header Ends -->
+    <% if(!currentUser) { %>
+        <% currentUser = { _id: null }%>
+    <% } %>
+    
+    <section class="docProfile-section section">
+        <div class="docProfile-wrapper wrapper">
+            <h1>Doctor's Profile</h1>
+            <form action="/user<%= "/" + currentUser._id || '' %>/doctor/profile-form" method="POST" class="docProfile-form" enctype="multipart/form-data">
+                
+                    <div class="form-grp input-div bio">
+                        <input type="text" name="doctor[bio]" id="bio" placeholder="Write about Yourself">  
+                    </div>
+                    <div class="form-grp input-div speciality">
+                        <input type="text" name="doctor[speciality]" id="speciality" placeholder="Speciality*" required>  
+                    </div>
+                    <div class="form-grp input-div education">
+                        <input type="text" name="doctor[education]" id="education" placeholder="Education*" required>  
+                    </div>
+                    <div class="form-grp input-div treatments">
+                        <input type="text" name="doctor[treatments]" id="treatments" placeholder="Treatment List*" required>  
+                    </div>
+                    <div class="form-grp input-div location">
+                        <input type="text" name="doctor[location]" id="location" placeholder="Location*" required>  
+                    </div>
+                    <div class="form-grp input-div hospitals">
+                        <input type="text" name="doctor[hospitals]" id="hospitals" placeholder="Hospital List*" required>  
+                    </div>
+                    <div class="form-grp input-div achievements">
+                        <input type="text" name="doctor[achievements]" id="achievements" placeholder="Enter Achievements">  
+                    </div>
+                    <div class="form-grp input-div awards">
+                        <input type="text" name="doctor[awards]" id="awards" placeholder="Enter Awards if any">  
+                    </div>
+                    <div class="form-grp input-div experience">
+                        <input type="text" name="doctor[experience]" id="experience" placeholder="Years of Experience">  
+                    </div>
+                    <div class="form-grp input-div fees">
+                        <input type="number" name="doctor[fees]" id="fees" placeholder="Average Fees">  
+                    </div>
+                    <div class="form-grp input-div profile-pic">
+                        <label for="image">Upload Profile Picture</label>
+                        <input type="file" name="doctor[image]" id="image" accept="image/*" placeholder="Add Profile Pic">  
+                    </div>
+                    <button type="submit">SUBMIT
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </fieldset>
+            </form>
+        </div>
+    </section>
+
+    
+
+    <footer class="footer">
+        <p class="copyright">All Rights Reserved. &copy; tvastra 2020</p>
+    </footer>
+
+    <script src="/scripts/flash.js"></script>
+    <script src="/scripts/script.js"></script>
+    <script src="/scripts/tagify.min.js"></script>
+    <script>
+        let speciality = document.querySelector("input[name='doctor[speciality]']");
+        let tagifySpeciality = new Tagify(speciality);
+        let education = document.querySelector("input[name='doctor[education]']");
+        let tagifyEducation = new Tagify(education);
+        let treatments = document.querySelector("input[name='doctor[treatments]']");
+        let tagifyTreatments = new Tagify(treatments);
+        let hospitals = document.querySelector("input[name='doctor[hospitals]']");
+        let tagifyHospitals = new Tagify(hospitals);
+        let achievements = document.querySelector("input[name='doctor[achievements]']");
+        let tagifyAchievements = new Tagify(achievements);
+        let awards = document.querySelector("input[name='doctor[awards]']");
+        let tagifyAwards = new Tagify(awards);
+        // let test = document.querySelector("input[name=test]");
+        // let tagifytest = new Tagify(test);
+    </script>
+</body>
+
+</html>

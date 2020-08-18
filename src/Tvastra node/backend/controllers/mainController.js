@@ -19,7 +19,7 @@ function bookAppointment (req, res) {
     res.render("index");
 }
 function signup (req, res) {
-    res.render("signup.html");
+    res.render("signup");
 }
 function login (req, res) {
     res.render("login");

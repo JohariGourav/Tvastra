@@ -10,7 +10,7 @@ function generateHash(password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 }
 
-function login(req, res) {
+function login(req, res, next) {
     const {email, password} = req.body;
     // console.log("body", req.body);
     console.log("email pass", email, password);
@@ -34,7 +34,7 @@ function login(req, res) {
                 return res.redirect("/login");
             } 
             else if(!validPassword(foundUser, password)) {
-                req.flash('error', 'Incorrect Credentials')
+                req.flash('error', 'Incorrect Credentials');
                 return res.redirect("/login");
             }
             else  {
@@ -45,8 +45,10 @@ function login(req, res) {
                     mobile: foundUser.mobile
                 };
                 console.log("req session", req.session.currentUser);
-                req.flash("success", "Hi " + foundUser.username);
-                return res.redirect("/");   
+                req.loggedUser = foundUser;
+                return next();
+                // req.flash("success", "Hi " + foundUser.username);
+                // return res.redirect("/");   
             }
             // else {
             //     console.log("found user query null");
@@ -63,10 +65,10 @@ function resetPassword(req, res, next) {
     console.log("passwords: ", newPassword, confirmPassword);
     if(newPassword == null || confirmPassword == null) {
         req.flash("error", "Password cannot be empty");
-        res.redirect("/reset-password");        
+        return res.redirect("/reset-password");        
     } else if(newPassword != confirmPassword) {
         req.flash("error", "Both Passwords should match");
-        res.redirect("/reset-password");        
+        return res.redirect("/reset-password");        
     } else {
         User.findOneAndUpdate({
             mobile: req.session.reset.mobile

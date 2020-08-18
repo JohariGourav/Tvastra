@@ -1,15 +1,15 @@
 const Nexmo = require('nexmo');
 const User = require("../models/user-model");
 
-let apiKey = process.env.APIKEY || "c1dc8544";
-let apiSecret = process.env.APISECRET || "mCZf54eQFK5cBOJu";
+let apiKey = process.env.NEXMO_APIKEY;
+let apiSecret = process.env.NEXMO_APISECRET;
 
 
 // console.log("otp env: ",process.env.APIKEY);
 // console.log(process.env.APISECRET);
 
-console.log("otp var env: ",apiKey);
-console.log(apiSecret);
+// console.log("otp var env: ",apiKey);
+// console.log(apiSecret);
 
 const nexmo = new Nexmo({
     apiKey: apiKey,
@@ -87,7 +87,7 @@ function validate_otp (req, res, next) {
     }, (err, result) => {
         console.log(err ? "nexmo validate req error: " + err : "nexmo validate req result: " + JSON.stringify(result));
         if(err) {
-            req.session.destroy();
+            req.session.otp_verify = undefined;
             req.flash("error", "Error verifying OTP");
             return res.redirect("/login-otp");
         } else {
@@ -97,11 +97,13 @@ function validate_otp (req, res, next) {
                 // console.log("assign tempUser: ", tempUser);
                 req.session.currentUser = tempUser;
                 // console.log("session: ", req.session);
+                req.loggedUser = foundUser;
+                return next();
                 req.flash("success", "OTP verification success");
                 return res.redirect("/");
             } else {
                 console.log("res fail status: ", result.status);
-                req.session.destroy();
+                req.session.otp_verify = undefined;
                 req.flash("error", "Error verifying OTP");
                 return res.redirect("/login-otp");
             }
@@ -144,7 +146,7 @@ function recoverAccount_genOTP (req, res, next) {
                             mobile: foundUser.mobile
                         };
                         console.log("session.otpverify set: ", req.session.otp_verify);
-                        next();
+                        return next();
                     }
                 });
             }
@@ -168,7 +170,7 @@ function recoverAccount_validateOTP (req, res, next) {
     }, (err, result) => {
         console.log(err ? "nexmo validate req error: " + err : "nexmo validate req result: " + JSON.stringify(result));
         if(err) {
-            req.session.destroy();
+            req.session.otp_verify = undefined;
             req.flash("error", "Error verifying OTP");
             return res.redirect("/forgot");
         } else {
@@ -186,7 +188,7 @@ function recoverAccount_validateOTP (req, res, next) {
                 return res.redirect("/reset-password");
             } else {
                 console.log("res fail status: ", result.status);
-                req.session.destroy();
+                req.session.otp_verify = undefined;
                 req.flash("error", "Error verifying OTP");
                 return res.redirect("/forgot");
             }

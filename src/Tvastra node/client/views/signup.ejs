@@ -21,35 +21,7 @@
 <body>
 
     <!-- Header starts -->
-    <header>
-        <a href="index.html">
-            <img class="logo" id="logo"
-                src="https://s3.ap-south-1.amazonaws.com/appdev.konfinity.com/css/tasks/Logo.jpg" alt="Logo">
-        </a>
-        <nav>
-            <a href="#" class="hide-desktop">
-                <i id="barIcon" class="fas fa-bars menu-bar"></i>
-            </a>
-            <ul id=nav-ul class="show-desktop hide-mobile">
-                <li id="exit-menu" class="exit-menu hide-desktop"><i class="fa fa-times"></i></li>
-                <li><a href="doctor.html">Doctors</a></li>
-                <li><a href="hospital.html">Hospitals</a></li>
-                <li><a href="treatment.html">Treatments</a></li>
-                <li><a href="#">Other Services</a></li>
-                <li><a href="#">About</a></li>
-            </ul>
-            <div class="nav-cta hide-mobile">
-                <button class="login-btn">
-                    <a href="login.html">Login / Signup</a>
-                </button>
-                <button class="getQuote-btn">
-                    <a href="get.html">Get a Quote </a>
-                </button>
-            </div>
-
-        </nav>
-    </header>
-
+    <%- include("partials/header") %>
     <!-- Header Ends -->
 
     <!-- Sign Up Section -->
@@ -68,7 +40,7 @@
                     <option value="Female">Female</option>
                     <option value="Others">Others</option>
                 </select>
-                <input type="date" name="user[dob]"  placeholder="dd/mm/yyyy" value="dd/mm/yyyy">
+                <input type="date" name="user[dob]" id="dob" placeholder="dd/mm/yyyy" value="dd/mm/yyyy">
                 <input type="number" name="user[mobile]" id="mobile" required placeholder="Enter Phone Number">
                 <div class="city-state-input">
                     <input type="text" name="user[city]" placeholder="Enter City">
@@ -80,13 +52,16 @@
                     <option value="USA">USA</option>
                     <option value="Russia">Russia</option>
                 </select>
-
+                <div class="doc-check-input">
+                    <input type="checkbox" name="user[isDoctor]" id="doctor" value="true">
+                    <label for="doctor">Are you a Doctor?</label>
+                </div>
                 <button type="submit">Sign Up
                     <i class="fas fa-arrow-right"></i>
                 </button>
             </form>
             <h5>Already Registered?
-                <a href="login">Login</a>
+                <a href="/login">Login</a>
             </h5>
         </div>
     </section>
