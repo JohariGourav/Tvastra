@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Doctors</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/reset.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/root.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/header.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/doctor.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/help-query.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/footer.css">
+
+</head>
+
+<body>
+    <!-- Header starts -->
+    <%- include("partials/header") %>
+    <!-- Header Ends -->
+
+    <div class="banner">
+        <img src="https://s3.ap-south-1.amazonaws.com/appdev.konfinity.com/css/tasks/Doctors.png" alt="banner-bg">
+        <label for="banner-label" class="banner-label">Cardiac Surgeons in
+            <a href="#" class="banner-link">Delhi</a>
+        </label>
+    </div>
+
+    <section class="doc-header">
+        <h3>Home / Doctor List</h3>
+        <select id="sort" onchange="filter()" name="sort">
+            <option value=''  disabled selected>Sort By</option>
+            <option value="name-asc">Name Ascending</option>
+            <option value="name-dec">Name Decending</option>
+            <option value="hospital-asc">Hospital Ascending</option>
+            <option value="hospital-dec">Hospital Decending</option>
+            <option value="fees-asc">Fees Low-High</option>
+            <option value="fees-dec">Fees High-Low</option>
+            <option value="experience-dec">Years of Experience High-Low</option>
+            <option value="">None</option>
+        </select>
+        
+    </section>
+
+    <section class="doc-functionality">
+        <div class="filter-container">
+            <div class="filter-container-heading">
+                <h4>Filter By</h4>
+            </div>
+            <div class="applied-filters" id="applied_filters">
+            </div>
+
+            <form id="filter-form" action="/doctors/filter" method="POST">
+                <!-- Location -->
+                <div class="location-filter filters">
+                    <div class="location-heading filter-heading">
+                        <h4>Location</h4>
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="filter-content location-content lf1">
+                        <input type="checkbox" class="Bengaluru" id="Bengaluru" onchange="filter()" name="location" value="Bengaluru">
+                        <label for="Bengaluru">Bengaluru</label>
+                    </div>
+                    <div class="filter-content location-content lf2">
+                        <input type="checkbox" class="New-Delhi" id="New Delhi" onchange="filter()" name="location" value="New Delhi">
+                        <label for="New Delhi">New Delhi</label>
+                    </div>
+                    <div class="filter-content location-content lf3">
+                        <input type="checkbox" class="Mumbai" id="Mumbai" onchange="filter()" name="location" value="Mumbai">
+                        <label for="Mumbai">Mumbai</label>
+                    </div>
+                    <div class="filter-content location-content lf4">
+                        <input type="checkbox" class="Palam-Vihar" id="Palam Vihar" onchange="filter()" name="location" value="Palam Vihar">
+                        <label for="Palam Vihar">Palam Vihar</label>
+                    </div>
+                    <div class="filter-content location-content lf5">
+                        <input type="checkbox" class="Punjabi-Bagh" id="Punjabi Bagh" onchange="filter()" name="location" value="Punjabi Bagh">
+                        <label for="Punjabi Bagh">Punjabi Bagh</label>
+                    </div>
+                    <div class="filter-content location-content lf6">
+                        <input type="checkbox" class="Pusa-Road" id="Pusa Road" onchange="filter()" name="location" value="Pusa Road">
+                        <label for="Pusa Road">Pusa Road</label>
+                    </div>
+                    <div class="show-more">
+                        <span>+ Show more</span>
+                    </div>
+                </div>
+
+                <!-- Treatment -->
+                <div class="treatment-fiter filters">
+                    <div class="treatment-heading filter-heading">
+                        <h4>Treatment</h4>
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="filter-content treatment-content tf1">
+                        <input type="checkbox" class="Multi-Organ-Transplant" id="Multi-Organ-Transplant" onchange="filter()" name="treatments" value="Multi Organ Transplant">
+                        <label for="Multi-Organ-Transplant">Multi Organ Transplant</label>
+                    </div>
+                    <div class="filter-content treatment-content tf2">
+                        <input type="checkbox" class="Orthopedic-Surgery" id="Orthopedic-Surgery" onchange="filter()" name="treatments" value="Orthopedic Surgery">
+                        <label for="Orthopedic-Surgery">Orthopedic Surgery</label>
+                    </div>
+                    <div class="filter-content treatment-content tf3">
+                        <input type="checkbox" class="Infertility-Treatment" id="Infertility-Treatment" onchange="filter()" name="treatments" value="Infertility Treatment">
+                        <label for="Infertility-Treatment">Infertility Treatment</label>
+                    </div>
+                    <div class="filter-content treatment-content tf4">
+                        <input type="checkbox" class="Dentistry" id="Dentistry" onchange="filter()" name="treatments" value="Dentistry">
+                        <label for="Dentistry">Dentistry</label>
+                    </div>
+                    <div class="filter-content treatment-content tf5">
+                        <input type="checkbox" class="Cardiology" id="Cardiology" onchange="filter()" name="treatments" value="Cardiology">
+                        <label for="Cardiology">Cardiology</label>
+                    </div>
+                    <div class="filter-content treatment-content tf6">
+                        <input type="checkbox" class="Cancer" id="Cancer" onchange="filter()" name="treatments" value="Cancer">
+                        <label for="Cancer">Cancer</label>
+                    </div>
+                    <div class="show-more">
+                        <span>+ Show more</span>
+                    </div>
+                </div>
+
+                <!-- Hospital -->
+                <div class="hospital-filter filters">
+                    <div class="hospital-heading filter-heading">
+                        <h4>Hospitals</h4>
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="filter-content hospital-content hf1">
+                        <input type="checkbox" class="Apollo-Hospital" id="Apollo-Hospital" onchange="filter()" name="hospitals" value="Apollo Hospital">
+                        <label for="Apollo-Hospital">Apollo Hospital</label>
+                    </div>
+                    <div class="filter-content hospital-content hf2">
+                        <input type="checkbox" class="Manipal-North-Side-Hospital" id="Manipal-North-Side-Hospital" onchange="filter()" name="hospitals" value="Manipal North Side Hospital">
+                        <label for="Manipal-North-Side-Hospital">Manipal North Side Hospital</label>
+                    </div>
+                    <div class="filter-content hospital-content hf3">
+                        <input type="checkbox" class="Northstar" id="Northstar" onchange="filter()" name="hospitals" value="Northstar">
+                        <label for="Northstar">Northstar</label>
+                    </div>
+                    <div class="filter-content hospital-content hf4">
+                        <input type="checkbox" class="AIIMS" id="AIIMS" onchange="filter()" name="hospitals" value="AIIMS">
+                        <label for="AIIMS">AIIMS</label>
+                    </div>
+                    <div class="filter-content hospital-content hf5">
+                        <input type="checkbox" class="Fortis-Hospital" id="Fortis-Hospital" onchange="filter()" name="hospitals" value="Fortis Hospital">
+                        <label for="Fortis-Hospital">Fortis Hospital</label>
+                    </div>
+                    <div class="filter-content hospital-content hf6">
+                        <input type="checkbox" class="Elbit-Diagnostics" id="Elbit-Diagnostics" onchange="filter()" name="hospitals" value="Elbit Diagnostics">
+                        <label for="Elbit-Diagnostics">Elbit Diagnostics</label>
+                    </div>
+                    <div class="show-more">
+                        <span>+ Show more</span>
+                    </div>
+                </div>
+
+                <!-- Years of Exp -->
+                <div class="yearsOfExp-filter filters">
+                    <div class="yearsOfExp-heading filter-heading">
+                        <h4>Years of Experience</h4>
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="filter-content years-content yf1">
+                        <input type="checkbox" class="_30" id="30" onchange="filter()" name="experience" value="30">
+                        <label for="30">30+</label>
+                    </div>
+                    <div class="filter-content years-content yf2">
+                        <input type="checkbox" class="_25" id="25" onchange="filter()" name="experience" value="25">
+                        <label for="25">25+</label>
+                    </div>
+                    <div class="filter-content years-content yf3">
+                        <input type="checkbox" class="_20" id="20" onchange="filter()" name="experience" value="20">
+                        <label for="20">20+</label>
+                    </div>
+                    <div class="filter-content years-content yf4">
+                        <input type="checkbox" class="_15" id="15" onchange="filter()" name="experience" value="15">
+                        <label for="15">15+</label>
+                    </div>
+                    <div class="filter-content years-content yf5">
+                        <input type="checkbox" class="_10" id="10" onchange="filter()" name="experience" value="10">
+                        <label for="10">10+</label>
+                    </div>
+                    <div class="filter-content years-content yf6">
+                        <input type="checkbox" class="_5" id="5" onchange="filter()" name="experience" value="5">
+                        <label for="5">5+</label>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+        <!-- Filter container ends -->
+
+        <!-- Doc Cards -->
+        <div class="doc-cards-container" id="doc-cards-container">
+            <!-- Header starts -->
+            <%- include("partials/doctorsPartial") %>
+            <!-- Header Ends -->
+            
+        </div>
+    </section>
+
+    <!-- Need Help Query -->
+    <section class="help-query">
+        <div class="left-content">
+            <h2>Need Help?</h2>
+            <p>Just let us know. We will be happy to assist you</p>
+        </div>
+        <div class="right-content">
+            <button>Submit your enquiry</button>
+        </div>
+    </section>
+    <!-- Need Help Ends -->
+
+    <!-- Footer  -->
+    <footer class="footer">
+        <img class="footer-logo" src="https://s3.ap-south-1.amazonaws.com/appdev.konfinity.com/css/tasks/footer.png"
+            alt="logo">
+
+        <ul class="tvastra-footer">
+            <li><a href="doctor.html">Doctor</a></li>
+            <li><a href="hospital.html">Hospital</a></li>
+            <li><a href="treatment.html">Treatment</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+            <li><a href="FAQ.html">FAQs</a></li>
+        </ul>
+
+        <div class="social-icons" id="social-icons">
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-pinterest-p"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-google-plus-g"></i>
+            <i class="fab fa-instagram"></i>
+        </div>
+        <p class="copyright">All Rights Reserved. &copy; tvastra 2020</p>
+    </footer>
+
+    <script src="/scripts/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/scripts/doctors.js"></script>
+</body>
+
+</html>

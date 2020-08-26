@@ -37,7 +37,7 @@ nav .menu-bar {
   font-size: 1.2rem;
 }
 
-nav ul {
+nav > ul {
   position: fixed;
   top: 0;
   right: 0;
@@ -52,11 +52,11 @@ nav ul {
   font-size: 0.85rem;
 }
 
-nav ul li i {
+nav > ul li i {
   color: white;
 }
 
-nav ul li a {
+nav > ul li a {
   display: block;
   padding: 1rem 1.5rem;
   text-decoration: none;
@@ -65,7 +65,7 @@ nav ul li a {
   width: 100%;
 }
 
-nav ul li a:hover {
+nav > ul li a:hover {
   background-color: #454c50;
 }
 
@@ -79,6 +79,10 @@ nav .exit-menu {
 nav .exit-menu i {
   cursor: pointer;
   font-size: 1.3rem;
+}
+
+.user-container {
+  display: none;
 }
 
 .flash-container {
@@ -168,9 +172,9 @@ nav .exit-menu i {
             align-items: center;
     justify-items: center;
     width: 75%;
-    padding-left: 1rem;
+    margin-left: 1rem;
   }
-  nav ul {
+  nav > ul {
     position: inherit;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -183,18 +187,18 @@ nav .exit-menu i {
         align-self: center;
     margin-right: 1rem;
   }
-  nav ul li {
+  nav > ul li {
     float: left;
     padding-right: 0.5rem;
     vertical-align: middle;
   }
-  nav ul li a {
+  nav > ul li a {
     color: black;
     background-color: initial;
     padding: 0;
     /* font-size: large; */
   }
-  nav ul li a:hover {
+  nav > ul li a:hover {
     background-color: white;
   }
   nav .nav-cta {
@@ -226,6 +230,99 @@ nav .exit-menu i {
     /* font-size: initial;   */
     text-decoration: none;
   }
+  .user-container {
+    display: block;
+    position: relative;
+    font-family: nexa-bold;
+  }
+  .user-container .user-heading {
+    cursor: pointer;
+  }
+  .user-container .user-heading h5 {
+    font-family: nexa-light;
+    display: inline-block;
+    margin-right: 5px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .user-container .user-details {
+    position: absolute;
+    background-color: white;
+    right: 0;
+    top: 2.25rem;
+    border: 1px solid #e2e2e2;
+    width: 14rem;
+    max-width: 270px;
+    z-index: 99;
+  }
+  .user-container .user-hide {
+    display: none;
+  }
+  .user-container .user-info {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: min-content auto;
+        grid-template-columns: -webkit-min-content auto;
+        grid-template-columns: min-content auto;
+    -webkit-column-gap: 1.5rem;
+            column-gap: 1.5rem;
+    padding: 0.6rem;
+    border-bottom: 1px solid #e2e2e2;
+  }
+  .user-container .user-info .user-img {
+    width: 50px;
+    height: 50px;
+  }
+  .user-container .user-info .user-img img {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+  }
+  .user-container .user-info .user-name-mobile h5 {
+    text-transform: uppercase;
+    color: var(--secondary-text-color);
+    font-size: 0.85rem;
+  }
+  .user-container .user-info .user-name-mobile h6 {
+    font-family: nexa-light;
+    font-size: 0.75rem;
+  }
+  .user-container ul {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: auto;
+        grid-template-columns: auto;
+    grid-auto-rows: 2.6rem;
+    -ms-flex-line-pack: center;
+        align-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .user-container ul li {
+    font-size: 0.85rem;
+    color: #676767;
+    padding-left: 0.6rem;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -ms-flex-item-align: center;
+        align-self: center;
+  }
+  .user-container ul li a {
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+  }
+  .user-container ul li:hover {
+    background-color: #f3f3f3;
+    border-left: 3px solid #377cab;
+  }
   /* Header ends */
 }
 
@@ -244,10 +341,10 @@ nav .exit-menu i {
         -ms-flex-pack: space-evenly;
             justify-content: space-evenly;
     justify-items: flex-end;
-    width: 58%;
+    width: 45%;
     margin: 0;
   }
-  nav ul li a {
+  nav > ul li a {
     font-size: 0.85rem;
   }
   nav .nav-cta button {

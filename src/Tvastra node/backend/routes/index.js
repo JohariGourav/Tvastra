@@ -19,6 +19,10 @@ router.get("/index.html", mainController.landing);
 router.get("/", mainController.landing);
 router.get("/tvastra-plus", mainController.tvastraPlus);
 
+router.get("/doctors", doctorController.showDoctors);
+router.post("/doctors/filter", doctorController.filterDoctors);
+router.get("/doctors/filter", doctorController.filterDoctors);
+
 router.get("/submit-your-query", mainController.submitYourQuery);
 router.get("/book-appointment", indexMiddleware.isLoggedIn, mainController.bookAppointment);
 router.get("/faq", mainController.faq);
@@ -39,6 +43,9 @@ router.get("/reset-password", mainController.resetPassword);
 router.post("/reset-password", loginController.resetPassword);
 
 router.get("/test", doctorController.showProfileForm);
+router.get("/dashboard", function (req, res) {
+    res.render("dashboard.html");
+});
 
 module.exports = router;
 

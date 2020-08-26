@@ -82,8 +82,37 @@ app.use("/user", userRoutes);
 
 
 app.get("/abcd", (req, res) => {
-  console.log("book route");
-  res.send("Hi ABC");
+  console.log(req.query);
+  res.render("sample-test.html");
+});
+app.get("/abcd/ajaxtest", (req, res) => {
+  console.log(req.query);
+  User.find({ 
+    $or: [ {username: "John Nission"}, {email: "john_nission@gmail.com"}, {username: "doctor3"}],
+    isDoctor: true
+  }, {
+    email: 1,
+    username: 1,
+    mobile: 1,
+    // password: 0,
+    gender: 1,
+    // birth: 0,
+    // imageId: 0
+  }, (err, result) => {
+    console.log("err: ", err, " --result: ", result);
+    // if(err) {
+    //     console.log("show profile queryErr: ", err);
+    //     req.flash("error", "Profile not found");
+    //     return res.redirect("back");
+    // } else if(result){
+    //     // req.flash("success", "Profile Updated");
+    //     return res.render("doctor's-profile", {});
+    // } else {
+    //     req.flash("error", "Profile not found");
+    //     return res.redirect("back");
+    // }
+  });
+  res.render("sample-test.html");
 });
 
 // catch 404 and forward to error handler

@@ -1,0 +1,42 @@
+<% doctors.forEach( element => { %>
+    <div class="doc-card">
+        <h5 class="doc-name"><%= element.username %></h5>
+        <div class="doc-info">
+            <ul>
+                <li>
+                    <i class="fas fa-certificate icon"></i>
+                    <span><%= element.doctorProfile.speciality.join(", "); %></span>
+                </li>
+                <li>
+                    <i class="fas fa-award icon"></i>
+                    <span><%= element.doctorProfile.education.join(", "); %></span>
+                </li>
+                <li>
+                    <i class="fas fa-clock"></i>
+                    <span><%= (element.doctorProfile.experience || 'Unknown') + " Years of Experience"%></span>
+                </li>
+                <li>
+                    <i class="fas fa-hospital icon"></i>
+                    <span><%= element.doctorProfile.hospitals.join(", "); %></span>
+                </li>
+                <li>
+                    <i class="fas fa-map-marker-alt icon"></i>
+                    <span><%= element.doctorProfile.location %></span>
+                </li>
+                <li>
+                    <i class="fas fa-rupee-sign icon"></i>
+                    <span><%= element.doctorProfile.fees %></span>
+                </li>
+            </ul>
+        </div>
+        <div class="appointment-btn">
+            <a href="book-appointment.html">
+                <button id="book-btn" class="book-btn">Book an appointment</button>
+            </a>
+        </div>
+        <div class="doc-img">
+            <img src="<%= element.image%>"
+                alt="<%= element.username%>">
+        </div>
+    </div>
+<% })%>

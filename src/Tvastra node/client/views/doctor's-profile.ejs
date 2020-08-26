@@ -7,54 +7,28 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Doctor's Profile</title>
 
-    <link rel="stylesheet" type="text/css" href="stylesheets/reset.css">
-    <link rel="stylesheet" type="text/css" href="stylesheets/root.css">
-    <link rel="stylesheet" type="text/css" href="stylesheets/header.css">
-    <link rel="stylesheet" type="text/css" href="stylesheets/banner.css">
-    <link rel="stylesheet" type="text/css" href="stylesheets/doctor's-profile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/reset.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/root.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/header.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/banner.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/doctor's-profile.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
         integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="stylesheets/help-query.css">
-    <link rel="stylesheet" type="text/css" href="stylesheets/footer.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/help-query.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/footer.css">
 
 </head>
 
 <body>
     <!-- Header starts -->
-    <header>
-        <a href="index.html">
-            <img class="logo" id="logo"
-                src="https://s3.ap-south-1.amazonaws.com/appdev.konfinity.com/css/tasks/Logo.jpg" alt="Logo">
-        </a>
-        <nav>
-            <a href="#" class="hide-desktop">
-                <i id="barIcon" class="fas fa-bars menu-bar"></i>
-            </a>
-            <ul id=nav-ul class="show-desktop hide-mobile">
-                <li id="exit-menu" class="exit-menu hide-desktop"><i class="fa fa-times"></i></li>
-                <li><a href="doctor.html">Doctors</a></li>
-                <li><a href="hospital.html">Hospitals</a></li>
-                <li><a href="treatment.html">Treatments</a></li>
-                <li><a href="#">Other Services</a></li>
-                <li><a href="about-us.html">About</a></li>
-            </ul>
-            <div class="nav-cta hide-mobile">
-                <button class="login-btn">
-                    <a href="login.html">Login / Signup</a>
-                </button>
-                <button class="getQuote-btn">
-                    <a href="get.html">Get a Quote </a>
-                </button>
-            </div>
-        </nav>
-    </header>
+    <%- include("partials/header") %>
     <!-- Header Ends -->
 
     <!-- Banner -->
     <div class="banner">
         <img src="https://s3.ap-south-1.amazonaws.com/appdev.konfinity.com/css/tasks/contactUs.png" alt="banner-bg">
         <div class="banner-text">
-            <h1>About John Nission</h1>
+            <h1>About <%= username %></h1>
             <span>Home / Doctor Profile</span>
         </div>
     </div>
@@ -65,20 +39,17 @@
             <div class="doc-profile-cta-box">
                 <div class="doc-img-box">
                     <img class="doc-img"
-                        src="https://s3.ap-south-1.amazonaws.com/appdev.konfinity.com/css/tasks/image--005.jpg"
-                        alt="John Nission">
+                        src="<%= image %>"
+                        alt="<%= username %>">
                 </div>
                 <a class="book-btn-anchor" href="book-appointment.html">
                     <button class="book-btn">Book an appointment</button>
                 </a>
             </div>
             <div class="doc-basic-bio">
-                <h2 class="doc-name">John Nission</h2>
+                <h2 class="doc-name"><%= username || "John Nission abc"%></h2>
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis dolorum aliquid dignissimos
-                    nulla
-                    dolore ad tenetur saepe quaerat neque optio adipisci, quam illo cumque distinctio sunt similique
-                    harum, eligendi fuga.
+                    <%= docProfile.bio %>
                 </p>
             </div>
             <div class="doc-detailed-bio">
@@ -90,9 +61,12 @@
                             <i class="fas fa-angle-down angle-icon accordion-btn"></i>
                         </div>
                         <div class="bio-item-content accordion-panel specialization-content">
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur possimus provident
+                            <p>
+                                <%= docProfile.speciality.join(", "); %>
+                                <% /* Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur possimus provident
                                 cumque quam sit. Dignissimos fuga voluptates nemo minima esse doloribus odit aliquam ad
-                                minus est, doloremque magnam natus quibusdam!</p>
+                                minus est, doloremque magnam natus quibusdam! */%>
+                            </p>
                         </div>
                     </li>
                     <li>
@@ -102,9 +76,9 @@
                             <i class="fas fa-angle-down angle-icon accordion-btn"></i>
                         </div>
                         <div class="bio-item-content accordion-panel list-of-treatments-content">
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur possimus provident
-                                cumque quam sit. Dignissimos fuga voluptates nemo minima esse doloribus odit aliquam ad
-                                minus est, doloremque magnam natus quibusdam!</p>
+                            <p>
+                                <%= docProfile.treatments.join(", "); %>
+                            </p>
                         </div>
                     </li>
                     <li>
@@ -114,9 +88,9 @@
                             <i class="fas fa-angle-down angle-icon accordion-btn"></i>
                         </div>
                         <div class="bio-item-content accordion-panel work-experience-content">
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur possimus provident
-                                cumque quam sit. Dignissimos fuga voluptates nemo minima esse doloribus odit aliquam ad
-                                minus est, doloremque magnam natus quibusdam!</p>
+                            <p>
+                                <%= docProfile.experience %> Years of Experience
+                            </p>
                         </div>
                     </li>
                     <li>
@@ -126,9 +100,9 @@
                             <i class="fas fa-angle-down angle-icon accordion-btn"></i>
                         </div>
                         <div class="bio-item-content accordion-panel qualification-content">
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur possimus provident
-                                cumque quam sit. Dignissimos fuga voluptates nemo minima esse doloribus odit aliquam ad
-                                minus est, doloremque magnam natus quibusdam!</p>
+                            <p>
+                                <%= docProfile.education.join(", "); %>
+                            </p>
                         </div>
                     </li>
                     <li>
@@ -138,9 +112,10 @@
                             <i class="fas fa-angle-down angle-icon accordion-btn"></i>
                         </div>
                         <div class="bio-item-content accordion-panel awards-content">
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur possimus provident
-                                cumque quam sit. Dignissimos fuga voluptates nemo minima esse doloribus odit aliquam ad
-                                minus est, doloremque magnam natus quibusdam!</p>
+                            <p>
+                                <%= docProfile.awards.join(", "); %>
+                                <%= docProfile.awards %>
+                            </p>
                         </div>
                     </li>
                     <li>
@@ -150,9 +125,9 @@
                             <i class="fas fa-angle-down angle-icon accordion-btn"></i>
                         </div>
                         <div class="bio-item-content accordion-panel location-content">
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur possimus provident
-                                cumque quam sit. Dignissimos fuga voluptates nemo minima esse doloribus odit aliquam ad
-                                minus est, doloremque magnam natus quibusdam!</p>
+                            <p>
+                                <%= docProfile.location %>
+                            </p>
                         </div>
                     </li>
                     <li>
@@ -162,9 +137,9 @@
                             <i class="fas fa-angle-down angle-icon accordion-btn"></i>
                         </div>
                         <div class="bio-item-content accordion-panel avg-fees-content">
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur possimus provident
-                                cumque quam sit. Dignissimos fuga voluptates nemo minima esse doloribus odit aliquam ad
-                                minus est, doloremque magnam natus quibusdam!</p>
+                            <p>
+                                <%= docProfile.fees %> INR
+                            </p>
                         </div>
                     </li>
                 </ul>
@@ -207,8 +182,9 @@
         <p class="copyright">All Rights Reserved. &copy; tvastra 2020</p>
     </footer>
 
-    <script src="scripts/script.js"></script>
-    <script src="scripts/accordion.js"></script>
+    <script src="/scripts/script.js"></script>
+    <script src="/scripts/flash.js"></script>
+    <script src="/scripts/accordion.js"></script>
 
 </body>
 

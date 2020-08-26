@@ -1,4 +1,5 @@
 const cloudinary = require("cloudinary").v2;
+const path = require("path");
 
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -12,7 +13,7 @@ async function cloudinaryProfileImg (req, res, next) {
     }
     try {
         var result = await cloudinary.uploader.upload(req.file.path, {
-            public_id: "Tvastra/user/profile_image/" + req.file.filename
+            public_id: "Tvastra/user/profile_image/" + req.file.filename.split('.')[0]
         });
         
     } catch(err) {

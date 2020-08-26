@@ -42,7 +42,8 @@ function login(req, res, next) {
                     username: foundUser.username,
                     _id: foundUser._id,
                     email: foundUser.email,
-                    mobile: foundUser.mobile
+                    mobile: foundUser.mobile,
+                    image: foundUser.image
                 };
                 console.log("req session", req.session.currentUser);
                 req.loggedUser = foundUser;

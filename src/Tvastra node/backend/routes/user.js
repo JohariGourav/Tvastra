@@ -13,4 +13,6 @@ let cloudinaryMiddleware = require("../middleware/cloudinaryUpload");
 router.get("/:docId/doctor/profile-form", indexMiddleware.isLoggedIn, doctorController.showProfileForm);
 router.post("/:docId/doctor/profile-form", indexMiddleware.isLoggedIn, multerMiddleware.uploadDocImg, cloudinaryMiddleware.cloudinaryProfileImg, doctorController.submitProfileForm);
 
+router.get("/:docId/doctor/profile", doctorController.showProfile);
+
 module.exports = router;
