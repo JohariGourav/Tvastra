@@ -23,7 +23,22 @@ async function cloudinaryProfileImg (req, res, next) {
     }
     req.imageId = result.public_id;
     req.image = result.secure_url;
+    if(req.updateImgFlag) {
+        destroyProfileImg();
+    }
     return next();
+}
+
+async function destroyProfileImg() {
+    console.log("inside destroy");
+    try {
+        var result = await cloudinary.uploader.destroy(req.session.currentUser.imageId);
+    } catch (err) {
+        console.log("cloudinary destroy catch error: ", err);
+    } 
+    finally {
+        console.log("destroy result: ", result);
+    }
 }
 
 module.exports = {

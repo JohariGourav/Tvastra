@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>This is a heading</h1>
+    <button id="button" onclick="loadData()">Send request</button>
+    <p style="color: black;font-size: 60px;" id="test"></p>
+
+    <select name="sort" id="sort">
+        <option value="">Sort By</option>
+    </select>
+
+    <script>
+        function loadData() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                console.log("state change: ", this);
+                // console.log("state change: ", this.responseText);
+                if(this.readyState == 4 && this.status == 200) {
+                    document.getElementById("test").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "ajaxtest?id=123", true);
+            xhttp.send();
+        }
+    </script>
+</body>
+</html>

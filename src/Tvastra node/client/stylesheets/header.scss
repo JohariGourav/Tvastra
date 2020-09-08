@@ -86,8 +86,8 @@ nav .exit-menu i {
     background-color: white;
     margin-top: 0.7rem;
     margin-right: 0.7rem;
+    z-index: 9999;
     
-
     .flash-msg {
         display: grid;
         grid-template-columns: auto auto auto;

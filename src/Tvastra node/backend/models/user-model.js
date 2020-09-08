@@ -26,9 +26,16 @@ let userSchema = new mongoose.Schema({
         experience: String,
         fees: String,
     },
-    image: String,
-    imageId: String
-});
+    image: { 
+        type: String,
+        default: 'https://res.cloudinary.com/devcloudmedia/image/upload/v1597748962/Tvastra/user/profile_image/default-profile-picture_ncauvp.png'
+    },
+    imageId: { 
+        type: String,
+        default: 'Tvastra/user/profile_image/default-profile-picture_ncauvp'
+    }
+},
+{timestamps: true});
 
 userSchema.plugin(passportLocalMongoose);
 

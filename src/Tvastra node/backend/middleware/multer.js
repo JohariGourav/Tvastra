@@ -28,29 +28,38 @@ let uploadProfilePhoto = multer({
     limits: {fileSize: 1 * 1024 * 1024, files: 1} 
 });
 
+function uploadCallback(err) {
+    if(err instanceof multer.MulterError) {
+        // Multer error occurred while uploading
+        console.log("multer error: ", err);
+        req.flash('error', err);
+        return res.redirect("back");
+    } else if (err) {
+        // Unknown error occurred while uploading
+        console.log("unknown upload err: ", err);
+        req.flash('error', err);
+        return res.redirect("back");
+    }
+    return next();
+};
+
 function uploadDocImg (req, res, next) {
     let upload = uploadProfilePhoto.single("doctor[image]");
 
-    upload( req, res, err => {
-        if(err instanceof multer.MulterError) {
-            // Multer error occurred while uploading
-            console.log("multer error: ", err);
-            req.flash('error', err);
-            return res.redirect("back");
-        } else if (err) {
-            // Unknown error occurred while uploading
-            console.log("unknown upload err: ", err);
-            req.flash('error', err);
-            return res.redirect("back");
-        }
-        return next();
-    });
+    upload( req, res, next, uploadCallback);
 }
 
 function uploadUserImg (req, res, next) {
     // yet to be created
 }
 
+function updateProfileImg(req, res, next) {
+    req.updateImgFlag = true;
+    let upload = uploadProfilePhoto.single("user[image]");
+    upload(req, res, next, uploadCallback);
+}
+
 module.exports = {
-    uploadDocImg: uploadDocImg
+    uploadDocImg: uploadDocImg,
+    updateProfileImg: updateProfileImg
 };

@@ -1,4 +1,5 @@
 const User = require("../models/user-model");
+const createDoctorProfileObject = require("../util/userUtil").createDoctorProfileObject;
 
 function showDoctors(req, res) {
     User.find({
@@ -79,7 +80,7 @@ function filterDoctors(req, res) {
         sort: sortQuery
     }, (err, result) => {
         console.log("err: ", err, " --result: ", 'result');
-        return res.render("doctorsPartial", { doctors: result});
+        return res.render("partials/doctorsPartial", { doctors: result});
     });
     // res.JSON("hello");
 }
@@ -104,11 +105,9 @@ function submitProfileForm(req, res) {
     console.log("----file-----", req.file);
     console.log("imageID: ", req.imageId);
     console.log("image: ", req.image);
+    console.log("body: ", req.body);
     let _id = req.params.docId;
-    let docProfile = req.body.doctor;
-
     console.log("id: ", _id);
-    console.log("doc obj: ", docProfile);
 
     if (_id != req.session.currentUser._id) {
         console.log("both ids: docID: ", _id, " sessionId: ", req.session.currentUser._id);
@@ -117,62 +116,27 @@ function submitProfileForm(req, res) {
         req.flash("error", "Unauthorized Access, Please Login!")
         return res.redirect("/login");
     }
-    var bio = docProfile.bio,
-        location = docProfile.location,
-        experience = docProfile.experience,
-        fees = docProfile.fees;
-    var speciality = [],
-        education = [],
-        treatments = [],
-        hospitals = [],
-        achievements = [],
-        awards = [];
 
-    JSON.parse(docProfile.speciality).forEach(element => {
-        speciality.push(element.value);
-    });
-    JSON.parse(docProfile.education || '[]').forEach(element => {
-        education.push(element.value);
-    });
-    JSON.parse(docProfile.treatments || '[]').forEach(element => {
-        treatments.push(element.value);
-    });
-    JSON.parse(docProfile.hospitals || '[]').forEach(element => {
-        hospitals.push(element.value);
-    });
-    JSON.parse(docProfile.achievements || '[]').forEach(element => {
-        achievements.push(element.value);
-    });
-    JSON.parse(docProfile.awards || '[]').forEach(element => {
-        awards.push(element.value);
-    });
+    let docProfile = createDoctorProfileObject(req.body.doctor);
+    console.log("function returned doc obj: ", docProfile);
 
-    docProfile = {
-        bio: bio,
-        speciality: speciality,
-        education: education,
-        treatments: treatments,
-        location: location,
-        hospitals: hospitals,
-        achievements: achievements,
-        awards: awards,
-        experience: experience,
-        fees: fees
-    };
-    console.log("Updated doc obj: ", docProfile);
-
-    if (education.length < 1 || speciality.length < 1) {
+    if (docProfile.education.length < 1 || docProfile.speciality.length < 1) {
         req.flash("error", "Please fill mandatory fields");
         return res.redirect("back");
     }
 
+    let updateData = {
+        doctorProfile: docProfile
+    };
+    if(req.image && req.imageId) {
+        updateData.image = req.image;
+        updateData.imageId = req.imageId;
+    }
+
     User.findOneAndUpdate({
         _id: _id
-    }, {
-        doctorProfile: docProfile,
-        image: req.image,
-        imageId: req.imageId
-    }, {
+    }, updateData, 
+    {
         new: true
     }, (err, result) => {
         if (err) {

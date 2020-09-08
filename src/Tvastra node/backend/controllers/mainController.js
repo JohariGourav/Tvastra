@@ -1,3 +1,5 @@
+const User = require("../models/user-model");
+
 function landing (req, res) {
     console.log("index contorller");
     res.render("index");
@@ -40,6 +42,28 @@ function resetPassword (req, res) {
     res.render("reset-password");
 }
 
+function dashboard (req, res) {
+    User.findById({
+        _id: res.locals.currentUser._id
+    },{
+        password: 0,
+        imageId: 0
+    }, (err ,result) => {
+        console.log("err: ", err, " --result: ",typeof result.birth);
+        if (err) {
+            console.log("dashboard queryErr: ", err);
+            req.flash("error", "Server Error");
+            return res.redirect("back");
+        } else if (result) {
+            // req.flash("success", "Profile Updated");
+            return res.render("dashboard", { doctor: result });
+        } else {
+            req.flash("error", "Server error occurred");
+            return res.redirect("back");
+        }
+    });
+}
+
 module.exports = {
     landing: landing,
     tvastraPlus: tvastraPlus,
@@ -52,5 +76,6 @@ module.exports = {
     otp_submit: otp_submit,
     forgot: forgot,
     resetPassword: resetPassword,
-    recovery_otp_submit: recovery_otp_submit
+    recovery_otp_submit: recovery_otp_submit,
+    dashboard: dashboard
 };

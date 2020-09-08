@@ -1,0 +1,74 @@
+.side-panel {
+  background-color: white;
+  padding: 1.5rem 0;
+}
+
+.side-panel h1 {
+  font-size: 1.8rem;
+  line-height: 2rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1.5rem;
+}
+
+.side-panel ul {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto;
+      grid-template-columns: auto;
+  grid-auto-rows: minmax(2.75rem, auto);
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.side-panel ul li {
+  color: darkgray;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-item-align: center;
+      align-self: center;
+}
+
+.side-panel ul li a {
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: min-content auto;
+      grid-template-columns: -webkit-min-content auto;
+      grid-template-columns: min-content auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  justify-items: flex-start;
+  -webkit-column-gap: 0.5rem;
+          column-gap: 0.5rem;
+}
+
+.side-panel ul li a h3 {
+  display: inline;
+  font-size: 1.1rem;
+  padding: 8px 0;
+}
+
+.side-panel ul li a i {
+  font-size: 1.1rem;
+}
+
+.side-panel ul li:hover, .side-panel ul .hover-active {
+  background-color: #f3f3f3;
+  color: var(--secondary-text-color);
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+}
+/*# sourceMappingURL=dashboardSidePanel.css.map */

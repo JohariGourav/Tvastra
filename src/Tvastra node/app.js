@@ -20,8 +20,12 @@ const config = require("dotenv").config();
 // requiring routes
 const indexRoutes = require("./backend/routes/index");
 const userRoutes = require("./backend/routes/user");
-const User = require("./backend/models/user-model");
 // const mainRoutes    = require("./backend/routes/MainRoutes");
+
+// requiring models
+const User = require("./backend/models/user-model");
+const Schedule = require("./backend/models/slot-model").schedule;
+const Slot = require("./backend/models/slot-model").slot;
 
 //-------DB CONNECT -------
 // console.log("db var: ",process.env.DATABASEURL);
@@ -85,34 +89,90 @@ app.get("/abcd", (req, res) => {
   console.log(req.query);
   res.render("sample-test.html");
 });
-app.get("/abcd/ajaxtest", (req, res) => {
+app.get("/abcd/ajaxtest",async (req, res) => {
   console.log(req.query);
-  User.find({ 
-    $or: [ {username: "John Nission"}, {email: "john_nission@gmail.com"}, {username: "doctor3"}],
-    isDoctor: true
-  }, {
-    email: 1,
-    username: 1,
-    mobile: 1,
-    // password: 0,
-    gender: 1,
-    // birth: 0,
-    // imageId: 0
-  }, (err, result) => {
-    console.log("err: ", err, " --result: ", result);
-    // if(err) {
-    //     console.log("show profile queryErr: ", err);
-    //     req.flash("error", "Profile not found");
-    //     return res.redirect("back");
-    // } else if(result){
-    //     // req.flash("success", "Profile Updated");
-    //     return res.render("doctor's-profile", {});
-    // } else {
-    //     req.flash("error", "Profile not found");
-    //     return res.redirect("back");
-    // }
+  console.log("locals: ", res);
+  console.log("locals: ", res.currentUser);
+  console.log("locals: ", res.locals.currentUser);
+  slots = [
+    {
+      date: new Date("09-09-2020"),
+      startTime: new Date(2020, 8, 9, 10),
+      endTime: new Date(2020, 8, 9, 10, 30),
+      interval: 30,
+      hospital: 'Apollo',
+      doctor: {
+        id: res.locals.currentUser._id,
+        username: res.locals.currentUser.username
+      }
+    },
+    {
+      date: new Date("09-09-2020"),
+      startTime: new Date(2020, 8, 09, 11),
+      endTime: new Date(2020, 8, 09, 11, 30),
+      interval: 30,
+      hospital: 'Apollo',
+      doctor: {
+        id: res.locals.currentUser._id,
+        username: res.locals.currentUser.username
+      }
+    },
+  ];
+  let db = mongoose.connection;
+  console.log("db: ", db);
+  // (await db.startSession()).startTransaction();
+  const session = await Slot.startSession();
+  var docs, result;
+  await session.withTransaction(async _ => {
+    docs = await Slot.insertMany(slots, {session: session});
+    result = await Schedule.create([{
+      date: new Date("09-09-2020"),
+      day: 'Sat',
+      dayStartTime: new Date(2020, 8, 09, 9),
+      dayEndTime: new Date(2020, 8, 09, 18),
+      doctor: res.locals.currentUser._id,
+      slots: [docs[0], docs[1]]
+    }], { 
+      session: session
+    });
+    return result;
   });
-  res.render("sample-test.html");
+  session.endSession();
+  res.send({
+    docs: docs,
+    result: result
+  });
+  // Slot.insertMany(slots, (err, docs) => {
+  //   console.log("run many");
+  //   if (err) {
+  //     console.log("err many: ",err);
+  //   }
+  //   else {
+  //     console.log("run many  else");
+  //     Schedule.create({
+  //       date: new Date("09-09-2020"),
+  //       day: 'Sat',
+  //       dayStartTime: new Date(2020, 8, 09, 9),
+  //       dayEndTime: new Date(2020, 8, 09, 18),
+  //       doctor: res.locals.currentUser._id,
+  //     }, (err , result) => {
+  //       if (err) {
+  //         console.log("err schedule: ",err);
+  //         res.send("error");
+  //       }
+  //       console.log("run schedule else");
+  //       docs.forEach(doc => {
+  //         result.slots.push(doc);
+  //       });
+  //       result.save();
+  //       res.send({
+  //         docs: docs,
+  //         result: result
+  //       });
+  //     });
+  //   }
+  // })
+  // res.render("sample-test.html");
 });
 
 // catch 404 and forward to error handler

@@ -11,6 +11,12 @@ middlewareObj.isLoggedIn = (req, res ,next) => {
     res.redirect("/login");
     res.session.destroy();
     console.log("end");
+};
+
+middlewareObj.logBody = (req, res ,next) => {
+    console.log("req:", req.image || null);
+    console.log("body:", JSON.stringify(req.body));
+    next();
 }
 
 module.exports = middlewareObj;

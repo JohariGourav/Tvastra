@@ -13,7 +13,7 @@ function generateHash(password) {
 function login(req, res, next) {
     const {email, password} = req.body;
     // console.log("body", req.body);
-    console.log("email pass", email, password);
+    // console.log("email pass", email, password);
     if(!(email && password)) {
         console.log("login user check if occured");
         req.flash("error","Please enter correct details");
@@ -28,7 +28,7 @@ function login(req, res, next) {
             return res.redirect("/login");
         } else {
             console.log("login success", "user"); 
-            console.log("found user", foundUser); 
+            // console.log("found user", foundUser);    
             if(foundUser == null) {
                 req.flash("error","User doesn't exist or incorrect credentials");
                 return res.redirect("/login");
@@ -43,7 +43,8 @@ function login(req, res, next) {
                     _id: foundUser._id,
                     email: foundUser.email,
                     mobile: foundUser.mobile,
-                    image: foundUser.image
+                    image: foundUser.image,
+                    imageId: foundUser.imageId
                 };
                 console.log("req session", req.session.currentUser);
                 req.loggedUser = foundUser;

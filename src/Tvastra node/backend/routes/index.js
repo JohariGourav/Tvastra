@@ -6,8 +6,12 @@ let signupController = require("../controllers/signupController");
 let loginController = require("../controllers/loginController");
 let otpController = require("../controllers/otpController");
 let doctorController = require("../controllers/doctorController");
+let userController = require("../controllers/userController");
+let slotController = require("../controllers/slotController");
 
 let indexMiddleware = require("../middleware/index");
+let multerMiddleware = require("../middleware/multer");
+let cloudinaryMiddleware = require("../middleware/cloudinaryUpload");
 let doctorCheck = require("../middleware/doctorCheck");
 
 // router.route("/abc").get((req, res) => {
@@ -42,10 +46,23 @@ router.post("/recovery/otp-validate", otpController.recoverAccount_validateOTP);
 router.get("/reset-password", mainController.resetPassword);
 router.post("/reset-password", loginController.resetPassword);
 
+
+
+router.get("/dashboard", mainController.dashboard);
+router.get("/slots", slotController.generateSlots);
+router.get("/schedule", userController.showSchedule);
+
+router.post("/edit-mobile/request-otp", userController.edit_mob_request_otp);
+router.post("/edit-mobile/validate-otp", userController.edit_mob_validate_otp);
+
 router.get("/test", doctorController.showProfileForm);
-router.get("/dashboard", function (req, res) {
-    res.render("dashboard.html");
-});
+router.post("/testForm", multerMiddleware.updateProfileImg, cloudinaryMiddleware.cloudinaryProfileImg, userController.updateProfile );
+// router.post("/testForm", (req, res) => {
+//     console.log("body:", req.body);
+//     console.log("body:", req.user);
+//     console.log("body:", req.doctor);
+//     res.redirect("/dashboard");
+// });
 
 module.exports = router;
 

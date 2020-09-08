@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Schedule</title>
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/reset.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/root.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/header.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/dashboardSidePanel.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/schedule.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <!-- Header starts -->
+    <%- include("partials/header") %>
+    <!-- Header Ends -->
+
+    <section>
+        <%- include("partials/dashboardSidePanel") %>
+
+        <div class="main">
+            <% schedules.forEach( schedule => { %>
+            <div class="schedule">
+                <div class="schedule-heading">
+                    <div class="day-date">
+                        <h4><%= schedule.day %></h4>
+                        <time><%= (new Intl.DateTimeFormat('default', {day: 'numeric', month: 'short'})).format(schedule.date) %></time>
+                    </div>
+                    <div class="hospital-and-time">
+                        <h6><%= schedule.slots[0].hospital %></h6>
+                        <time><%= schedule.dayStartTime.getHours() + ':' + schedule.dayStartTime.getMinutes() + ' - ' + schedule.dayEndTime.getHours() + ":" + schedule.dayEndTime.getMinutes() %></time>
+                    </div>
+                    <div class="button-actions">
+                        <!-- <button class="secondary-btn">Edit Slot</button> -->
+                        <button class="secondary-btn">Remove Slot</button>
+                        <button class="secondary-btn">View Details</button>
+                    </div>
+                </div>
+                <div class="slots-container">
+                    <ul>
+                        <%  %> 
+                    <% schedule.slots.forEach( slot => { %>
+                        <li class="slot">
+                            <time><%= slot.startTime.getHours() + ':' + slot.startTime.getMinutes() + ' - ' + slot.endTime.getHours() + ':' + slot.endTime.getMinutes() %></time>
+                            <input type="checkbox">
+                        </li>
+                    <% }); %>
+                    <%  %> 
+                    </ul>
+                </div>
+            </div>
+            <% }); %>
+
+            <div class="schedule">
+                <div class="schedule-heading">
+                    <div class="day-date">
+                        <h4>Mon</h4>
+                        <time>5 Sep</time>
+                    </div>
+                    <div class="hospital-and-time">
+                        <h6>Fortis</h6>
+                        <time>10:00 - 11:00</time>
+                    </div>
+                    <div class="button-actions">
+                        <!-- <button class="secondary-btn">Edit Slot</button> -->
+                        <button class="secondary-btn">Remove Slot</button>
+                        <button class="secondary-btn">View Details</button>
+                    </div>
+                </div>
+                <div class="slots-container">
+                    <ul>
+                        <li class="slot">
+                            <time>10:00 - 11:00</time>
+                            <input type="checkbox">
+                        </li>
+                        <li class="slot">
+                            <time>10:00 - 11:00</time>
+                            <input type="checkbox">
+                        </li>
+                        <li class="slot">
+                            <time>10:00 - 11:00</time>
+                            <input type="checkbox">
+                        </li>
+                        <li class="slot">
+                            <time>10:00 - 11:00</time>
+                            <input type="checkbox">
+                        </li>
+                        <li class="slot">
+                            <time>10:00 - 11:00</time>
+                            <input type="checkbox">
+                        </li>
+                        <li class="slot">
+                            <time>10:00 - 11:00</time>
+                            <input type="checkbox">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p class="copyright">All Rights Reserved. &copy; tvastra 2020</p>
+    </footer>
+    <script>
+        document.getElementById("schedule-list-item").classList.add("hover-active");
+    </script>
+    <script src="/scripts/script.js"></script>
+    <script src="/scripts/flash.js"></script>
+    <script src="/scripts/tagify.min.js"></script>
+
+</body>
+
+</html>

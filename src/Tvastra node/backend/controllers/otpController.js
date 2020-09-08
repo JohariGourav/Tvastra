@@ -33,7 +33,7 @@ function request_otp (req, res, next) {
         req.flash("error", "Mobile Number can't be empty");
         return res.redirect("back");
     }
-    User.findOne({mobile: mobileNum}, (err, foundUser) => {
+    User.findOne({mobile: mobileNum},{password: 0}, (err, foundUser) => {
         if(err) {
             console.log(err);
             req.flash("error", err.message);
@@ -42,7 +42,14 @@ function request_otp (req, res, next) {
             console.log("otp find user success", "user"); 
             console.log("found user", foundUser); 
             if(foundUser) {  
-                tempUser = foundUser;
+                tempUser = {
+                    username: foundUser.username,
+                    _id: foundUser._id,
+                    email: foundUser.email,
+                    mobile: foundUser.mobile,
+                    image: foundUser.image,
+                    imageId: foundUser.imageId
+                };
                 console.log("set tempUser: ", tempUser);
                 let mobNum = "91" + foundUser.mobile;
                 console.log("otp req 91 Num: ", mobNum);
@@ -88,6 +95,7 @@ function validate_otp (req, res, next) {
         console.log(err ? "nexmo validate req error: " + err : "nexmo validate req result: " + JSON.stringify(result));
         if(err) {
             req.session.otp_verify = undefined;
+            delete req.session.otp_verify;
             req.flash("error", "Error verifying OTP");
             return res.redirect("/login-otp");
         } else {
@@ -104,6 +112,7 @@ function validate_otp (req, res, next) {
             } else {
                 console.log("res fail status: ", result.status);
                 req.session.otp_verify = undefined;
+                delete req.session.otp_verify;
                 req.flash("error", "Error verifying OTP");
                 return res.redirect("/login-otp");
             }

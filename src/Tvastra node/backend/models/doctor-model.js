@@ -28,6 +28,40 @@ let doctorSchema = new mongoose.Schema({
     }
 });
 
-doctorSchema.plugin(passportLocalMongoose);
+// doctorSchema.plugin(passportLocalMongoose);
 
-module.exports = mongoose.model("Doctor", doctorSchema);
+// module.exports = mongoose.model("Doctor", doctorSchema);
+
+// schedule = [
+//     {
+//         date: date,
+//         day: day,
+//         dayStartTime: time,
+//         dayEndTime: time,
+//         slots = [
+//             { ref: slotId}
+//         ]
+//     }
+// ]
+
+// slots = [
+//     {
+//         id: {},
+//         date: date,
+//         startTime: Time,
+//         endTime: Time,
+//         interval: integer,
+        
+//         doctor: { id, name },
+//         hospital: name,
+//         status: [Available, Booked, Busy]
+//     }
+// ]
+
+// appointment = {
+//     status: [confirmed, cancelled, completed],
+//     user: { id: ref},
+//     patient: {  name, mobile, email,  },
+//     selfBooking: {boolean , default: true},
+//     slot : [slotschema],
+// }

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dashboard</title>
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/reset.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/root.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/header.css">
+    <!-- <link rel="stylesheet" type="text/css" href="/stylesheets/banner.css"> -->
+    <link rel="stylesheet" type="text/css" href="/stylesheets/dashboardSidePanel.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/dashboard.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/tagify.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <!-- Header starts -->
+    <%- include("partials/header") %>
+    <!-- Header Ends -->
+
+    <section>
+        <%- include("partials/dashboardSidePanel") %>
+        <main>
+            <form enctype="multipart/form-data" action="/testForm" method="POST" class="acdas">
+                <div class="profile-heading">
+                    <h2>Accounts</h2>
+                    <button type="submit">Save Changes</button>
+                </div>
+                <div class="form-grp input-div img-input-container">
+                    <h5>Profile Photo</h5>
+                    <div class="img-data-wrapper">
+                        <div class="user-img">
+                            <img src="<%= doctor.image %>" alt="<%= doctor.username %>">
+                        </div>
+                        <p>Pick a Photo from your system</p>
+                        <label for="image">Add Photo</label>
+                        <input type="file" name="user[image]" id="image">
+                    </div>
+                </div>
+                <div class="form-grp input-div">
+                    <label for="username">Name</label>
+                    <input type="text" name="user[username]" id="username" value="<%= doctor.username %>" required>
+                </div>
+                <div class="form-grp input-div" id="extra-div-1" style="display: none;"></div>
+                <div class="form-grp input-div">
+                    <label for="mobile">Phone Number <button id="edit-mobile" >Edit</button></label>
+                    <input type="number" name="user[mobile]" id="mobile" value="<%= doctor.mobile %>" readonly>
+                </div>
+                <div class="form-grp input-div">
+                    <label for="email">Email</label>
+                    <input type="email" name="user[email]" id="email" value="<%= doctor.email %>" required>
+                </div>
+                <div class="form-grp input-div">
+                    <label for="gender">Gender</label>
+                    <input type="text" name="user[gender]" id="gender" value="<%= doctor.gender %>" required>
+                </div>
+                <div class="form-grp input-div">
+                    <label for="dob">Date of Birth</label>
+                    <input type="date" name="user[dob]" id="dob" value="<%= JSON.stringify(new Date(doctor.birth)).slice(1,11)%>" required>
+                </div>
+                <div class="form-grp input-div">
+                    <label for="timezone">Timezone</label>
+                    <input type="text" name="user[timezone]" id="timezone" list="timezoneList" >
+                    <datalist id="timezoneList">
+                        <option value="(UTC+5:30) Asia/Kolkata"></option>
+                        <option value="(UTC+5:30) Asia/Kolkata"></option>
+                    </datalist>
+                </div>
+                <div class="form-grp input-div"></div>
+                <div class="form-grp input-div">
+                    <label for="">House No. / Street / Area</label>
+                    <input type="text" name="user[area]" id="area" value="">
+                </div>
+                <div class="form-grp input-div">
+                    <label for="">Colony / Locality</label>
+                    <input type="text" name="user[locality]" id="locality" >
+                </div>
+                <div class="form-grp input-div">
+                    <label for="city">City</label>
+                    <input type="text" name="user[city]" id="city" value="<%= doctor.city %>">
+                </div>
+                <div class="form-grp input-div">
+                    <label for="state">State</label>
+                    <input type="text" name="user[state]" id="state" value="<%= doctor.state %>">
+                </div>
+                <div class="form-grp input-div">
+                    <label for="country">Country</label>
+                    <input type="text" name="user[country]" id="country" value="<%= doctor.country %>" required>
+                </div>
+                <div class="form-grp input-div"></div>
+                <div class="form-grp input-div">
+                    <label for="speciality">Speciality</label>
+                    <input type="text" name="doctor[speciality]" id="speciality" value="<%= doctor.doctorProfile.speciality %>" required>
+                </div>
+                <div class="form-grp input-div">
+                    <label for="education">Education</label>
+                    <input type="text" name="doctor[education]" id="education" value="<%= doctor.doctorProfile.education %>" required>
+                </div>
+                <div class="form-grp input-div">
+                    <label for="treatments">Treatments</label>
+                    <input type="text" name="doctor[treatments]" id="treatments" value="<%= doctor.doctorProfile.treatments %>" required>
+                </div>
+                <div class="form-grp input-div">
+                    <label for="hospitals">Hospitals</label>
+                    <input type="text" name="doctor[hospitals]" id="hospitals" value="<%= doctor.doctorProfile.hospitals %>" required>
+                </div>
+                <div class="form-grp input-div">
+                    <label for="achievements">Achievements</label>
+                    <input type="text" name="doctor[achievements]" id="achievements" value="<%= doctor.doctorProfile.achievements %>">
+                </div>
+                <div class="form-grp input-div">
+                    <label for="awards">Awards</label>
+                    <input type="text" name="doctor[awards]" id="awards" value="<%= doctor.doctorProfile.awards %>">
+                </div>
+                <div class="form-grp input-div">
+                    <label for="experience">Years of Experience</label>
+                    <input type="number" name="doctor[experience]" id="experience" value="<%= doctor.doctorProfile.experience %>" required>
+                </div>
+                <div class="form-grp input-div">
+                    <label for="fees">Avg. Fees</label>
+                    <input type="number" name="doctor[fees]" id="fees" value="<%= doctor.doctorProfile.fees %>" required>
+                </div>
+                <div class="form-grp input-div">
+                    <label for="location">Location</label>
+                    <input type="text" name="doctor[location]" id="location" value="<%= doctor.doctorProfile.location %>" required>
+                </div>
+                <button type="submit">Save Changes</button>
+            </form>
+        </main>
+    </section>
+    <div class="edit-mobile pop-up hidden-active" id="edit-mobile-container">
+        <form action="">
+            <div class="form-grp input-div">
+                <input type="number" name="mobile" id="new-mobile" minlength="10" maxlength="10" required placeholder="Enter New Mobile Number">
+            </div>
+            <button id="new-mobile-btn" type="submit">PROCEED</button>
+            <i id="hide-edit-mobile" class="fa fa-times hide-pop-up-icon"></i>
+        </form>
+    </div>
+    <div class="otp pop-up hidden-active" id="otp-container">
+        <form action="">
+            <div class="form-grp input-div">
+                <input type="number" name="otp" id="otp" minlength="4" maxlength="4" required placeholder="Enter Otp">
+            </div>
+            <button id="otp-btn" type="submit">Verify Number</button>
+            <i id="hide-otp-container" class="fa fa-times hide-pop-up-icon"></i>
+        </form>
+    </div>
+
+    <footer class="footer">
+        <p class="copyright">All Rights Reserved. &copy; tvastra 2020</p>
+    </footer>
+    <script>
+        document.getElementById("profile-list-item").classList.add("hover-active");
+    </script>
+    <script src="/scripts/script.js"></script>
+    <script src="/scripts/flash.js"></script>
+    <script src="/scripts/tagify.min.js"></script>
+    <script>
+        console.log("acsaasc",'<%= doctor.birth %>');
+        let d = new Date('<%= doctor.birth %>');
+        let a = JSON.stringify(d);
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/scripts/dashboard.js"></script>
+    <script>
+        // send otp form submission
+        let otpBtn = document.querySelector("#otp-btn");
+        otpBtn.addEventListener("click", e => {
+            e.preventDefault();
+
+            let otp = document.querySelector("#otp");
+            console.log("new mobile: ", otp);
+            console.log("new mobile: ", otp.value);
+
+            if(otp.value.length != 4) {
+                return alert('Please Enter 4 digit OTP');
+            }
+
+            axios.post('/edit-mobile/validate-otp', {
+                otp: otp.value
+            })
+            .then( response => {
+                // console.log("response: ",response);
+                // console.log("data: ", response.data);
+                if(true || response.data == true) {
+                    document.getElementById("otp-container").classList.toggle("hidden-active");
+                    document.getElementById("mobile").value = document.querySelector("#new-mobile").value;
+                    document.querySelector("#new-mobile").value = null;
+                    otp.value = null;
+                    return alert("Click on Save Changes to update mobile");
+                }
+                else {
+                    renderFlashResponse(response.data);
+                    document.querySelector("#new-mobile").value = null;
+                    otp.value = null;
+                }
+                return null;
+            })
+            .catch( error => {
+                console.log(error);
+                alert("Server Error, Retry!");
+                return null;
+            });  
+        });
+    </script>
+</body>
+</html>

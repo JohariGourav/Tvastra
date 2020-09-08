@@ -120,13 +120,18 @@ p {
     color: var(--main-text-color);
 }
 
-button {
+button, .primary-btn {
     background-color: var(--main-button-bg-color);
     border-style: none;
     color: white;
     padding: 0.5rem 1rem;
     font-family: nexa-bold;
     /* font-size: 1rem; */
+}
+
+ .secondary-btn {
+    background-color: var(--secondary-button-bg-color); 
+    border-radius: 5px;
 }
 
 textarea {
