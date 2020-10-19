@@ -44,7 +44,8 @@ function login(req, res, next) {
                     email: foundUser.email,
                     mobile: foundUser.mobile,
                     image: foundUser.image,
-                    imageId: foundUser.imageId
+                    imageId: foundUser.imageId,
+                    isDoctor: foundUser.isDoctor
                 };
                 console.log("req session", req.session.currentUser);
                 req.loggedUser = foundUser;
@@ -62,6 +63,15 @@ function login(req, res, next) {
     // User.findOne({},)
 }
 
+function logout(req, res) {
+    req.session.destroy();
+    res.redirect("/login");
+}
+
+/* --------------------------------------
+    function for resetting password after hitting
+    forgot password and then successfull OTP verification
+---------------------------------------*/
 function resetPassword(req, res, next) {
     const {newPassword, confirmPassword} = req.body;
     console.log("passwords: ", newPassword, confirmPassword);
@@ -99,5 +109,6 @@ function resetPassword(req, res, next) {
 
 module.exports = {
     login: login,
+    logout: logout,
     resetPassword: resetPassword
 }

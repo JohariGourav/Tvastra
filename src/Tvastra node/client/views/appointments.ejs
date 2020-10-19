@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Schedule</title>
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/reset.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/root.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/header.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/dashboardSidePanel.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/appointments.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <!-- Header starts -->
+    <%- include("partials/header") %>
+    <!-- Header Ends -->
+
+    <section>
+        <%- include("partials/dashboardSidePanel") %>
+
+        <div class="main">
+            <h3 class="appointments-group-header">Upcoming Appointments</h3>
+            <div class="appointments-group upcoming-appointments">
+                <% if(upcomingAppointments.length < 1) { %>
+                    <p>No Upcoming Appointments</p>
+                <% } else {%>
+                    <% upcomingAppointments.forEach( appointment => { %>
+                    <div class="appointment" data-date = "<%= appointment.slot[0].date.getTime() %>">
+                        <div class="appointment-heading">
+                            <div class="day-date">
+                                <h4><%= (new Intl.DateTimeFormat('default', {weekday: 'short'})).format(appointment.slot[0].date) %></h4>
+                                <time><%= (new Intl.DateTimeFormat('default', {day: 'numeric', month: 'short'})).format(appointment.slot[0].date) %></time>
+                            </div>
+                            <div class="hospital-and-time">
+                            
+                                    <p class="username"><%= currentUser.isDoctor ? appointment.patient.name : "Dr. " + appointment.slot[0].doctor.username %></p>
+                                    <h6><%= appointment.slot[0].hospital %></h6>
+                                
+                                    <time><%= appointment.slot[0].startTime + ' - '  + appointment.slot[0].endTime %></time>
+                                    <% let statusClass = '';
+                                        if(appointment.status == "Confirmed") {
+                                            statusClass = "confirmed"
+                                        } else if(appointment.status == "Cancelled") {
+                                            statusClass = "cancelled"
+                                        } else if(appointment.status == "Completed") {
+                                            statusClass = "completed"
+                                        }
+                                    %>
+                                    <h6 class="appointment-status <%= statusClass %>"><%= appointment.status %></h6>
+                                <!-- <time><%//= schedule.dayStartTime.getHours() + ':' + schedule.dayStartTime.getMinutes() + ' - ' + schedule.dayEndTime.getHours() + ":" + schedule.dayEndTime.getMinutes() %></time> -->
+                                
+                            </div>
+                            <% if(appointment.status == "Confirmed") { %>
+                            <div class="button-actions">
+                                <!-- <button class="secondary-btn">Edit Slot</button> -->
+                                <button class="secondary-btn" onclick="location.href='/cancel-appointment/<%= appointment._id %>'">Cancel Appointment</button>
+                                <button class="secondary-btn view-slots-btn" id="view-slots-btn" onclick="location.href='/reschedule-appointment/<%= appointment._id %>'">Reschedule Appointment</button>
+                            </div>
+                            <% } %>
+                        </div>
+                        
+                    </div>
+                <% }); %>
+                <% } %>
+            </div>
+            <h3 class="appointments-group-header">Past Appointments</h3>
+            <div class="appointments-group past-appointments">
+                <% if(pastAppointments.length < 1) { %>
+                    <p>No Past Appointments</p>
+                <% } else {%>
+                    <% pastAppointments.forEach( appointment => { %>
+                    <div class="appointment" data-date = "<%= appointment.slot[0].date.getTime() %>">
+                        <div class="appointment-heading">
+                            <div class="day-date">
+                                <h4><%= (new Intl.DateTimeFormat('default', {weekday: 'short'})).format(appointment.slot[0].date) %></h4>
+                                <time><%= (new Intl.DateTimeFormat('default', {day: 'numeric', month: 'short'})).format(appointment.slot[0].date) %></time>
+                            </div>
+                            <div class="hospital-and-time">
+                                    <p class="username"><%= currentUser.isDoctor ? appointment.patient.name : "Dr. " + appointment.slot[0].doctor.username %></p>
+                                    <h6><%= appointment.slot[0].hospital %></h6>
+                                    <time><%= appointment.slot[0].startTime + ' - '  + appointment.slot[0].endTime %></time>
+                                    <% let statusClass = '';
+                                        if(appointment.status == "Confirmed") {
+                                            statusClass = "confirmed"
+                                        } else if(appointment.status == "Cancelled") {
+                                            statusClass = "cancelled"
+                                        } else if(appointment.status == "Completed") {
+                                            statusClass = "completed"
+                                        }
+                                    %>
+                                    <h6 class="appointment-status <%= statusClass %>"><%= appointment.status %></h6>
+                            </div>
+                            <% if(false && appointment.status == "Confirmed") { %>
+                            <div class="button-actions">
+                                <button class="secondary-btn" onclick="location.href='/cancel-appointment/<%= appointment._id %>'">Cancel Appointment</button>
+                                <button class="secondary-btn view-slots-btn" id="view-slots-btn">Reschedule Appointment</button>
+                            </div>
+                            <% } %>
+                        </div>
+                        
+                    </div>
+                    <% }); %>
+                <% } %>
+            </div>
+        </div>
+    </section>
+   
+
+    <footer class="footer">
+        <p class="copyright">All Rights Reserved. &copy; tvastra 2020</p>
+    </footer>
+    <script src="/scripts/script.js"></script>
+    <script src="/scripts/flash.js"></script>
+    
+    <script>
+        document.getElementById("appointments-list-item").classList.add("hover-active");
+    </script>
+    
+</body>
+
+</html>

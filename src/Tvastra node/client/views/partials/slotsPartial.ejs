@@ -1,0 +1,18 @@
+<ul class="morning-slots">
+    <% morningSlots.forEach( slot => { %>
+        <li class="slot" id="<%= slot.slotId%>" onclick="location.href='/book-appointment/<%= slot.slotId%>'"><%= slot.time%></li>
+    <% }); %>
+</ul>
+<ul class="afternoon-slots">
+    <% afternoonSlots.forEach( slot => { %>
+        <li class="slot" id="<%= slot.slotId%>" onclick="window.location.href='/book-appointment/<%= slot.slotId%>'"><%= slot.time%></li>
+    <% }); %>
+    <% if(slotsEmptyFlag) { %>
+        <p>No Slots Available</p>
+    <% } %>
+</ul>
+<ul class="evening-slots">
+    <% eveningSlots.forEach( slot => { %>
+        <li class="slot" id="<%= slot.slotId%>" onclick="location.href='/book-appointment/<%= slot.slotId%>'"><%= slot.time%></li>
+    <% }); %>
+</ul>

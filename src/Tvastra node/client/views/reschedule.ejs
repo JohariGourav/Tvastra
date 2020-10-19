@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Schedule</title>
+
+    <link rel="stylesheet" type="text/css" href="/stylesheets/reset.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/root.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/header.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/dashboardSidePanel.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/reschedule.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <!-- Header starts -->
+    <%- include("partials/header") %>
+    <!-- Header Ends -->
+    <% var options = { day: 'numeric', month: 'short', year: 'numeric'}%>
+    <section>
+        <div class="reschedule-ctr">
+            <h1>Reschedule Appointment</h1>
+            <div class="prev-appointment-info">
+                <div class="doc-info">
+                    <h4>Practitioner</h4>
+                    <h5><%= appointment.slot[0].doctor.username %></h5>
+                </div>
+                <div class="date-info">
+                    <h4>Date</h4>
+                    <h5><%= (new Intl.DateTimeFormat('default', options)).format(appointment.slot[0].date) %></h5>
+                </div>
+                <div class="time-info">
+                    <h4>Time</h4>
+                    <h5><%= appointment.slot[0].startTime %></h5>
+                </div>
+            </div>
+            <div class="appointment-group" id=<%= appointment._id %>>
+                <div class="schedules-ctr">
+                    <div class="left-anchor anchor prev" onclick="shiftSlides(-1, this)">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <div class="schedules">
+                        <%//- include("partials/schedulesPartial") %>   
+
+                        <% for(const key in days) { %>
+                            <% let id = null; %>
+                            <% schedules[days[key]] ? id = schedules[days[key]]._id : id = 0%>
+                            <div class="schedule hidden-active" onclick="showSlots('<%= id %>', this)">
+                                <h4 class="appointment-date"><%= (new Intl.DateTimeFormat('default', options)).format(key) %></h4>
+                                <% if(days[key] === null) { %>
+                                <h5 class="total-slots">No Slots Available</h5>
+                                <% } else {%>
+                                <h5 class="total-slots"><%= schedules[days[key]].slots.length > 0 ? schedules[days[key]].slots.length : 'No'  %> Slots Available</h5>        
+                                <% } %>
+                            </div>
+
+                        <% } %>
+                        <%/* <div class="schedule">
+                            <h4 class="appointment-date">Sun, Sep 20 2020</h4>
+                            <h5 class="total-slots">4 Slots Available</h5>
+                        </div>
+                        <div class="schedule">
+                            <h4 class="appointment-date">Sun, Sep 20 2020</h4>
+                            <h5 class="total-slots">4 Slots Available</h5>
+                        </div>
+                        <div class="schedule">
+                            <h4 class="appointment-date">Sun, Sep 20 2020</h4>
+                            <h5 class="total-slots">4 Slots Available</h5>
+                        </div> */%>
+                    </div>
+                    <div class="right-anchor anchor next" onclick="shiftSlides(1, this)">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+                <div class="slots-ctr hidden-active">
+                    <div class="day-timing">
+                        <span>
+                            <i class="fas fa-sun"></i>
+                            Morning
+                        </span>
+                        <span>
+                            <i class="fas fa-sun"></i>
+                            Afternoon
+                        </span>
+                        <span>
+                            <i class="fas fa-sun"></i>
+                            Evening
+                        </span>
+                    </div>
+                    <div class="slots-timing">
+                        <ul class="morning-slots">
+                            <li class="slot">01:00 - 02:00</li>
+                            <li class="slot">01:00 - 02:00</li>
+                            <li class="slot">01:00 - 02:00</li>
+                            <li class="slot">01:00 - 02:00</li>
+                            <li class="slot">01:00 - 02:00</li>
+                            <li class="slot">01:00 - 02:00</li>
+                        </ul>
+                    
+                        <ul class="afternoon-slots">
+                            <li class="slot">01:00 - 02:00</li>
+                            <li class="slot">01:00 - 02:00</li>
+                            <li class="slot">01:00 - 02:00</li>
+                        </ul>
+
+                        <ul class="evening-slots">
+                            <li class="slot">01:00 - 02:00</li>
+                            <li class="slot">01:00 - 02:00</li>
+                            <li class="slot">01:00 - 02:00</li>
+                        </ul>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+   
+
+    <footer class="footer">
+        <p class="copyright">All Rights Reserved. &copy; tvastra 2020</p>
+    </footer>
+    <script src="/scripts/script.js"></script>
+    <script src="/scripts/flash.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    
+    <script>
+        var slideIndex = 1;
+        showSlides(1, 'avdc');
+        // show slide of 3 schedules of a 'schedulesCtr' container starting from 'n' 
+        function showSlides(n, schedulesCtr) {
+            let allSchedules = document.querySelector(".schedules").querySelectorAll(".schedule");
+            allSchedules.forEach( schedule => {
+                schedule.classList.add("hidden-active");
+            });
+            if(n<1)
+                n = 3, slideIndex = 3;
+            else if (n>3)
+                n = 1, slideIndex = 1;
+
+            for(let i = (n*3)-3; i < (n*3); i++) {
+                // console.log("allSche: ", allSchedules[i], i);
+                allSchedules[i].classList.remove("hidden-active");
+            }
+        }
+        // shift slide left/right by anchor buttons
+        function shiftSlides(counter, thisParam) {
+            let schedulesCtr = thisParam.parentElement;
+            // console.log("indexes slide counter: ", slideIndex, counter);
+            showSlides(slideIndex += counter, schedulesCtr);
+        }
+
+
+        // show slots for a schedule
+        function showSlots(scheduleId, thisParam) {
+            event.preventDefault();
+            // console.log('this: ', thisParam);
+            let appointmentGrp = thisParam.parentElement.parentElement.parentElement;
+            // let appointmentGrp = docCard.querySelector(".appointment-group");
+
+            if(appointmentGrp.querySelector(".selected-schedule"))
+                appointmentGrp.querySelector(".selected-schedule").classList.remove("selected-schedule");
+
+            document.querySelectorAll(".slots-ctr").forEach(element => {
+                element.classList.add("hidden-active");
+            });          
+            // console.log('/find-schedule/' + id);
+            axios.get('/find-slots/' + scheduleId)
+            .then(function (response) {
+                console.log(response);
+                console.log(response.data);
+                let slotsDiv = appointmentGrp.querySelector(".slots-timing");
+                // console.log("slots timing: ",slotsDiv);
+                slotsDiv.innerHTML = response.data;
+                let slots = slotsDiv.querySelectorAll(".slot");
+                slots.forEach( slot => {
+                    let url = `location.href='/reschedule-appointment/${appointmentGrp.id}/new-slot/${slot.id}'`;
+                    slot.setAttribute("onclick",url);
+                });
+              
+                appointmentGrp.querySelector(".slots-ctr").classList.remove("hidden-active");
+                thisParam.classList.add("selected-schedule");
+                // appointmentGrp.classList.toggle("hidden-active");
+                return null;
+            })
+            .catch(function (error) {
+                console.log("error: ", error);
+                alert("Server Error, Retry!");
+                return null;
+            });    
+        }
+    </script>
+    
+</body>
+
+</html>

@@ -126,6 +126,16 @@ button, .primary-btn {
     color: white;
     padding: 0.5rem 1rem;
     font-family: nexa-bold;
+    cursor: pointer;
+    /* font-size: 1rem; */
+}
+
+.primary-invert-btn {
+    background-color: white;
+    border: 0.1rem solid var(--main-button-bg-color);
+    color: var(--main-button-bg-color);
+    padding: 0.5rem 1rem;
+    font-family: nexa-bold;
     /* font-size: 1rem; */
 }
 

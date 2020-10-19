@@ -1,0 +1,15 @@
+<% var options = { day: 'numeric', month: 'short', year: 'numeric'}%>
+
+<% for(const key in days) { %>
+    <% let id = null; %>
+    <% schedules[days[key]] ? id = schedules[days[key]]._id : id = 0%>
+    <div class="schedule hidden-active" onclick="showSlots('<%= id %>', this)">
+        <h4 class="appointment-date"><%= (new Intl.DateTimeFormat('default', options)).format(key) %></h4>
+        <% if(days[key] === null) { %>
+        <h5 class="total-slots">No Slots Available</h5>
+        <% } else {%>
+        <h5 class="total-slots"><%= schedules[days[key]].slots.length > 0 ? schedules[days[key]].slots.length : 'No'  %> Slots Available</h5>        
+        <% } %>
+    </div>
+
+<% } %>

@@ -7,8 +7,8 @@ let scheduleSchema = new mongoose.Schema({
         enum: ['Sun', 'Mon', 'Tue', 'Wed','Thu','Fri','Sat'],
         required: true
     },
-    dayStartTime: {type: Date, required: true},
-    dayEndTime: {type: Date, required: true},
+    dayStartTime: {type: String, required: true, maxlength:5},
+    dayEndTime: {type: String, required: true, maxlength:5},
     doctor: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
@@ -25,8 +25,8 @@ let scheduleSchema = new mongoose.Schema({
 
 let slotSchema = new mongoose.Schema({
     date: {type: Date, required: true},
-    startTime: {type: Date, required: true},
-    endTime: {type: Date, required: true},
+    startTime: {type: String, required: true, maxlength: 5, minlength: 5},
+    endTime: {type: String, required: true, maxlength: 5, minlength: 5},
     interval: { type: Number, required: true, min: 10},
     hospital: {type: String, required: true},
     doctor: {
@@ -47,5 +47,6 @@ let slotSchema = new mongoose.Schema({
 
 module.exports = {
     schedule: mongoose.model("Schedule", scheduleSchema),
-    slot: mongoose.model("Slot", slotSchema)
+    slot: mongoose.model("Slot", slotSchema),
+    slotSchema: slotSchema
 };

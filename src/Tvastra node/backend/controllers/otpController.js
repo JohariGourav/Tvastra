@@ -48,7 +48,8 @@ function request_otp (req, res, next) {
                     email: foundUser.email,
                     mobile: foundUser.mobile,
                     image: foundUser.image,
-                    imageId: foundUser.imageId
+                    imageId: foundUser.imageId,
+                    isDoctor: foundUser.isDoctor
                 };
                 console.log("set tempUser: ", tempUser);
                 let mobNum = "91" + foundUser.mobile;
@@ -118,7 +119,6 @@ function validate_otp (req, res, next) {
             }
         }
     });
-
 }
 
 function recoverAccount_genOTP (req, res, next) {

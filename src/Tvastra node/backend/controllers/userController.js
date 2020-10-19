@@ -10,25 +10,57 @@ const nexmo = new Nexmo({
     apiSecret: process.env.NEXMO_APISECRET,
 });
 
+// Creates 7 consecutive Dates starting from Today
+// function createNext7Days() {
+//     let days7 = [];
+//     days7[0] = new Date(new Date().setHours(0, 0, 0, 0));
+//     console.log("days7 0: ", days7[0]);
+//     for(let i=1; i<=6; i++) {
+//         let temp = new Date(new Date().setHours(0, 0, 0, 0));
+//         temp.setDate(days7[i-1].getDate() +1);
+//         days7.push(temp);
+//     }
+//     // console.log("days7: ", days7);
+//     return days7;
+// }
+
 // show create/Edit schedule page to Doctor
-function showSchedule (req, res) {
-    Schedule.find({
-        doctor: '5f3ab729f84cd91e487a27cc'
-    }).
-    populate('slots').
-    exec( (err, schedules) => {
-        console.log("err: ", err);
-        // console.log("schedule: ", schedules);
-        schedules.forEach( schedule => {
-            console.log(schedule.date);
-            let options = {month: 'short'};
-            let formatter = new Intl.DateTimeFormat('default', options);
-            schedule.date = schedule.date.getDate() + ' ' + formatter.format(schedule.date);
-            console.log(schedule.date);
-        });
-        res.render("schedule", {schedules: schedules});
-    });
-}
+// function showSchedule (req, res) {
+//     Schedule.find({
+//         doctor: res.locals.currentUser._id
+//     },{}, {
+//         sort: {date: 1}
+//     }).
+//     populate('slots').
+//     exec( (err, schedules) => {
+//         // console.log("err: ", err);
+//         // console.log("schedule: ", schedules);
+//         if (err) {
+//             console.log("show shcedule queryErr: ", err);
+//             req.flash("error", "Server Error!");
+//             return res.redirect("back");
+//         } else if (!schedules) {
+//             console.log("not schedule queryErr: ", schedules);
+//             req.flash("error", "Server Error!");
+//             return res.redirect("back");
+//         } else {
+//             let schedules1 = [];
+//             let schedule1 = {};
+//             schedules1.push(schedule1);
+//             schedules.forEach( schedule => {
+//             //     let options = {month: 'long'};
+//             //     let formatter = new Intl.DateTimeFormat('default', options);
+//                 // console.log("sche date: ",schedule);
+//                 // console.log("sche date: ",schedule.dayEndTime);
+                
+//             });
+//             let dates = createNext7Days();
+//             // console.log("final dates: ", dates);
+//             res.render("schedule", {schedules: schedules, dates: dates});
+//         }
+        
+//     });
+// }
 
 function updateProfile(req, res, next) {
     console.log("----file-----", req.file);
@@ -78,6 +110,12 @@ function updateProfile(req, res, next) {
         new: true
     }, (err, result) => {
         if (err) {
+            // unique email constraint error
+            if(err.keyPattern && err.keyPattern.email == 1) {
+                console.log("keypattern match: ", "email: " + err.keyPattern.email);
+                req.flash("error", "Email already exists!");
+                return res.redirect("back");
+            }
             console.log("update profile queryErr: ", err);
             req.flash("error", "Error Updating profile");
             return res.redirect("back");
@@ -191,8 +229,27 @@ function edit_mob_validate_otp (req, res, next) {
 
 
 module.exports = {
-    showSchedule: showSchedule,
+    // showSchedule: showSchedule,
     updateProfile: updateProfile,
     edit_mob_request_otp: edit_mob_request_otp,
     edit_mob_validate_otp: edit_mob_validate_otp
 }
+
+// PROBLEM: updating whole array instead of 1 element 
+// let days7 = [];
+//     days7[0] = new Date(new Date().setHours(0, 0, 0, 0));
+//     console.log("days7 0: ", days7[0]);
+//     for(let i=1; i<=6; i++) {
+//         console.log("days7: ", days7);
+//         console.log("days7 i-1: ", days7[i-1]);
+//         console.log("days7 i: ", days7[i]);
+//         let temp = days7[0];
+//         console.log("temp: ", temp);
+//         temp.setDate(days7[i-1].getDate() +1);
+//         console.log("days7 i-1: ", days7[i-1]);
+//         console.log("tempafter: ", temp);
+//         days7.push(temp);
+//         console.log("days7 i: ", days7[i]);
+//         console.log("days7 i-1: ", days7[i-1]);
+
+//     }

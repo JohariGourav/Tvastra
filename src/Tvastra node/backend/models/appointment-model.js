@@ -1,5 +1,5 @@
 const mongoose      = require("mongoose");
-const slotSchema = require("../models/slot-model").slot;
+const slotSchema = require("../models/slot-model").slotSchema;
 
 let appointmentSchema = new mongoose.Schema({
     user: {

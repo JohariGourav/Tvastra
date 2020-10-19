@@ -1,4 +1,3 @@
-
 /* --------------- 
 function for collecting checked inputs
 and send axios request
@@ -77,4 +76,95 @@ function cross(element) {
     let crossedElement = document.querySelector("."+element.id);
     crossedElement.checked = false;
     filter();
+}
+
+// Show Appointments when book appointment btn clicked
+function showAppointments(id, thisParam) {
+    event.preventDefault();
+    // console.log('this: ', thisParam);
+    let docCard = thisParam.parentElement.parentElement;
+    let appointmentGrp = docCard.querySelector(".appointment-group");
+    if(!appointmentGrp.classList.contains("hidden-active")) {
+        appointmentGrp.classList.add("hidden-active");
+        return null;
+    }
+
+    document.querySelectorAll(".appointment-group").forEach(element => {
+        element.classList.add("hidden-active");
+    });
+    
+    // console.log('/find-schedule/' + id);
+    axios.get('/find-schedule/' + id)
+    .then(function (response) {
+        // console.log(response);
+        // console.log(response.data);
+        let schedulesDiv = docCard.querySelector(".schedules");
+        // console.log("schedules: ",schedulesDiv);
+        schedulesDiv.innerHTML = response.data;
+        showSlides(slideIndex=1, docCard);
+        appointmentGrp.classList.toggle("hidden-active");
+        return null;
+    })
+    .catch(function (error) {
+        console.log("error: ", error);
+        alert("Server Error, Retry!");
+        return null;
+    });    
+}
+
+var slideIndex = 1;
+// show slide of 3 schedules of a 'docCard' container starting from 'n' 
+function showSlides(n, docCard) {
+    let allSchedules = docCard.querySelector(".schedules").querySelectorAll(".schedule");
+    allSchedules.forEach( schedule => {
+        schedule.classList.add("hidden-active");
+    });
+    if(n<1)
+        n = 3, slideIndex = 3;
+    else if (n>3)
+        n = 1, slideIndex = 1;
+
+    for(let i = (n*3)-3; i < (n*3); i++) {
+        // console.log("allSche: ", allSchedules[i], i);
+        allSchedules[i].classList.remove("hidden-active");
+    }
+}
+// shift slide left/right by anchor buttons
+function shiftSlides(counter, thisParam) {
+    let docCard = thisParam.parentElement.parentElement.parentElement;
+    // console.log("indexes slide counter: ", slideIndex, counter);
+    showSlides(slideIndex += counter, docCard);
+}
+
+// show slots for a schedule
+function showSlots(scheduleId, thisParam) {
+    event.preventDefault();
+    // console.log('this: ', thisParam);
+    let appointmentGrp = thisParam.parentElement.parentElement.parentElement;
+    // let appointmentGrp = docCard.querySelector(".appointment-group");
+
+    if(appointmentGrp.querySelector(".selected-schedule"))
+        appointmentGrp.querySelector(".selected-schedule").classList.remove("selected-schedule");
+
+    document.querySelectorAll(".slots-ctr").forEach(element => {
+        element.classList.add("hidden-active");
+    });          
+    // console.log('/find-schedule/' + id);
+    axios.get('/find-slots/' + scheduleId)
+    .then(function (response) {
+        console.log(response);
+        console.log(response.data);
+        let slotsDiv = appointmentGrp.querySelector(".slots-timing");
+        console.log("slots timing: ",slotsDiv);
+        slotsDiv.innerHTML = response.data;
+        appointmentGrp.querySelector(".slots-ctr").classList.remove("hidden-active");
+        thisParam.classList.add("selected-schedule");
+        // appointmentGrp.classList.toggle("hidden-active");
+        return null;
+    })
+    .catch(function (error) {
+        console.log("error: ", error);
+        alert("Server Error, Retry!");
+        return null;
+    });    
 }

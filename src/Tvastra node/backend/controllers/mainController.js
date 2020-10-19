@@ -18,7 +18,7 @@ function faq (req, res) {
 
 function bookAppointment (req, res) {
     console.log("book contorller");
-    res.render("index");
+    res.render("book-appointment");
 }
 function signup (req, res) {
     res.render("signup");

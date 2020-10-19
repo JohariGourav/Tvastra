@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Doctors</title>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/reset.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/root.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/header.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/booking-status.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/help-query.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/footer.css">
+
+</head>
+
+<body>
+    <!-- Header starts -->
+    <%- include("partials/header") %>
+    <!-- Header Ends -->
+
+    <section>
+        <div class="doctor-details section-item">
+            <h1>In Clinic Appointment</h1>
+            <div class="time-info">
+                <h3 class="book-date">
+                    <i class="far fa-calendar-plus"></i>
+                    <% var options = { day: 'numeric', month: 'short', year: 'numeric'}%>
+                    <%= (new Intl.DateTimeFormat('default', options)).format(slot.date) || 'Sep 22, 2020'%>
+                </h3>
+                <h3 class="book-time">
+                    <i class="far fa-clock"></i>
+                    <%= slot.startTime + ' - ' + slot.endTime %>
+                </h3>
+            </div>
+            <div class="doctor-info info-ctr">
+                <div class="doc-img img-ctr">
+                    <img src="<%= slot.doctor.id.image %>" alt="<%= slot.doctor.username %>">
+                </div>
+                <div class="doc-about about-ctr">
+                    <h5><%= slot.doctor.username %></h5>
+                    <h5><%= slot.hospital %></h5>
+                </div>
+            </div>
+            <div class="hospital-info info-ctr">
+                <div class="hospital-img img-ctr">
+                    <img src="https://res.cloudinary.com/devcloudmedia/image/upload/v1599234566/Tvastra/user/profile_image/1599234564355image--006.jpg" alt="Fortis">
+                </div>
+                <div class="hospital-about about-ctr">
+                    <h5><%= slot.hospital %></h5>
+                    <h5><%= slot.doctor.id.doctorProfile.location %></h5>
+                </div>
+            </div>
+        </div>
+        <div class="appointment-details section-item">
+            
+                <h2 class="appointment-status">
+                <% if(appointment.status == 'Confirmed') { %>
+                    <i class="fas fa-check-circle confirmed-icon"></i>
+                    Appointment Confirmed
+                <% } else if(appointment.status == 'Cancelled') { %>
+                    <i class="fas fa-times-circle cancelled-icon"></i>
+                    Appointment Cancelled
+                <% } %>
+                </h2>
+            
+            <p>We have sent you an SMS with the details</p>
+            <div class="patient-info">
+                <h5>Patient Name</h5>
+                <h4><%= appointment.patient.name %></h4>
+                <h5>Mobile</h5>
+                <h4><%= appointment.patient.mobile %></h4>
+            </div>
+            <% if(appointment.status != 'Cancelled') { %>
+            <div class="appointment-action-btns">
+                <button onclick="toggleCancelAppointment()">Cancel Appointment</button>
+                <button onclick="location.href='/reschedule-appointment/<%= appointment._id %>'">Reschedule Appointment</button>
+            </div>
+            <% } %>
+        </div>
+    </section>
+    <% if(appointment.status != 'Cancelled') { %>
+    <div class="cancel-wrapper hidden-active" id="cancel-wrapper">
+        <div class="cancel-ctr">
+            <h3>Cancel Appointment</h3>
+            <h5>Are you sure you want to cancel this appointment?</h5>
+            <button onclick="location.href='/cancel-appointment/<%= appointment._id %>'">Yes</button>
+            <button class="primary-invert-btn" onclick="toggleCancelAppointment()">No</button>
+        </div>
+    </div>
+    <% } %>
+
+     <!-- Footer  -->
+    <footer class="footer">
+        <img class="footer-logo" src="https://s3.ap-south-1.amazonaws.com/appdev.konfinity.com/css/tasks/footer.png"
+            alt="logo">
+
+        <ul class="tvastra-footer">
+            <li><a href="doctor.html">Doctor</a></li>
+            <li><a href="hospital.html">Hospital</a></li>
+            <li><a href="treatment.html">Treatment</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+            <li><a href="FAQ.html">FAQs</a></li>
+        </ul>
+
+        <div class="social-icons" id="social-icons">
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-pinterest-p"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-google-plus-g"></i>
+            <i class="fab fa-instagram"></i>
+        </div>
+        <p class="copyright">All Rights Reserved. &copy; tvastra 2020</p>
+    </footer>
+
+    <script src="/scripts/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        let patientName = document.querySelector("#patient-name").value;
+        let patientMobile = document.querySelector("#patient-mobile").value;
+        let patientEmail = document.querySelector("#patient-email").value;
+
+        console.log(patientName, patientMobile, patientEmail);
+
+        function toggleCancelAppointment() {
+            document.querySelector("#cancel-wrapper").classList.toggle("hidden-active");
+        }
+
+
+    </script>
+    
+</body>
+
+</html>

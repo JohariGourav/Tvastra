@@ -27,7 +27,7 @@
 
         <div class="main">
             <% schedules.forEach( schedule => { %>
-            <div class="schedule">
+            <div class="schedule" data-date = "<%= schedule.date.getTime() %>">
                 <div class="schedule-heading">
                     <div class="day-date">
                         <h4><%= schedule.day %></h4>
@@ -35,30 +35,36 @@
                     </div>
                     <div class="hospital-and-time">
                         <h6><%= schedule.slots[0].hospital %></h6>
-                        <time><%= schedule.dayStartTime.getHours() + ':' + schedule.dayStartTime.getMinutes() + ' - ' + schedule.dayEndTime.getHours() + ":" + schedule.dayEndTime.getMinutes() %></time>
+                        <!-- <time><%//= schedule.dayStartTime.getHours() + ':' + schedule.dayStartTime.getMinutes() + ' - ' + schedule.dayEndTime.getHours() + ":" + schedule.dayEndTime.getMinutes() %></time> -->
+                        <time><%= schedule.dayStartTime + ' - '  + schedule.dayEndTime %></time>
                     </div>
                     <div class="button-actions">
                         <!-- <button class="secondary-btn">Edit Slot</button> -->
-                        <button class="secondary-btn">Remove Slot</button>
-                        <button class="secondary-btn">View Details</button>
+                        <button class="secondary-btn" onclick="removeSchedule('<%= schedule._id %>')">Remove Schedule</button>
+                        <button class="secondary-btn view-slots-btn" id="view-slots-btn">View Details</button>
                     </div>
                 </div>
-                <div class="slots-container">
+                <div class="slots-container hidden-active">
                     <ul>
                         <%  %> 
                     <% schedule.slots.forEach( slot => { %>
-                        <li class="slot">
-                            <time><%= slot.startTime.getHours() + ':' + slot.startTime.getMinutes() + ' - ' + slot.endTime.getHours() + ':' + slot.endTime.getMinutes() %></time>
-                            <input type="checkbox">
+                        <li class="slot" data-status="<%= slot.status %>">
+                            <time><%= slot.startTime  + ' - ' + slot.endTime %></time>
+                            <input type="checkbox" onclick="changeSlotStatus('<%= slot._id %>', this)" <%= slot.status == 'Booked' ? 'disabled' : '' || slot.status == 'Busy' ? 'checked' : ''%>>
                         </li>
                     <% }); %>
                     <%  %> 
                     </ul>
+                    <div class="slot-signs">
+                        <span><i class="fas fa-square available"></i> Available</span>
+                        <span><i class="fas fa-square busy"></i> Busy</span>
+                        <span><i class="fas fa-square booked"></i> Booked</span>
+                    </div>
                 </div>
             </div>
             <% }); %>
 
-            <div class="schedule">
+            <!-- <div class="schedule">
                 <div class="schedule-heading">
                     <div class="day-date">
                         <h4>Mon</h4>
@@ -69,7 +75,7 @@
                         <time>10:00 - 11:00</time>
                     </div>
                     <div class="button-actions">
-                        <!-- <button class="secondary-btn">Edit Slot</button> -->
+                        <button class="secondary-btn">Edit Slot</button>
                         <button class="secondary-btn">Remove Slot</button>
                         <button class="secondary-btn">View Details</button>
                     </div>
@@ -102,20 +108,62 @@
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div> -->
         </div>
     </section>
+    <div class="add-schedule-btn-container">
+        <button class="add-schedule-btn" id="show-form-btn">
+            <i class="fas fa-plus"></i>
+            Schedule
+        </button>
+    </div>
+    <div class="schedule-form-container hidden-active" id="schedule-form-container">
+        <form action="/generate-slots" method="POST">
+            <i id="hide-schedule-form" class="fa fa-times"></i>
+            <div class="form-grp">
+                <label for="days">Choose Available Days</label>
+                <select class="days" name="days[]" id="days" multiple required>
+                    <% %>
+                    <% var options = { day: 'numeric', month: 'short', weekday: 'long'}%>
+                    <% dates.forEach( date => { %>
+                        <option value="<%= date.getTime() %>"><%= (new Intl.DateTimeFormat('default', options)).format(date) %></option>    
+                    <% }) %>
+                    
+                </select>
+            </div>
+            <div class="form-grp">
+                <select name="hospital" id="hospital" required>
+                    <option value="" disabled selected>Select Hospital</option>
+                    <option value="Fortis">Fortis</option>
+                </select>
+            </div>
+            <div class="form-grp">
+                <label for="day-start-time">Day Start Time</label>
+                <input type="time" name="day-start-time" id="day-start-time" placeholder="Day Start Time" required>
+            </div>
+            <div class="form-grp">
+                <label for="day-end-time">Day End Time</label>
+                <input type="time" name="day-end-time" id="day-end-time" placeholder="Day End Time" required>
+            </div>
+            <div class="form-grp">
+                <input type="number" name="interval" placeholder="Enter Interval (in minutes)" required>
+            </div>
+            <div class="form-grp">
+                <button class="secondary-btn">Add Schedule</button>
+            </div>
+        </form>
+    </div>
 
     <footer class="footer">
         <p class="copyright">All Rights Reserved. &copy; tvastra 2020</p>
     </footer>
+    <script src="/scripts/script.js"></script>
+    <script src="/scripts/flash.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
         document.getElementById("schedule-list-item").classList.add("hover-active");
     </script>
-    <script src="/scripts/script.js"></script>
-    <script src="/scripts/flash.js"></script>
-    <script src="/scripts/tagify.min.js"></script>
-
+    <script src="/scripts/schedule.js"></script>
 </body>
 
 </html>

@@ -1,6 +1,11 @@
 const User = require("../models/user-model");
+const Schedule = require("../models/slot-model").schedule;
+const Slot = require("../models/slot-model").slot;
+const createNextXDays = require("../util/userUtil").createNextXDays;
+
 const createDoctorProfileObject = require("../util/userUtil").createDoctorProfileObject;
 
+// Show Doctors Page
 function showDoctors(req, res) {
     User.find({
         isDoctor: true
@@ -19,7 +24,7 @@ function showDoctors(req, res) {
             return res.redirect("back");
         } else if (result) {
             // req.flash("success", "Profile Updated");
-            return res.render("doctors", { doctors: result, location: false });
+            return res.render("doctors", { doctors: result });
         } else {
             req.flash("error", "Server error occurred");
             return res.redirect("back");
@@ -28,6 +33,7 @@ function showDoctors(req, res) {
     // res.render("doctor.html");
 }
 
+// filter functionality for Doctors page filters
 function filterDoctors(req, res) {
     console.log(req.body);
     let {location, treatments, hospitals, experience, sort} = req.body;
@@ -97,10 +103,15 @@ function filterDoctors(req, res) {
 //     }
 // }
 
+/*-------------------------------------------------
+    Show Doctor Profile form to Doctors who are logging 
+    in for first time OR who haven't filled the form yet
+------------------------------------------------*/
 function showProfileForm(req, res) {
     res.render("doctor-profile-form");
 }
 
+// Submit the filled Doctor profile form
 function submitProfileForm(req, res) {
     console.log("----file-----", req.file);
     console.log("imageID: ", req.imageId);
@@ -153,6 +164,7 @@ function submitProfileForm(req, res) {
     });
 }
 
+// Show the basic Doctor Profile (from Tvastra tasks)
 function showProfile(req, res) {
     User.findById(req.params.docId, (err, result) => {
         console.log("err: ", err, " --result: ", result);
@@ -174,10 +186,120 @@ function showProfile(req, res) {
     });
 }
 
+// Serves schedule of a doctor on doctors page through axios get request
+async function findSchedule(req, res) {
+    let id = req.params.docId;
+    console.log("params: ", req.params);
+    console.log("body: ", req.body);
+    console.log("id: ", id);
+    // console.log("id: ", new Date( new Date().setHours(0, 0, 0, -1)));
+    try {
+        let schedules = await Schedule.find({
+            doctor: req.params.docId,
+            date: { $gt: new Date( new Date().setHours(0, 0, 0, -1)) },
+            // slots: { $elemMatch: { status: 'Available'}}
+            // "slots.status": 'Available'
+        }).
+        populate('slots').
+        sort({date: 1});
+
+        // function(err, results) {
+            schedules.forEach( result => {
+                result.slots = result.slots.filter( x => {
+                    // console.log("x: ", x.status);
+                    return x.status == 'Available';
+                });
+                // console.log("status : ", result.slots);
+            });
+            // return results;
+        // }
+        
+        // where('slots.slot.status').equals('Available');
+        // console.log("schedule result: ", schedules);
+        let days10 = createNextXDays(9);
+        let days = {};
+        days10.forEach(day => {
+            days[day.getTime()] = null;
+        });
+        // console.log("days: ", days);
+        schedules.forEach( (schedule, index)  => {
+            // console.log("schedule.date.getTime(): ", schedule.date.getTime());
+            // console.log("schedule.date.getTime(): ", days['' + schedule.date.getTime() + '']);
+            if(days['' + schedule.date.getTime() + ''] === null) {
+                days[schedule.date.getTime()] = index;
+            }
+        });
+        console.log("days: ", days);
+        return res.render("partials/schedulesPartial", {schedules: schedules, days: days});
+    } catch (error) {
+        console.log("find schedules Error: ", error);
+		return res.status(500).send(false);
+    }
+}
+
+// Serves slots of a schedule on doctors page through axios get request
+async function findSlots(req, res) {
+    let id = req.params.scheduleId;
+    console.log("params: ", req.params);
+    // console.log("id: ", new Date( new Date().setHours(0, 0, 0, -1)));
+    try {
+        let morningSlots = [],
+            afternoonSlots = [],
+            eveningSlots = [];
+        let slotsEmptyFlag = false;
+
+        if(id.length != 24) {
+            slotsEmptyFlag = true;
+            // afternoonSlots.push({time: 'No Slot Available'});
+            return res.render("partials/slotsPartial", {
+                morningSlots: morningSlots,
+                afternoonSlots: afternoonSlots,
+                eveningSlots: eveningSlots,
+                slotsEmptyFlag: slotsEmptyFlag
+            });
+        }
+        let schedule = await Schedule.findById({
+            _id: id,
+            // date: { $gt: new Date( new Date().setHours(0, 0, 0, -1)) },
+        }).
+        populate('slots').
+        sort({createdAt: 1});
+  
+        schedule.slots.forEach( slot => {
+            if(slot.status == 'Available') {
+                let startTime = slot.startTime.split(':'); 
+                let startTimeTotalMinutes = startTime[0] * 60 + parseInt(startTime[1]);
+                // console.log("start time : ", startTime, startTimeTotalMinutes);
+                if( startTimeTotalMinutes < (12 * 60) )
+                    morningSlots.push({slotId: slot._id, time: `${slot.startTime} - ${slot.endTime}`});
+                else if( startTimeTotalMinutes >= (16 * 60))
+                    eveningSlots.push({slotId: slot._id, time: `${slot.startTime} - ${slot.endTime}`});
+                else
+                    afternoonSlots.push({slotId: slot._id, time: `${slot.startTime} - ${slot.endTime}`});
+            }  
+        });
+        // console.log("mor slots: ", morningSlots); 
+        if( morningSlots.length == 0 && afternoonSlots.length == 0 && eveningSlots.length == 0) {
+            slotsEmptyFlag = true
+        }    
+        return res.render("partials/slotsPartial", {
+            morningSlots: morningSlots,
+            afternoonSlots: afternoonSlots,
+            eveningSlots: eveningSlots,
+            slotsEmptyFlag: slotsEmptyFlag
+        });
+    } catch (error) {
+        console.log("find slots Error: ", error);
+		return res.status(500).send(false);
+    }
+}
+
 module.exports = {
     showDoctors: showDoctors,
     filterDoctors: filterDoctors,
     showProfileForm: showProfileForm,
     submitProfileForm: submitProfileForm,
-    showProfile: showProfile
+    showProfile: showProfile,
+    findSchedule: findSchedule,
+    findSlots: findSlots
 };

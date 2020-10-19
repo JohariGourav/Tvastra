@@ -1,0 +1,170 @@
+section {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto;
+      grid-template-columns: auto;
+  grid-gap: 1rem;
+  background-color: var(--secondary-bg-color);
+  font-family: nexa-light;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  justify-items: center;
+}
+
+.section-item {
+  width: 100%;
+  max-width: 475px;
+}
+
+.doctor-details {
+  background-color: white;
+  padding: 1rem;
+}
+
+.doctor-details h1 {
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  text-align: center;
+  padding-bottom: 0.6rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid darkgray;
+}
+
+.time-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 6px;
+  margin: 0.5rem 0;
+}
+
+.time-info h3 {
+  font-size: 1.1rem;
+  display: inline-block;
+}
+
+.time-info h3 i {
+  margin-right: 6px;
+  color: var(--secondary-text-color);
+}
+
+.info-ctr {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  justify-items: flex-start;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.info-ctr .about-ctr {
+  padding: 6px 0;
+}
+
+.info-ctr .about-ctr h5 {
+  font-size: 1rem;
+  line-height: 1.1rem;
+}
+
+.img-ctr {
+  height: 5rem;
+  width: 5rem;
+  border-radius: 10px;
+}
+
+.img-ctr img {
+  height: 100%;
+  width: 100%;
+  border-radius: inherit;
+}
+
+.patient-details {
+  background-color: white;
+  padding: 1rem;
+}
+
+.patient-details h2 {
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  text-align: center;
+  padding-bottom: 0.6rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid darkgray;
+}
+
+.patient-details form {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto;
+      grid-template-columns: auto;
+  gap: 0.5rem;
+  padding-top: 0.5rem;
+}
+
+.patient-details form .patient-info-header-grp {
+  padding: 1rem 0;
+}
+
+.patient-details form input {
+  border: 1.5px solid darkgray;
+  width: 100%;
+  font-size: 1rem;
+}
+
+.patient-details form label {
+  font-size: 1rem;
+  font-family: nexa-bold;
+  color: var(--secondary-text-color);
+}
+
+.patient-details form input[type="radio"] {
+  width: 1rem;
+  height: 1rem;
+  cursor: pointer;
+}
+
+.patient-details form input[type="radio"] + label {
+  cursor: pointer;
+}
+
+.patient-details form .submit-btn {
+  width: 100%;
+  font-size: 1.2rem;
+  padding: 0.65rem 1rem;
+}
+
+.patient-details form .submit-btn i {
+  float: right;
+}
+
+@media only screen and (min-width: 1024px) {
+  section {
+    -ms-grid-columns: auto auto;
+        grid-template-columns: auto auto;
+    -ms-flex-line-pack: center;
+        align-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: stretch;
+        -ms-flex-pack: stretch;
+            justify-content: stretch;
+    gap: 2rem;
+  }
+  .doctor-details {
+    justify-self: flex-end;
+  }
+  .patient-details {
+    justify-self: flex-start;
+  }
+}
+/*# sourceMappingURL=book_appointment.css.map */

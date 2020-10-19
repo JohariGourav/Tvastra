@@ -75,6 +75,46 @@ newMobileBtn.addEventListener("click", e => {
     });  
 });
 
+// send otp form submission
+let otpBtn = document.querySelector("#otp-btn");
+otpBtn.addEventListener("click", e => {
+    e.preventDefault();
+
+    let otp = document.querySelector("#otp");
+    console.log("new mobile: ", otp);
+    console.log("new mobile: ", otp.value);
+
+    if(otp.value.length != 4) {
+        return alert('Please Enter 4 digit OTP');
+    }
+
+    axios.post('/edit-mobile/validate-otp', {
+        otp: otp.value
+    })
+    .then( response => {
+        // console.log("response: ",response);
+        // console.log("data: ", response.data);
+        if(response.data == true) {
+            document.getElementById("otp-container").classList.toggle("hidden-active");
+            document.getElementById("mobile").value = document.querySelector("#new-mobile").value;
+            document.querySelector("#new-mobile").value = null;
+            otp.value = null;
+            return alert("Click on Save Changes to update mobile");
+        }
+        else {
+            renderFlashResponse(response.data);
+            document.querySelector("#new-mobile").value = null;
+            otp.value = null;
+        }
+        return null;
+    })
+    .catch( error => {
+        console.log(error);
+        alert("Server Error, Retry!");
+        return null;
+    });  
+});
+
 /* -----------------------------
     rendering Flash Error Response received from axios request
  ------------------------------*/
