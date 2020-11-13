@@ -38,7 +38,6 @@ router.get("/reschedule-appointment/:appointmentId/new-slot/:slotId", indexMiddl
 
 router.get("/submit-your-query", mainController.submitYourQuery);
 router.get("/book-appointment", indexMiddleware.isLoggedIn, mainController.bookAppointment);
-router.get("/faq", mainController.faq);
 router.get("/signup", mainController.signup);
 router.post("/signup", signupController.signup);
 router.get("/login", mainController.login);

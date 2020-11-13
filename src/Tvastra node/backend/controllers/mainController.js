@@ -6,30 +6,27 @@ function landing (req, res) {
 }
 
 function tvastraPlus (req, res) {
-    res.render("tvastra-plus.html");
+    res.render("tvastra-plus");
 }
 
 function showHospitals(req, res) {
-    res.render("hospital.html");
+    res.render("hospital");
 }
 function showTreatments(req, res) {
-    res.render("treatment.html");
+    res.render("treatment");
 }
 function showAboutUs(req, res) {
-    res.render("about-us.html");
+    res.render("about-us");
 }
 function showContactUs(req, res) {
-    res.render("contact-us.html");
+    res.render("contact-us");
 }
 function showFaqs(req, res) {
-    res.render("FAQ.html");
+    res.render("FAQ");
 }
 
 function submitYourQuery (req, res) {
     res.render("submit-your-query");
-}
-function faq (req, res) {
-    res.render("FAQ.html");
 }
 
 function bookAppointment (req, res) {
@@ -89,7 +86,6 @@ module.exports = {
     showContactUs: showContactUs,
     showFaqs: showFaqs,
     submitYourQuery: submitYourQuery,
-    faq: faq,
     bookAppointment: bookAppointment,
     signup: signup,
     login: login,
