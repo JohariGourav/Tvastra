@@ -19,6 +19,12 @@ router.get("/index.html", mainController.landing);
 router.get("/", mainController.landing);
 router.get("/tvastra-plus", mainController.tvastraPlus);
 
+router.get("/hospitals", mainController.showHospitals);
+router.get("/treatments", mainController.showTreatments);
+router.get("/about-us", mainController.showAboutUs);
+router.get("/contact-us", mainController.showContactUs); // coming from footer
+router.get("/faqs", mainController.showFaqs); // coming from footer
+
 router.get("/doctors", doctorController.showDoctors);
 router.post("/doctors/filter", doctorController.filterDoctors);
 // router.get("/doctors/filter", doctorController.filterDoctors);

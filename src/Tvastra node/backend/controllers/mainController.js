@@ -9,6 +9,22 @@ function tvastraPlus (req, res) {
     res.render("tvastra-plus.html");
 }
 
+function showHospitals(req, res) {
+    res.render("hospital.html");
+}
+function showTreatments(req, res) {
+    res.render("treatment.html");
+}
+function showAboutUs(req, res) {
+    res.render("about-us.html");
+}
+function showContactUs(req, res) {
+    res.render("contact-us.html");
+}
+function showFaqs(req, res) {
+    res.render("FAQ.html");
+}
+
 function submitYourQuery (req, res) {
     res.render("submit-your-query");
 }
@@ -67,6 +83,11 @@ function dashboard (req, res) {
 module.exports = {
     landing: landing,
     tvastraPlus: tvastraPlus,
+    showTreatments: showTreatments,
+    showHospitals: showHospitals,
+    showAboutUs: showAboutUs,
+    showContactUs: showContactUs,
+    showFaqs: showFaqs,
     submitYourQuery: submitYourQuery,
     faq: faq,
     bookAppointment: bookAppointment,

@@ -38,7 +38,7 @@ mongoose.connect(dbURL, {
 }).then( _ => {
   console.log("DB connected");
 }).catch( err => {
-  console.log("ERROR DB con: ", err.message);
+  console.log("ERROR DB con: ", err);
 });
       
 app.use(bodyParser.urlencoded({extended: true}));
